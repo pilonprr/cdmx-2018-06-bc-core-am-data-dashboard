@@ -64,11 +64,11 @@ Después de recabar y analizar la información determinamos que nuestro dashboar
 
 Para tener más claro estos dos perfiles, optamos por la generación de dos proto-personas que nos permitieran ver de manera rápida las características, metas y puntos de dolor de cada tipo de usuario, estas dos proto-personas se muestran a continuación:
 
-<img src=/media/jpg/proto_persona_1.jpg alt=”proto_persona_1” width="50%" height="50%"> 
+<img src=/ux/media/jpg/proto_persona_1.jpg alt=”proto_persona_1” width="50%" height="50%"> 
 
 _Proto-persona del usuario principal_
 
-<img src=/media/jpg/proto_persona_2.jpg alt=”proto_persona_2” width="50%" height="50%"> 
+<img src=/ux/media/jpg/proto_persona_2.jpg alt=”proto_persona_2” width="50%" height="50%"> 
 
 _Proto-persona del usuario secundario_
 
@@ -95,17 +95,17 @@ Con toda la información disponible hasta el momento, generamos una lista de req
 
 Partiendo del preámbulo y del conocimiento previo sobre la forma de trabajar de Laboratoria, se escribio un pseudocódigo que nos dijera las acciones básicas que deberán ocurrir en nuestra plataforma, una vez realizada esta actividad se tradujeron los pasos del pseudocódigo a un diagrama de flujo.
 
-<img src=/media/png/Data_Dashboard-Diagrama_de_flujo_1.png alt=”segunda_propuesta_de_sketch” width="50%" height="50%">
+<img src=/ux/media/png/Data_Dashboard-Diagrama_de_flujo_1.png alt=”segunda_propuesta_de_sketch” width="50%" height="50%">
 
 _Diagrama de flujo de las acciones básicas_
 
 Siguiendo este diagrama de flujo, se elaboró un sketch de lo que para nosotras sería lo más importante para una TM. 
 
-<img src=/media/gif/propuesta_sketch_01.gif alt=”segunda_propuesta_de_sketch” width="50%" height="50%">
+<img src=/ux/media/gif/propuesta_sketch_01.gif alt=”segunda_propuesta_de_sketch” width="50%" height="50%">
 
 _Primera propuesta de sketch antes de acercarnos al usuario_
 
-<img src=/media/gif/propuesta_sketch_02.gif alt=”segunda_propuesta_de_sketch” width="50%" height="50%">
+<img src=/ux/media/gif/propuesta_sketch_02.gif alt=”segunda_propuesta_de_sketch” width="50%" height="50%">
 
 _Segunda propuesta de sketch antes de acercarnos al usuario_
 
@@ -113,11 +113,11 @@ _Segunda propuesta de sketch antes de acercarnos al usuario_
 
 Teniendo como base el sketch inicial, se realizó una adaptación tomando en cuenta la información obtenida mediante la entrevista y las encuestas.
 
-<img src=/media/gif/sketch_desktop_v2.gif alt=”segunda_propuesta_de_sketch_desktop” width="50%" height="50%">
+<img src=/ux/media/gif/sketch_desktop_v2.gif alt=”segunda_propuesta_de_sketch_desktop” width="50%" height="50%">
 
 _Propuesta de sketch para escritorio despúes de acercarnos al usuario_
 
-<img src=/media/gif/sketch_mobile_v2.gif alt=”segunda_propuesta_de_sketch_mobile” width="25%" height="25%">
+<img src=/ux/media/gif/sketch_mobile_v2.gif alt=”segunda_propuesta_de_sketch_mobile” width="25%" height="25%">
 
 _Propuesta de sketch para movil despúes de acercarnos al usuario_
 
