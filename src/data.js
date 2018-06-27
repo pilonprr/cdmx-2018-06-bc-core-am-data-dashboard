@@ -13,26 +13,17 @@ window.data = {
 
     //Funcion que crea lista de estudiantes.
     computeStudentsStats: (laboratoria) => {
-        console.log("prueba1")
         laboratoria.then( resp => resp.json() )
         .then(data => {
 
             sede = Object.getOwnPropertyNames(data);
             generacion = Object.values(data);
-            //console.log(generacion);
             generacion.forEach(element => {
-                console.log(element.generacion);
                 gene = Object.getOwnPropertyNames(element.generacion);
                 student = Object.values(element.generacion);
-                console.log(gene);
-                console.log(student);
-                
-                /*generacion.estudiantes.forEach(dato => {
-                    let student = dato.estudiantes;
-                    console.log(student);
-                })*/
-            //let generation = estudiante["generacion"];
-            //let email = 
+                student.forEach(element => {
+                    console.log(element.estudiantes);
+                })
             })
         })
     },
