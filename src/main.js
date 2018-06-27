@@ -1,26 +1,43 @@
-let caja = document.getElementById("lista");
-let result;
+data.getData();
 
 
-//Funcion para bajar data y poder manipularla.
+
+
+/*Funcion para bajar data y poder manipularla.
 const getData = () => {
     let url = 'https://raw.githubusercontent.com/jetzable/cdmx-2018-06-bc-core-am-data-dashboard/master/data/laboratoria.json';     
-    let result;
  
     fetch( url ).then( resp => resp.json() )
         .then(data => {
-            //result = Object.keys(data);
-            for(campus in data){
-                for(generation in campus){
-                    console.log();
-                }
-                console.log(campus);
-            }
-            caja.innerHTML = result;
-        });
-    }
+            sede = Object.getOwnPropertyNames(data);
+            generacion = Object.values(data);
+            console.log(sede);
+            console.log(generacion);
 
-getData(); 
+            //Función imprime estudiantes y correo.
+            generacion.forEach(element => {
+                console.log(element.generacion.cuarta.estudiantes);
+                let studentPerGeneration = element.generacion.cuarta.estudiantes;
+                studentPerGeneration.forEach(element =>{
+                    console.log(element.nombre);
+                    let arr = [element.nombre,element.correo];
+                    console.log(arr);
+                    let parrafoEstudiante = document.createElement("p");
+                    let newContent = document.createTextNode(arr);
+                    parrafoEstudiante.appendChild(newContent);
+                    caja.appendChild(parrafoEstudiante);
+
+                })
+            })
+        })
+    }
+getData();  //Lllama a funcion que obtiene data.*/
+
+
+
+
+//---------------------ELEMENTOS DE INTERFAZ----------------------------
+
 
 //Declaración de variables para llamar los contenedores de la página de acceso
 let loginContainer = document.querySelector("#login-container");
@@ -67,3 +84,7 @@ Debes ingresar todos los datos`);
         return alert("Alguno de tus datos es incorrecto");
     }
 }
+
+
+
+//--------------------FIN DE ELEMENTOS DE INTERFAZ-------------
