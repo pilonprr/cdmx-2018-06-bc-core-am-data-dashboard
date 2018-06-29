@@ -15,17 +15,31 @@ window.data = {
     computeStudentsStats: (laboratoria) => {
         laboratoria.then( resp => resp.json() )
         .then(data => {
-
+            let studentArr = [];
             sede = Object.getOwnPropertyNames(data);
             generacion = Object.values(data);
-            generacion.forEach(element => {
-                gene = Object.getOwnPropertyNames(element.generacion);
-                student = Object.values(element.generacion);
-                student.forEach(element => {
-                    console.log(element.estudiantes);
+            generacion.forEach(generation => {
+                //gene = Object.getOwnPropertyNames(element.generacion);
+                student = Object.values(generation.generacion);
+                student.forEach(student => {
+                    //est = Object.getOwnPropertyNames(element.student);
+                    estInfo = Object.values(student.estudiantes);
+                    estInfo.forEach(information => {
+                        //console.log(element);
+                        datosPersonales = Object.values(information);
+                        console.log(information.turno);
+                       // console.log(datosPersonales);
+                        //for(let i=0;i<datosPersonales.length;i++){
+                           // studentArr[i] = datosPersonales[i];
+                            //console.log(datosPersonales);
+                            //console.log(studentArr[0]);
+                            //console.log(studentArr[3]);
+                        //}
+                        })
+                    })
+                    
                 })
             })
-        })
     },
 
 
