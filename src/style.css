@@ -11,28 +11,57 @@ body{
 }
 
 #login-container{
-    height: 100vh;
+    min-height: 100vh;
     display: block;
-    background-color: yellow;
+    background-color: #ffe521;
+    font-size: 1em;
+}
+
+#logo-login{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /*width: 50%;*/
+    max-width: 300px;
+    min-width: 130px;
 }
 
 #login-section{
     width: 50%;
-    margin: 3em auto;
-    padding: 3em;
+    max-width: 500px;
+    min-width: 60%;
+    margin: auto;
+    padding: 30px;
     height: auto;
     border: 1px solid grey;
-    vertical-align: middle;
     background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 #main-page {
     display: none;
 }
 
+#title-login{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+.btn{
+    background-color: #ff009e;
+    color: #fff;
+}
+
+
 footer{
     height: auto;
+    min-height: 5vh;
     padding-top: 0.8em;
+    padding-bottom: 0.8em;
     text-align: center;
     margin-top: auto;
     position: fixed;
