@@ -1,3 +1,65 @@
+window.computeStudentsStats = (laboratoria) => {
+  const studentsArray = [];
+  const studentObject = {
+    name : "",
+    email : "",
+    campus : "",
+    generation : "",
+    stats : {
+      status : 0,
+      completedPercentage : 0,
+      topics : {
+
+      }
+    },
+  }
+
+  for(venue in laboratoria){
+    //console.log(laboratoria[venue]); Me da un arreglo con las sedes
+    studentObject.campus = venue;
+    //console.log(student); 
+    const generations = Object.keys(laboratoria[venue].generacion);
+    //console.log(generations); //Me da tres arreglos con las keys de generación de cada 
+    generations.forEach((generationInVenue) => {
+      //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
+      studentObject.generation = generationInVenue;
+      //console.log(student);
+      const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
+      //console.log(students);
+      students.forEach((student) => {
+        studentObject.name = student.nombre; //Agregamos nombre de estudiante
+        studentObject.email = student.correo; //Agregamos correo de estudiante
+        studentObject.stats.completedPercentage = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
+        let progress = studentObject.stats.completedPercentage;
+        if (progress < 60) {
+          studentObject.stats.status = "below"; //Indicamos que esta debajo del 60%
+        } else if (progress > 90) {
+          studentObject.stats.status = "over"; //Indicamos que esta sobre el 90%
+        } else {
+          studentObject.stats.status = "average"; //Indicamos que esta en la media
+        };
+        const topics = Object.getOwnPropertyNames(student.progreso.temas);
+        for (topic of topics) {
+          //console.log(topic);
+        }
+        //studentObject.stats.topics = topics;
+        //console.log(topics);
+        //console.log(studentObject);
+        studentsArray.push(studentObject); //Ingresa los objetos de cada estudiante al array final
+        //console.log(studentsArray);
+        /*const topics = Object.keys(student.progreso.temas);
+        topics.forEach((topic) =>{
+          studentObject.stats.topics = topic;
+          console.log(studentObject);  
+        })*/
+      })
+    });    
+  }
+  //console.log(studentsArray);
+  return studentsArray;
+  
+};
+
 window.computeGenerationsStats = (laboratoria) => {
 
   const generationsArray = [];
@@ -47,6 +109,17 @@ window.obtainCampus = (laboratoria) => {
 
 };
 
+window.obtainGeneration = (laboratoria) => {
+  //console.log(laboratoria);
+  //const generations = Object.getOwnPropertyNames(laboratoriasedes);
+  //console.log(generations);
+  for (key in laboratoria) {
+    const generationOption = Object.keys(laboratoria[key].generacion);
+    //console.log(generationOption);
+    return generationOption;
+  }
+};
+
 window.checkLogin = () => {
 
   //console.log("Listo");
@@ -91,19 +164,52 @@ window.welcomeDashboard = (name,venue) =>{
   document.querySelector("#venue").innerHTML = venue;
   document.querySelector("#generation").innerHTML = "5a generación";
   document.querySelector("#user").innerHTML = name.toUpperCase();
-  drawCampusDashboard(sedes);
+  //drawCampusDashboard(sedes);
 }
 
 window.drawCampusDashboard = (sedes) => {
   //const containerCampus = document.getElementById('campus');
+  //Crea el dropdown de generaciones en el menú para la versión móvil
   sedes.forEach((sede) => {
       const option = document.createElement('option');
       option.innerHTML = sede.toUpperCase();
       selectCampusDashboard1.appendChild(option);
   });
+  //Crea el dropdown de generaciones en el menú para la versión desktop
   sedes.forEach((sede) => {
     const option = document.createElement('option');
     option.innerHTML = sede.toUpperCase();
     selectCampusDashboard2.appendChild(option);
-});
+  });
 };
+
+window.drawGenerationDashboard = (generations) => {
+  //console.log(generations);
+  //console.log("entramos");
+  for(let i=0; i< generations.length; i++){
+    const option = document.createElement('option');
+    const textOption = generations[i];
+    //console.log(textOption);
+    option.innerHTML= textOption;
+    // También se puede hacer de esta manera
+    //document.getElementById("select-generation-dashboard-1").appendChild(option);
+    //document.getElementById("select-generation-dashboard-2").appendChild(option);
+    selectGenerationDashboard1.appendChild(option);
+  }
+  for(let i=0; i< generations.length; i++){
+    const option = document.createElement('option');
+    const textOption = generations[i];
+    //console.log(textOption);
+    option.innerHTML= textOption;
+    selectGenerationDashboard2.appendChild(option);
+  }  
+};
+
+/*const exitFunction = () => {
+  confirm("¿Quieres salir de LAB-Dash?");
+  if(true){
+      window.location.reload();
+  }else{
+    alert("OK");
+  }
+};*/

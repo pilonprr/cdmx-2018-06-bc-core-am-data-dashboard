@@ -83,12 +83,14 @@ footer{
         
 @media screen and (max-width: 767px) {
     
+    #myNavbar, .navbar-header{
+     background-color: #e3e3e3;
+    }
     .row.content {
     height: auto;
     } 
 
     .navbar-header{
-        background-color: #333333;
         padding-top: 1em;
         padding-left: 1em;
     }
@@ -99,6 +101,10 @@ footer{
 
     #title-login{
         font-size: 1.5em;
+    }
+
+    footer{
+        position: relative;
     }
 
 }
@@ -121,3 +127,10 @@ footer{
     color: #fff;
 }
 
+hr{
+border-top-color: #333333;
+}
+
+#select1{
+    margin-bottom: 1em;
+}
