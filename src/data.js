@@ -1,115 +1,91 @@
-window.computeStudentsStats = (laboratoria) => {
-  const studentsArray = [];
-  const studentObject = {
-    name : "",
-    email : "",
-    campus : "",
-    generation : "",
-    stats : {
-      status : 0,
-      completedPercentage : 0,
-      topics : {
-
-      }
-    },
-  }
-
+window.data = {
+  
+  
+  computeStudentsStats: (laboratoria) => {
+  let studentsArray = [];
+  let nombreEstudiante;
+  let mailEstudiante;
+  let porcentajeEstudiante;
+  let statusEstudiante;
+  let generacionEnSede;
   for(venue in laboratoria){
-    //console.log(laboratoria[venue]); Me da un arreglo con las sedes
-    studentObject.campus = venue;
-    //console.log(student); 
-    const generations = Object.keys(laboratoria[venue].generacion);
-    //console.log(generations); //Me da tres arreglos con las keys de generación de cada 
+    let sede = venue; 
+    const generations = Object.keys(laboratoria[venue].generacion); 
     generations.forEach((generationInVenue) => {
       //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
-      studentObject.generation = generationInVenue;
+     generacionEnSede = generationInVenue;
       //console.log(student);
       const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
       //console.log(students);
       students.forEach((student) => {
-        studentObject.name = student.nombre; //Agregamos nombre de estudiante
-        studentObject.email = student.correo; //Agregamos correo de estudiante
-        studentObject.stats.completedPercentage = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
-        let progress = studentObject.stats.completedPercentage;
+        nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
+        mailEstudiante = student.correo; //Agregamos correo de estudiante
+        porcentajeEstudiante = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
+        let progress = porcentajeEstudiante;
         if (progress < 60) {
-          studentObject.stats.status = "below"; //Indicamos que esta debajo del 60%
+          statusEstudiante = "below"; //Indicamos que esta debajo del 60%
         } else if (progress > 90) {
-          studentObject.stats.status = "over"; //Indicamos que esta sobre el 90%
+          statusEstudiante = "over"; //Indicamos que esta sobre el 90%
         } else {
-          studentObject.stats.status = "average"; //Indicamos que esta en la media
+          statusEstudiante = "average"; //Indicamos que esta en la media
         };
-        const topics = Object.getOwnPropertyNames(student.progreso.temas);
-        for (topic of topics) {
-          //console.log(topic);
-        }
-        //studentObject.stats.topics = topics;
-        //console.log(topics);
-        //console.log(studentObject);
-        studentsArray.push(studentObject); //Ingresa los objetos de cada estudiante al array final
-        //console.log(studentsArray);
-        /*const topics = Object.keys(student.progreso.temas);
-        topics.forEach((topic) =>{
-          studentObject.stats.topics = topic;
-          console.log(studentObject);  
-        })*/
-      })
-    });    
+        studentsArray.push({'name': nombreEstudiante,'email': mailEstudiante, 'campus': sede, 'generation': generacionEnSede, 'stats':{
+          'status': statusEstudiante, 'completedPercentage': porcentajeEstudiante}});
+        
+      });
+    });
   }
   //console.log(studentsArray);
   return studentsArray;
   
-};
+},
 
-window.computeGenerationsStats = (laboratoria) => {
+computeGenerationsStats: (laboratoria) => {
 
   const generationsArray = [];
-  const obj = {
-
-    campus: '',
-    generation: '',
-    average: 0,
-    count: 0,
-
-  };
+  let valueCampus;
+  let valueGeneration;
+  let valueAverage;
+  let valueCount;
   
   let average = 0;
   for (key in laboratoria) {
   
-    obj.campus = key;
-    average = 0;
+    valueCampus = key;
+    //average = 0;
     const generations = Object.keys(laboratoria[key].generacion);
     //console.log(generations);
     generations.forEach((generation) => {
    
-      obj.generation = generation;
+      valueGeneration = generation;
       const students = laboratoria[key].generacion[generation].estudiantes;
       //console.log(students);
       
       for (student in students) {
    
         average += students[student].progreso.porcentajeCompletado;
-        average = average / students.length;
-        obj.average = average;
-        obj.count = students.length;
-        generationsArray.push(obj);
+        //average = average / students.length;
+        valueAverage = Math.round(average/students.length);
+        valueCount = students.length;
         
-      }            
+      };    
+      generationsArray.push({'campus': valueCampus, 'generation': valueGeneration, 'average': valueAverage, 'count': valueCount});        
     })        
   }
-
+  console.log(generationsArray);
   return generationsArray;
   
-};
+},
 
-window.obtainCampus = (laboratoria) => {
+obtainCampus: (laboratoria) => {
 
   const venues = Object.getOwnPropertyNames(laboratoria);
   //console.log(venues); 
   return venues;
 
-};
+},
 
-window.obtainGeneration = (laboratoria) => {
+obtainGeneration: (laboratoria) => {
   //console.log(laboratoria);
   //const generations = Object.getOwnPropertyNames(laboratoriasedes);
   //console.log(generations);
@@ -118,9 +94,9 @@ window.obtainGeneration = (laboratoria) => {
     //console.log(generationOption);
     return generationOption;
   }
-};
+},
 
-window.checkLogin = () => {
+checkLogin: () => {
 
   //console.log("Listo");
   let name = userName.value;
@@ -145,7 +121,7 @@ Debes ingresar todos los datos`);
     //console.log(venue);
 
     //Llama a la función que despliega el número de estudiantes activas
-    welcomeDashboard(name,venue);
+    data.welcomeDashboard(name,venue);
 
     //agregamos esta línea para poder llamar los valores después
     return [name,venue];
@@ -157,17 +133,17 @@ Debes ingresar todos los datos`);
     
   }
 
-};
+},
 
 //Función que despliega los datos a mostrar en la pantalla de inicio del Dashboard después del login
-window.welcomeDashboard = (name,venue) =>{
+welcomeDashboard: (name,venue) =>{
   document.querySelector("#venue").innerHTML = venue;
   document.querySelector("#generation").innerHTML = "5a generación";
   document.querySelector("#user").innerHTML = name.toUpperCase();
   //drawCampusDashboard(sedes);
-}
+},
 
-window.drawCampusDashboard = (sedes) => {
+drawCampusDashboard: (sedes) => {
   //const containerCampus = document.getElementById('campus');
   //Crea el dropdown de generaciones en el menú para la versión móvil
   sedes.forEach((sede) => {
@@ -181,9 +157,9 @@ window.drawCampusDashboard = (sedes) => {
     option.innerHTML = sede.toUpperCase();
     selectCampusDashboard2.appendChild(option);
   });
-};
+},
 
-window.drawGenerationDashboard = (generations) => {
+drawGenerationDashboard: (generations) => {
   //console.log(generations);
   //console.log("entramos");
   for(let i=0; i< generations.length; i++){
@@ -203,7 +179,7 @@ window.drawGenerationDashboard = (generations) => {
     option.innerHTML= textOption;
     selectGenerationDashboard2.appendChild(option);
   }  
-};
+},
 
 /*const exitFunction = () => {
   confirm("¿Quieres salir de LAB-Dash?");
@@ -213,3 +189,4 @@ window.drawGenerationDashboard = (generations) => {
     alert("OK");
   }
 };*/
+}
