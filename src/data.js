@@ -35,7 +35,7 @@ window.data = {
       });
     });
   }
-  console.log(studentsArray);
+  //console.log(studentsArray);
   return studentsArray;
   
 },
@@ -51,32 +51,33 @@ computeGenerationsStats: (laboratoria) => {
     count: 0,
 
   };
-  
+  let valueCampus;
+  let valueGeneration;
+  let valueAverage;
+  let valueCount;
   let average = 0;
   for (key in laboratoria) {
   
-    obj.campus = key;
+    valueCampus = key;
     average = 0;
     const generations = Object.keys(laboratoria[key].generacion);
     //console.log(generations);
     generations.forEach((generation) => {
    
-      obj.generation = generation;
+      valueGeneration = generation;
       const students = laboratoria[key].generacion[generation].estudiantes;
       //console.log(students);
       
       for (student in students) {
    
         average += students[student].progreso.porcentajeCompletado;
-        average = average / students.length;
-        obj.average = average;
-        obj.count = students.length;
-        generationsArray.push(obj);
-        
-      }            
+        valueAverage = Math.round(average / students.length);
+        valueCount = students.length;      
+      };
+      generationsArray.push({'campus':valueCampus,'generation': valueGeneration, 'average': valueAverage, 'count': valueCount});            
     })        
   }
-
+  console.log(generationsArray);
   return generationsArray;
   
 },

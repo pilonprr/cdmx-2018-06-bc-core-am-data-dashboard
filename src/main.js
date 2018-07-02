@@ -21,15 +21,15 @@ const getData = () => {
     fetch(json)
     .then( response => response.json() )
     .then((res) => {
-        //const generations = computeGenerationsStats(res);
+        const generations = data.computeGenerationsStats(res);
         const campus = data.obtainCampus(res);
-        const generations = data.obtainGeneration(res);
+        const generationsData = data.obtainGeneration(res);
         //console.log(generation);
         const users = data.computeStudentsStats(res);
         //console.log(users);
         drawCampus(campus);
         data.drawCampusDashboard(campus);
-        data.drawGenerationDashboard(generations);
+        data.drawGenerationDashboard(generationsData);
         //console.log(generations);
         //return generations;
         
