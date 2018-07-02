@@ -22,14 +22,14 @@ const getData = () => {
     .then( response => response.json() )
     .then((res) => {
         //const generations = computeGenerationsStats(res);
-        const campus = obtainCampus(res);
-        const generations = obtainGeneration(res);
+        const campus = data.obtainCampus(res);
+        const generations = data.obtainGeneration(res);
         //console.log(generation);
-        const users = computeStudentsStats(res);
-        console.log(users);
+        const users = data.computeStudentsStats(res);
+        //console.log(users);
         drawCampus(campus);
-        drawCampusDashboard(campus);
-        drawGenerationDashboard(generations);
+        data.drawCampusDashboard(campus);
+        data.drawGenerationDashboard(generations);
         //console.log(generations);
         //return generations;
         
@@ -51,8 +51,8 @@ const drawCampus = (sedes) => {
     });
 };
 
-loginButton.addEventListener('click', checkLogin);
-selectCampusDashboard1.addEventListener('change', drawGenerationDashboard);
+loginButton.addEventListener('click', data.checkLogin);
+selectCampusDashboard1.addEventListener('change', data.drawGenerationDashboard);
 //selectCampusDashboard2.addEventListener('change', drawGenerationDashboard);
 
 /*
