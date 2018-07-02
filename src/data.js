@@ -8,15 +8,14 @@ window.data = {
   let porcentajeEstudiante;
   let statusEstudiante;
   let generacionEnSede;
+  let topicsEstudiante;
+  let porcentajeCompleto;
   for(venue in laboratoria){
     let sede = venue; 
     const generations = Object.keys(laboratoria[venue].generacion); 
     generations.forEach((generationInVenue) => {
-      //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
      generacionEnSede = generationInVenue;
-      //console.log(student);
       const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
-      //console.log(students);
       students.forEach((student) => {
         nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
         mailEstudiante = student.correo; //Agregamos correo de estudiante
@@ -29,13 +28,31 @@ window.data = {
         } else {
           statusEstudiante = "average"; //Indicamos que esta en la media
         };
-        studentsArray.push({'name': nombreEstudiante,'email': mailEstudiante, 'campus': sede, 'generation': generacionEnSede, 'stats':{
-          'status': statusEstudiante, 'completedPercentage': porcentajeEstudiante}});
+        let subCompletedPercentage
+      const topics = Object.values(student.progreso.temas);
+      topics.forEach(topic => {
+        topic.completedPercentage = topic.porcentajeCompletado;
+        topic.percentageDuration = Math.round(((topic.duracionTemaCompletado *100) / topic.duracionTema));
+        topic.subtopics = topics.forEach((subtemas) => {
+          let nameSubtopic = Object.values(topic.subtemas);
+          //let subNames = Object.getOwnPropertyNames();
+        //console.log(subNames);
+          nameSubtopic.forEach((propiedad) => {
+            subCompletedPercentage = propiedad.completado;
+            subType = propiedad.tipo;
+            subDuration = propiedad.duracionSubtema;
+            //console.log(subType);
+          })
+        }) 
+      });
+    
+      studentsArray.push({'name': nombreEstudiante,'email': mailEstudiante, 'campus': sede, 'generation': generacionEnSede, 'stats':{'status': statusEstudiante, 'completedPercentage': porcentajeEstudiante, 'topic': { 'completedPercentage': subCompletedPercentage, 'type': subType, 'duration': subDuration
+      }}});
         
       });
     });
   }
-  //console.log(studentsArray);
+  console.log(studentsArray);
   return studentsArray;
   
 },
@@ -77,7 +94,7 @@ computeGenerationsStats: (laboratoria) => {
       generationsArray.push({'campus':valueCampus,'generation': valueGeneration, 'average': valueAverage, 'count': valueCount});            
     })        
   }
-  console.log(generationsArray);
+  //console.log(generationsArray);
   return generationsArray;
   
 },

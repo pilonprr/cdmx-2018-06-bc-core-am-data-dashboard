@@ -24,9 +24,9 @@ const getData = () => {
         const generations = data.computeGenerationsStats(res);
         const campus = data.obtainCampus(res);
         const generationsData = data.obtainGeneration(res);
-        //console.log(generation);
+        console.log(generations);
         const users = data.computeStudentsStats(res);
-        //console.log(users);
+        console.log(users);
         drawCampus(campus);
         data.drawCampusDashboard(campus);
         data.drawGenerationDashboard(generationsData);
