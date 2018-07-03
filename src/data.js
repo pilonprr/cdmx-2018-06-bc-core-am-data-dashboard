@@ -35,13 +35,10 @@ window.data = {
         topic.percentageDuration = Math.round(((topic.duracionTemaCompletado *100) / topic.duracionTema));
         topic.subtopics = topics.forEach((subtemas) => {
           let nameSubtopic = Object.values(topic.subtemas);
-          //let subNames = Object.getOwnPropertyNames();
-        //console.log(subNames);
           nameSubtopic.forEach((propiedad) => {
             subCompletedPercentage = propiedad.completado;
             subType = propiedad.tipo;
             subDuration = propiedad.duracionSubtema;
-            //console.log(subType);
           })
         }) 
       });
@@ -52,7 +49,7 @@ window.data = {
       });
     });
   }
-  console.log(studentsArray);
+  //console.log(studentsArray);
   return studentsArray;
   
 },
@@ -203,13 +200,17 @@ drawGenerationDashboard: (generations) => {
   }  
 },
 
-//Funcion de turno
-
 getTurno: (venue, generation, generations, students) => {
-  let turnoAmCount = 0;
-  let turnoPmCount = 0;
-  
+  // console.log(students);
+  // console.log(generations);
+  let turnoAM = 0;
+  let turnoPM = 0;
+  let getTurno;
+  students.forEach((student) => {
+    console.log(student.turno);
+  })
 }
 
 
 
+}
