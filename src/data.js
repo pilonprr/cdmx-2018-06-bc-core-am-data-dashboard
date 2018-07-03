@@ -34,10 +34,8 @@ window.data = {
         const topics = Object.keys(student.progreso.temas);
         
         for (topic of topics) {
-          //console.log(topic);
           //La siguiente linea añade los temas como nuevas propiedades del objeto topics y les da como valor que sean un objeto
           let newProperty = Object.defineProperty(student.progreso.temas, topic, { writable: true});
-          //console.log(newProperty);
           topicsEstudiante = newProperty;
         };
 
@@ -47,7 +45,7 @@ window.data = {
       });
     });
   }
-  //console.log(studentsArray);
+  console.log(studentsArray);
   return studentsArray;
   
 },
