@@ -41,6 +41,13 @@ body{
     transform: translate(-50%, -50%);
 }
 
+#login-button,
+#select1,
+#select2{
+    float: right;
+}
+
+
 #main-page {
     display: none;
 }
@@ -133,4 +140,11 @@ border-top-color: #333333;
 
 #select1{
     margin-bottom: 1em;
+}
+
+#lista h3 {
+    font-size: 5em;
+    text-align: right;
+    background-color: #56f89a;
+    padding-right: 0.5em;
 }
