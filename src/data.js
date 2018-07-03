@@ -205,11 +205,10 @@ drawGenerationDashboard: (generations) => {
 
 //Funcion de turno
 
-// getTurno: (studentsArray, sede, generacion) => {
-//   let turnoAM;
-//   if(studentsArray.turno == "AM"){
-
-//   }
+getTurno: (venue, generation, generations, students) => {
+  let turnoAmCount = 0;
+  let turnoPmCount = 0;
+  
 }
 
 
