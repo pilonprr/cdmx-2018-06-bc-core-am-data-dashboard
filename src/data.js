@@ -8,8 +8,7 @@ window.data = {
   let porcentajeEstudiante;
   let statusEstudiante;
   let generacionEnSede;
-  let topicsEstudiante;
-  let porcentajeCompleto;
+  let turnoEstudiante;
   for(venue in laboratoria){
     let sede = venue; 
     const generations = Object.keys(laboratoria[venue].generacion); 
@@ -19,6 +18,7 @@ window.data = {
       students.forEach((student) => {
         nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
         mailEstudiante = student.correo; //Agregamos correo de estudiante
+        turnoEstudiante = student.turno; //Agregamos turno de estudiante
         porcentajeEstudiante = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
         let progress = porcentajeEstudiante;
         if (progress < 60) {
@@ -46,7 +46,7 @@ window.data = {
         }) 
       });
     
-      studentsArray.push({'name': nombreEstudiante,'email': mailEstudiante, 'campus': sede, 'generation': generacionEnSede, 'stats':{'status': statusEstudiante, 'completedPercentage': porcentajeEstudiante, 'topic': { 'completedPercentage': subCompletedPercentage, 'type': subType, 'duration': subDuration
+      studentsArray.push({'name': nombreEstudiante,'email': mailEstudiante, 'campus': sede, 'generation': generacionEnSede, 'turno': turnoEstudiante, 'stats':{'status': statusEstudiante, 'completedPercentage': porcentajeEstudiante, 'topic': { 'completedPercentage': subCompletedPercentage, 'type': subType, 'duration': subDuration
       }}});
         
       });
@@ -203,12 +203,14 @@ drawGenerationDashboard: (generations) => {
   }  
 },
 
-/*const exitFunction = () => {
-  confirm("¿Quieres salir de LAB-Dash?");
-  if(true){
-      window.location.reload();
-  }else{
-    alert("OK");
-  }
-};*/
+//Funcion de turno
+
+// getTurno: (studentsArray, sede, generacion) => {
+//   let turnoAM;
+//   if(studentsArray.turno == "AM"){
+
+//   }
 }
+
+
+
