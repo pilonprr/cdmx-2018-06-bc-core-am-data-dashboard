@@ -3,6 +3,7 @@ let loginContainer = document.querySelector("#login-container");
 let userName = document.querySelector("#user-name");
 let pwd = document.querySelector("#pwd");
 let selectCampus = document.querySelector("#select-campus");
+let selectGeneration = document.querySelector("#select-generation")
 let loginButton = document.querySelector("#login-button");
 
 //Declaración de variables para llamar los contenedores de la página inicial del Dashboard
@@ -21,15 +22,20 @@ const getData = () => {
     fetch(json)
     .then( response => response.json() )
     .then((res) => {
-        const generations = data.computeGenerationsStats(res);
+        
         const campus = data.obtainCampus(res);
         const generationsData = data.obtainGeneration(res);
-        //console.log(generation);
-        const users = data.computeStudentsStats(res);
-        //console.log(users);
-        drawCampus(campus);
+        
+        const generations = data.computeGenerationsStats(res);
+        //console.log(generations);
+        const students = data.computeStudentsStats(res);
+        drawCampus(campus,generationsData,generations,students);
+        
+        //console.log(students);
+        
         data.drawCampusDashboard(campus);
         data.drawGenerationDashboard(generationsData);
+        //drawDataDashboard(generations,students);
         //console.log(generations);
         //return generations;
         
@@ -41,21 +47,28 @@ const getData = () => {
 
 getData();
 
-const drawCampus = (sedes) => {
+const drawCampus = (sedes,generaciones,generations,students) => {
     //const containerCampus = document.getElementById('campus');
     //console.log(sedes);
     sedes.forEach((sede) => {
         const option = document.createElement('option');
         option.innerHTML = sede.toUpperCase();
         selectCampus.appendChild(option);
+        selectCampus.addEventListener('change',quitDisabled);
     });
+
+    generaciones.forEach((generacion) => {
+        
+        const option = document.createElement('option');
+        option.innerHTML = generacion.toUpperCase();
+        selectGeneration.appendChild(option);
+    })
+    
+    loginButton.addEventListener('click',()=> data.checkLogin(sedes,generaciones,generations,students)); //No es la mejor opción
 };
 
-loginButton.addEventListener('click', data.checkLogin);
-selectCampusDashboard1.addEventListener('change', data.drawGenerationDashboard);
-//selectCampusDashboard2.addEventListener('change', drawGenerationDashboard);
+const quitDisabled = () => {
+    selectGeneration.disabled = false;
+};
 
-/*
-exitButton1.addEventListener('click', exitFunction);
-exitButton2.addEventListener('click', exitFunction);
-*/
+
