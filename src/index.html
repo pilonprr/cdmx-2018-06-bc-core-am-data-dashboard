@@ -38,6 +38,12 @@
                   <option value="Sede" disabled selected>Sede</option>
                 </select>
             </div>
+            <div class="form-group">
+              <label for="exampleSelect2">Elige tu generación:</label>
+              <select class="form-control" id="select-generation" disabled>
+                <option value="Generacion" disabled selected>Generación</option>
+              </select>
+          </div>
             <div id="button">
               <button type="button" class="btn btn-default" id="login-button">ENTRAR</button>
             </div>
@@ -61,9 +67,11 @@
               <!--<a class="navbar-brand" href="#">Logo</a>-->
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
+            <div>
               <h3 id="user">Usuario</h3>
               <button type="button"class="btn btn-default" id="exit-button-1">Salir</button>
-              <hr>
+            </div>
+            <hr>
               <div class="form-group">
                   <label>Selecciona una sede:</label>
                   <select class="form-control" id="select-campus-dashboard-1">
@@ -79,7 +87,6 @@
               <button type="button"class="btn btn-default" id="select1">Ver</button>
             </div>
           </div>
-<<<<<<< HEAD
         </nav>
         
         <!--Define el contenedor global-->
@@ -89,9 +96,11 @@
             <!--Abre contenedor del menú de navegación-->
             <div class="col-sm-3 sidenav hidden-xs"> 
               <img src="img/Laboratoria-Logo-RGB.png" alt="laboratoria-logo" class="img-responsive" id="logo-nav">
-              <!--<h2>Logo</h2>-->
-              <h3 id="user">Usuario</h3>
-              <button type="button"class="btn btn-default" id="exit-button-2">Salir</button>
+              
+              <div>
+                <h3 id="user">Usuario</h3>
+                <button type="button"class="btn btn-default" id="exit-button-2">Salir</button>
+              </div>
               <hr>
               <div class="form-group">
                   <label for="exampleSelect1">Selecciona una sede:</label>
@@ -104,16 +113,6 @@
                   <select class="form-control" id="select-generation-dashboard-2">
                     <option value="Generación" disabled selected>Generación</option>
                   </select>
-=======
-    
-          <!--Abre sección donde despliegan las estudiantes y los turnos-->
-          <div class="row">
-            <!--Abre caja donde despliegan las estudiantes activas-->
-            <div class="col-sm-6 student-section">
-              <div class="well">
-                <h4>Estudiantes activas</h4>
-                <div id="lista">Número de estudiantes</div>
->>>>>>> fc5dd527eda5cc4ef796ae931685d2099fe00478
               </div>
               <button type="button"class="btn btn-default" id="select2">Ver</button>
             </div>
@@ -134,7 +133,9 @@
                 <div class="col-sm-6 student-section">
                   <div class="well">
                     <h4>Estudiantes activas</h4>
-                    <div id="lista">Número de estudiantes</div>
+                    <div id="lista">
+      
+                    </div>
                   </div>
                 </div>
         
@@ -184,12 +185,9 @@
         Proyecto 2 Data Dashboard @ LABORATORIA Junio 2018 | Citlalli Del Moral - Palmidia Garay
     </div>
     </footer>
-<<<<<<< HEAD
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-=======
->>>>>>> fc5dd527eda5cc4ef796ae931685d2099fe00478
     <script src="data.js"></script>
     <script src="main.js"></script>
   </body>

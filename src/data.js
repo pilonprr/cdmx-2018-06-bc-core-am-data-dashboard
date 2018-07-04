@@ -9,19 +9,17 @@ window.data = {
   let statusEstudiante;
   let generacionEnSede;
   let topicsEstudiante;
-  let porcentajeCompleto;
+  let turnoEstudiante;
   for(venue in laboratoria){
     let sede = venue; 
     const generations = Object.keys(laboratoria[venue].generacion); 
     generations.forEach((generationInVenue) => {
-      //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
      generacionEnSede = generationInVenue;
-      //console.log(student);
-      const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
-      //console.log(students);
+      const students = laboratoria[venue].generacion[generationInVenue].estudiantes;     
       students.forEach((student) => {
         nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
         mailEstudiante = student.correo; //Agregamos correo de estudiante
+        turnoEstudiante = student.turno;
         porcentajeEstudiante = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
         let progress = porcentajeEstudiante;
         if (progress < 60) {
@@ -37,12 +35,40 @@ window.data = {
           //La siguiente linea añade los temas como nuevas propiedades del objeto topics y les da como valor que sean un objeto
           let newProperty = Object.defineProperty(student.progreso.temas, topic, { writable: true});
           topicsEstudiante = newProperty;
+          //console.log(topicsEstudiante);
+          valuesTopicsEstudiante = Object.values(topicsEstudiante);
+            for(i=0; i < valuesTopicsEstudiante.length; i++){
+              valuesTopicsEstudiante[i].completedPercentage = valuesTopicsEstudiante[i].porcentajeCompletado;
+              let topicProgress = (valuesTopicsEstudiante[i].duracionTemaCompletado*100)/valuesTopicsEstudiante[i].duracionTema;
+              valuesTopicsEstudiante[i].percentageDuration = Math.round(topicProgress);
+            };
+         //console.log(valuesTopicsEstudiante);
+          
+          //console.log(topicsEstudiante);
+
+          // valuesTopicsEstudiante.forEach(values => {
+          //   console.log(valuesTopicsEstudiante);
+          //   for(let i=0 ;i < valuesTopicsEstudiante.length; i++){
+          //     valuesTopicsEstudiante[i].completedPercentage = valuesTopicsEstudiante[i].porcentajeCompletado;
+          //     let topicProgress = (valuesTopicsEstudiante[i].duracionTemaCompletado*100)/valuesTopicsEstudiante[i].duracionTema;
+          //     valuesTopicsEstudiante[i].percentageDuration = Math.round(topicProgress);
+          //     console.log(valuesTopicsEstudiante[i].percentageDuration);
+          //   };
+          //   for(i=0; i< valuesTopicsEstudiante.length; i++){
+          //     delete valuesTopicsEstudiante.duracionTema;
+          //     delete valuesTopicsEstudiante.duracionTemaCompletado;
+          //   };
+          //   console.log(valuesTopicsEstudiante);
+          // })
+        
         };
 
-        studentsArray.push({'name': nombreEstudiante,'email': mailEstudiante, 'campus': sede, 'generation': generacionEnSede, 'stats':{
+
+
+
+        studentsArray.push({'name': nombreEstudiante,'email': mailEstudiante, 'campus': sede, 'generation': generacionEnSede, 'turn': turnoEstudiante, 'stats':{
           'status': statusEstudiante, 'completedPercentage': porcentajeEstudiante, 'topics': topicsEstudiante}});
-        
-      });
+        });
     });
   }
   console.log(studentsArray);
@@ -134,7 +160,7 @@ Debes ingresar todos los datos`);
 
     //Llama a la función que despliega el número de estudiantes activas
     data.welcomeDashboard(name,venue,generation,generations,students);
-   
+    data.getTurno(name,venue,generation,generations,students);
     //agregamos esta línea para poder llamar los valores después
     return [name,venue];
 
@@ -153,29 +179,19 @@ welcomeDashboard : (name,sede,generation,generations,students) =>{
   document.querySelector("#venue").innerHTML = sede;
   document.querySelector("#generation").innerHTML = `${generation} GENERACIÓN`;
   document.querySelector("#user").innerHTML = name.toUpperCase();
-  // console.log(name);
-  // console.log(venue);
-  // console.log(generation);
-   console.log(generations);
-   console.log(students);
   let venue = sede.toLowerCase();
-  //console.log(venue);
   let gen = generation.toLowerCase();
-  //console.log(gen);
   let estudiantes;
-  //console.log(estudiantes);
   for( let i = 0; i < generations.length; i++){
     let campus = generations[i].campus;
     let generacion = generations[i].generation;
     if(campus === venue && generacion === gen){
       estudiantes = generations[i].count; 
-      //console.log(estudiantes);
     }
   }
   const numberStudents = document.createElement('h3');
   numberStudents.innerHTML = estudiantes;
   document.getElementById("lista").appendChild(numberStudents);
-  //console.log(estudiantes);
 },
 
 drawCampusDashboard : (sedes,generations) => {
@@ -221,14 +237,43 @@ sortStudents : (students, orderBy, orderDirection) =>{
 },
 
 filterStudents : (students, search) => {
-
 },  
-/*const exitFunction = () => {
-  confirm("¿Quieres salir de LAB-Dash?");
-  if(true){
-      window.location.reload();
-  }else{
-    alert("OK");
-  }
-};*/
+
+getTurno: (name,venue,generation,generations,students) => {
+  let valores = Object.values(students);
+  let turnoAM = 0;
+  let turnoPM = 0;
+  
+  for(i=0; i< valores.length; i++){
+    console.log(valores[i].turn);
+  if(valores[i].campus === venue && valores[i].generation === generation){
+        if(valores[i].turn === "AM"){
+          turnoAM += 1;
+        }
+        else{
+          turnoPM += 1;
+        }
+    }
+    //console.log(turnoAM);
+  }  
+},
+
+// filtrarTurno: (venue, generation, valores) => {
+//   let turnoAM = 0;
+//   let turnoPM = 0;
+//   console.log(valores);
+//   let valores = 
+//   if(valores.campus === venue && valores.generation === generation){
+//     if(valores.turno === "AM"){
+//       turnoAM += 1;
+//     }
+//     else{
+//       turnoPM += 1;
+//     }
+//     //console.log(turnoAM); 
+//   }
+
+// }
+
+
 }

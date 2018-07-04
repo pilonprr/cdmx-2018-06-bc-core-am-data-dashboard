@@ -30,7 +30,7 @@ const getData = () => {
         const students = data.computeStudentsStats(res);
         drawCampus(campus,generationsData,generations,students);
         data.drawCampusDashboard(campus);
-        data.drawGenerationDashboard(generationsData);        
+        data.drawGenerationDashboard(generationsData);       
     })
     .catch((error) => {
         console.log(error);
@@ -40,8 +40,6 @@ const getData = () => {
 getData();
 
 const drawCampus = (sedes,generaciones,generations,students) => {
-    //const containerCampus = document.getElementById('campus');
-    //console.log(sedes);
     sedes.forEach((sede) => {
         const option = document.createElement('option');
         option.innerHTML = sede.toUpperCase();
@@ -55,7 +53,6 @@ const drawCampus = (sedes,generaciones,generations,students) => {
         option.innerHTML = generacion.toUpperCase();
         selectGeneration.appendChild(option);
     })
-    
     loginButton.addEventListener('click',()=> data.checkLogin(sedes,generaciones,generations,students)); //No es la mejor opción
 };
 
