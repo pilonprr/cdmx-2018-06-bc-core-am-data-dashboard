@@ -8,17 +8,20 @@ window.data = {
   let porcentajeEstudiante;
   let statusEstudiante;
   let generacionEnSede;
-  let turnoEstudiante;
+  let topicsEstudiante;
+  let porcentajeCompleto;
   for(venue in laboratoria){
     let sede = venue; 
     const generations = Object.keys(laboratoria[venue].generacion); 
     generations.forEach((generationInVenue) => {
+      //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
      generacionEnSede = generationInVenue;
+      //console.log(student);
       const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
+      //console.log(students);
       students.forEach((student) => {
         nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
         mailEstudiante = student.correo; //Agregamos correo de estudiante
-        turnoEstudiante = student.turno; //Agregamos turno de estudiante
         porcentajeEstudiante = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
         let progress = porcentajeEstudiante;
         if (progress < 60) {
@@ -28,28 +31,21 @@ window.data = {
         } else {
           statusEstudiante = "average"; //Indicamos que esta en la media
         };
-        let subCompletedPercentage
-      const topics = Object.values(student.progreso.temas);
-      topics.forEach(topic => {
-        topic.completedPercentage = topic.porcentajeCompletado;
-        topic.percentageDuration = Math.round(((topic.duracionTemaCompletado *100) / topic.duracionTema));
-        topic.subtopics = topics.forEach((subtemas) => {
-          let nameSubtopic = Object.values(topic.subtemas);
-          nameSubtopic.forEach((propiedad) => {
-            subCompletedPercentage = propiedad.completado;
-            subType = propiedad.tipo;
-            subDuration = propiedad.duracionSubtema;
-          })
-        }) 
-      });
-    
-      studentsArray.push({'name': nombreEstudiante,'email': mailEstudiante, 'campus': sede, 'generation': generacionEnSede, 'turno': turnoEstudiante, 'stats':{'status': statusEstudiante, 'completedPercentage': porcentajeEstudiante, 'topic': { 'completedPercentage': subCompletedPercentage, 'type': subType, 'duration': subDuration
-      }}});
+        const topics = Object.keys(student.progreso.temas);
+        
+        for (topic of topics) {
+          //La siguiente linea añade los temas como nuevas propiedades del objeto topics y les da como valor que sean un objeto
+          let newProperty = Object.defineProperty(student.progreso.temas, topic, { writable: true});
+          topicsEstudiante = newProperty;
+        };
+
+        studentsArray.push({'name': nombreEstudiante,'email': mailEstudiante, 'campus': sede, 'generation': generacionEnSede, 'stats':{
+          'status': statusEstudiante, 'completedPercentage': porcentajeEstudiante, 'topics': topicsEstudiante}});
         
       });
     });
   }
-  //console.log(studentsArray);
+  console.log(studentsArray);
   return studentsArray;
   
 },
@@ -57,23 +53,16 @@ window.data = {
 computeGenerationsStats: (laboratoria) => {
 
   const generationsArray = [];
-  const obj = {
-
-    campus: '',
-    generation: '',
-    average: 0,
-    count: 0,
-
-  };
   let valueCampus;
   let valueGeneration;
   let valueAverage;
   let valueCount;
+  
   let average = 0;
   for (key in laboratoria) {
   
     valueCampus = key;
-    average = 0;
+    //average = 0;
     const generations = Object.keys(laboratoria[key].generacion);
     //console.log(generations);
     generations.forEach((generation) => {
@@ -85,10 +74,12 @@ computeGenerationsStats: (laboratoria) => {
       for (student in students) {
    
         average += students[student].progreso.porcentajeCompletado;
-        valueAverage = Math.round(average / students.length);
-        valueCount = students.length;      
-      };
-      generationsArray.push({'campus':valueCampus,'generation': valueGeneration, 'average': valueAverage, 'count': valueCount});            
+        //average = average / students.length;
+        valueAverage = Math.round(average/students.length);
+        valueCount = students.length;
+        
+      };    
+      generationsArray.push({'campus': valueCampus, 'generation': valueGeneration, 'average': valueAverage, 'count': valueCount});        
     })        
   }
   //console.log(generationsArray);
@@ -115,23 +106,25 @@ obtainGeneration: (laboratoria) => {
   }
 },
 
-checkLogin: () => {
-
-  //console.log("Listo");
+checkLogin: (sedes,generaciones,generations,students) => {
+  //console.log(generations);
+  //console.log(students);
   let name = userName.value;
   let password = pwd.value;
   let venue = selectCampus.value;
-  //console.log(name);
-  //console.log(password);
-  //console.log(venue);
+  let generation = selectGeneration.value;
+  // console.log(name);
+  // console.log(password);
+  // console.log(venue);
+  // console.log(generation);
 
-  if(name === ""  || password === "" || venue === "Sede"){
+  if(name === ""  || password === "" || venue === "Sede" || generation === "Generacion"){
 
     //Regresa una alerta si no se llenan todos los campos
     return alert(`Oops...
 Debes ingresar todos los datos`);
 
-  }else if(name === "usuario" && password === "1234"){
+  }else if(name === "usuario" && password === "1234" && venue != "Sede" && generation != "Generacion"){
   
     loginContainer.style.display = "none";
     mainPage.style.display = "block";
@@ -140,8 +133,8 @@ Debes ingresar todos los datos`);
     //console.log(venue);
 
     //Llama a la función que despliega el número de estudiantes activas
-    welcomeDashboard(name,venue);
-
+    data.welcomeDashboard(name,venue,generation,generations,students);
+   
     //agregamos esta línea para poder llamar los valores después
     return [name,venue];
 
@@ -151,18 +144,41 @@ Debes ingresar todos los datos`);
     return alert("Alguno de tus datos es incorrecto");
     
   }
-
+  
 },
+
 
 //Función que despliega los datos a mostrar en la pantalla de inicio del Dashboard después del login
-welcomeDashboard: (name,venue) =>{
-  document.querySelector("#venue").innerHTML = venue;
-  document.querySelector("#generation").innerHTML = "5a generación";
+welcomeDashboard : (name,sede,generation,generations,students) =>{
+  document.querySelector("#venue").innerHTML = sede;
+  document.querySelector("#generation").innerHTML = `${generation} GENERACIÓN`;
   document.querySelector("#user").innerHTML = name.toUpperCase();
-  //drawCampusDashboard(sedes);
+  // console.log(name);
+  // console.log(venue);
+  // console.log(generation);
+   console.log(generations);
+   console.log(students);
+  let venue = sede.toLowerCase();
+  //console.log(venue);
+  let gen = generation.toLowerCase();
+  //console.log(gen);
+  let estudiantes;
+  //console.log(estudiantes);
+  for( let i = 0; i < generations.length; i++){
+    let campus = generations[i].campus;
+    let generacion = generations[i].generation;
+    if(campus === venue && generacion === gen){
+      estudiantes = generations[i].count; 
+      //console.log(estudiantes);
+    }
+  }
+  const numberStudents = document.createElement('h3');
+  numberStudents.innerHTML = estudiantes;
+  document.getElementById("lista").appendChild(numberStudents);
+  //console.log(estudiantes);
 },
 
-drawCampusDashboard: (sedes) => {
+drawCampusDashboard : (sedes,generations) => {
   //const containerCampus = document.getElementById('campus');
   //Crea el dropdown de generaciones en el menú para la versión móvil
   sedes.forEach((sede) => {
@@ -185,7 +201,7 @@ drawGenerationDashboard: (generations) => {
     const option = document.createElement('option');
     const textOption = generations[i];
     //console.log(textOption);
-    option.innerHTML= textOption;
+    option.innerHTML= textOption.toUpperCase();
     // También se puede hacer de esta manera
     //document.getElementById("select-generation-dashboard-1").appendChild(option);
     //document.getElementById("select-generation-dashboard-2").appendChild(option);
@@ -195,22 +211,24 @@ drawGenerationDashboard: (generations) => {
     const option = document.createElement('option');
     const textOption = generations[i];
     //console.log(textOption);
-    option.innerHTML= textOption;
+    option.innerHTML= textOption.toUpperCase();
     selectGenerationDashboard2.appendChild(option);
   }  
 },
 
-getTurno: (venue, generation, generations, students) => {
-  // console.log(students);
-  // console.log(generations);
-  let turnoAM = 0;
-  let turnoPM = 0;
-  let getTurno;
-  students.forEach((student) => {
-    console.log(student.turno);
-  })
-}
+sortStudents : (students, orderBy, orderDirection) =>{
 
+},
 
+filterStudents : (students, search) => {
 
+},  
+/*const exitFunction = () => {
+  confirm("¿Quieres salir de LAB-Dash?");
+  if(true){
+      window.location.reload();
+  }else{
+    alert("OK");
+  }
+};*/
 }
