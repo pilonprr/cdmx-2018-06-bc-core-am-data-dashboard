@@ -2,49 +2,50 @@ window.data = {
 
 
   computeStudentsStats: (laboratoria) => {
-  let studentsArray = [];
-  let nombreEstudiante;
-  let mailEstudiante;
-  let porcentajeEstudiante;
-  let statusEstudiante;
-  let generacionEnSede;
-  let topicsEstudiante;
-  let porcentajeCompleto;
-  for(venue in laboratoria){
-    let sede = venue; 
-    const generations = Object.keys(laboratoria[venue].generacion); 
-    generations.forEach((generationInVenue) => {
-      //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
-     generacionEnSede = generationInVenue;
-      //console.log(student);
-      const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
-      //console.log(students);
-      students.forEach((student) => {
-        nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
-        mailEstudiante = student.correo; //Agregamos correo de estudiante
-        porcentajeEstudiante = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
-        let progress = porcentajeEstudiante;
-        if (progress < 60) {
-          statusEstudiante = "below"; //Indicamos que esta debajo del 60%
-        } else if (progress > 90) {
-          statusEstudiante = "over"; //Indicamos que esta sobre el 90%
-        } else {
-          statusEstudiante = "average"; //Indicamos que esta en la media
-        };
-        const topics = Object.keys(student.progreso.temas);
-        
-        for (topic of topics) {
-          //La siguiente linea añade los temas como nuevas propiedades del objeto topics y les da como valor que sean un objeto
-          let newProperty = Object.defineProperty(student.progreso.temas, topic, { writable: true});
-          topicsEstudiante = newProperty;
-        };
+    let studentsArray = [];
+    let nombreEstudiante;
+    let mailEstudiante;
+    let porcentajeEstudiante;
+    let statusEstudiante;
+    let generacionEnSende;
+    let topicsEstudiante;
+    let porcentajeCompleto;
+    let turnoEstudiante;
+    for (venue in laboratoria) {
+      let sede = venue;
+      const generations = Object.keys(laboratoria[venue].generacion);
+      generations.forEach((generationInVenue) => {
+        //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
+        generacionEnSede = generationInVenue;
+        //console.log(student);
+        const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
+        //console.log(students);
+        students.forEach((student) => {
+          nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
+          mailEstudiante = student.correo; //Agregamos correo de estudiante
+          turnoEstudiante = student.turno;
+          porcentajeEstudiante = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
+          if (porcentajeEstudiante < 60) {
+            statusEstudiante = "below"; //Indicamos que esta debajo del 60%
+          } else if (porcentajeEstudiante > 90) {
+            statusEstudiante = "over"; //Indicamos que esta sobre el 90%
+          } else {
+            statusEstudiante = "average"; //Indicamos que esta en la media
+          };
+          const topics = Object.keys(student.progreso.temas);
 
           for (topic of topics) {
-            //console.log(topic);
             //La siguiente linea añade los temas como nuevas propiedades del objeto topics y les da como valor que sean un objeto
             let newProperty = Object.defineProperty(student.progreso.temas, topic, { writable: true });
-            //console.log(newProperty);
             topicsEstudiante = newProperty;
+            //console.log(topicsEstudiante);
+            valuesTopicsEstudiante = Object.values(topicsEstudiante);
+            for (i = 0; i < valuesTopicsEstudiante.length; i++) {
+              valuesTopicsEstudiante[i].completedPercentage = valuesTopicsEstudiante[i].porcentajeCompletado;
+              let topicProgress = (valuesTopicsEstudiante[i].duracionTemaCompletado * 100) / valuesTopicsEstudiante[i].duracionTema;
+              valuesTopicsEstudiante[i].percentageDuration = Math.round(topicProgress);
+            };
+
           };
 
           studentsArray.push({
@@ -108,27 +109,17 @@ window.data = {
   },
 
   obtainGeneration: (laboratoria) => {
-    //console.log(laboratoria);
-    //const generations = Object.getOwnPropertyNames(laboratoriasedes);
-    //console.log(generations);
     for (key in laboratoria) {
       const generationOption = Object.keys(laboratoria[key].generacion);
-      //console.log(generationOption);
       return generationOption;
     }
   },
 
   checkLogin: (sedes, generaciones, generations, students) => {
-    //console.log(generations);
-    //console.log(students);
     let name = userName.value;
     let password = pwd.value;
     let venue = selectCampus.value;
     let generation = selectGeneration.value;
-    // console.log(name);
-    // console.log(password);
-    // console.log(venue);
-    // console.log(generation);
 
     if (name === "" || password === "" || venue === "Sede" || generation === "Generacion") {
 
@@ -140,14 +131,11 @@ Debes ingresar todos los datos`);
 
       loginContainer.style.display = "none";
       mainPage.style.display = "block";
-      //console.log(name);
-      //console.log(password);
-      //console.log(venue);
 
       //Llama a la función que despliega el número de estudiantes activas
       let studentsInVenue = data.welcomeDashboard(name, venue, generation, generations, students);
 
-      //data.getTurn(name,venue,generation,generations,students);
+      data.getTurno(name,venue,generation,generations,students);
       data.getProgress(name, venue, generation, generations, students, studentsInVenue);
       //agregamos esta línea para poder llamar los valores después
       return [name, venue];
@@ -169,23 +157,14 @@ Debes ingresar todos los datos`);
     document.querySelector("#generation").innerHTML = `${generation} GENERACIÓN`;
     document.querySelector("#user-1").innerHTML = name.toUpperCase();
     document.querySelector("#user-2").innerHTML = name.toUpperCase();
-    // console.log(name);
-    // console.log(venue);
-    // console.log(generation);
-    // console.log(generations);
-    // console.log(students);
     let venue = sede.toLowerCase();
-    //console.log(venue);
     let gen = generation.toLowerCase();
-    //console.log(gen);
     let estudiantes;
-    //console.log(estudiantes);
     for (let i = 0; i < generations.length; i++) {
       let campus = generations[i].campus;
       let generacion = generations[i].generation;
       if (campus === venue && generacion === gen) {
         estudiantes = generations[i].count;
-        //console.log(estudiantes);
       }
     }
     const numberStudents = document.createElement('h3');
@@ -195,8 +174,6 @@ Debes ingresar todos los datos`);
   },
 
   getProgress: (name, venue, generation, generations, students, studentsInVenue) => {
-    //console.log(venue);
-    //console.log(generation);
     let progressAbove = 0;
     let progressBelow = 0;
     let progressAverage = 0;
@@ -211,23 +188,14 @@ Debes ingresar todos los datos`);
       if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "below") {
         progressBelow++;
         studentsBelow.push(students[i]);
-        //console.log(students[i]);
       } else if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "average") {
         progressAverage++;
         studentsAverage.push(students[i]);
-        //console.log(students[i]);
       } else if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "over") {
         progressAbove++;
         studentsAbove.push(students[i]);
-        //console.log(students[i]);
       }
     }
-    console.log("Por debajo: " + progressBelow);
-    console.log(studentsBelow);
-    console.log("En promedio: " + progressAverage);
-    console.log(studentsAverage);
-    console.log("Por arriba: " + progressAbove);
-    console.log(studentsAbove);
     resultBelow = `<div class="progress-bar" id="below-bar" role="progressbar" aria-valuenow="${progressBelow}" aria-valuemin="0" aria-valuemax="${studentsInVenue}" style="width:${(progressBelow * 100) / studentsInVenue}%">
                 <p class="bar-text">${progressBelow}/${studentsInVenue}</p>          
               </div>`
@@ -240,7 +208,6 @@ Debes ingresar todos los datos`);
                 <p class="bar-text">${progressAbove}/${studentsInVenue}</p>          
               </div>`
     progressBarAbove.innerHTML = resultAbove;
-    //barText.innerHTML = `${progressBelow}/${students.length}`;
   },
 
   drawCampusDashboard: (sedes, generations) => {
@@ -289,12 +256,38 @@ Debes ingresar todos los datos`);
   filterStudents: (students, search) => {
 
   },
-  /*const exitFunction = () => {
-    confirm("¿Quieres salir de LAB-Dash?");
-    if(true){
-        window.location.reload();
-    }else{
-      alert("OK");
+
+  //Funcion para comparar turno de estudiante, retorna conteo y arreglo
+  getTurno: (name, venue, generation, generations, students) => {
+    let valores = Object.values(students);
+    let arrPM = [];
+    let arrAM = [];
+    let turnoAM = 0;
+    let turnoPM = 0;
+    for (turn of valores) {
+      let minusculasVenue = venue.toLowerCase();
+      let minusculasGeneration = generation.toLowerCase();
+      if (minusculasVenue === turn.campus) {
+        if (turn.generation === minusculasGeneration) {
+          if (turn.turn === "PM") {
+            arrPM.push({ 'name': turn.name, 'email': turn.email });
+            turnoPM++;
+          }
+          else {
+            arrAM.push({ 'name': turn.name, 'email': turn.email })
+            turnoAM++;
+          }
+        }
+      };
     }
-  };*/
+    let turnoAmBox = document.getElementById("turnoCountAM");
+    let turnoPmBox = document.getElementById("turnoCountPM");
+    turnoAmBox.innerHTML = turnoAM;
+    turnoPmBox.innerHTML = turnoPM;
+    console.log(arrAM);
+    console.log(turnoAM);
+    console.log(turnoPM);
+
+  }
+
 }
