@@ -1,194 +1,207 @@
 <!DOCTYPE html>
 <!--Agregando atributo LANG para indicar idioma de la página-->
 <html lang="es">
-  <head>
-    <meta charset="utf-8">
-    <!--Agregando meta para hacer responsive-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Data Dashboard</title>
-    
-    <!--Agregando link para poder usar Bootstrap CSS-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
-    
-  </head>
-  <body>
-    <!--Inicia contenido de primera pantalla-->
 
-    <main class="container-fluid" id="login-container">
-      <div class="row">
-          <form id="login-section">
-            
-            <img src="img/Laboratoria-Logo-RGB.png" alt="laboratoria-logo" class="img-responsive" id="logo-login">
-            <br>
-            <h2 id="title-login">Bienvenid@ a LAB-Dash</h2>
+<head>
+  <meta charset="utf-8">
+  <!--Agregando meta para hacer responsive-->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Dashboard</title>
 
-            <div class="form-group">
-              <label for="user-name">Ingresa tu usuario:</label>
-              <input type="text" class="form-control" id="user-name" placeholder="&#128100; Nombre de usuario" name="user-name">
-            </div>
-            <div class="form-group">
-              <label for="pwd">Ingresa tu contraseña:</label>
-              <input type="password" class="form-control" id="pwd" placeholder="&#128272; Contraseña" name="pwd">
-            </div>
-            <div class="form-group">
-                <label for="exampleSelect1">Elige tu sede:</label>
-                <select class="form-control" id="select-campus">
-                  <option value="Sede" disabled selected>Sede</option>
-                </select>
-            </div>
-            <div class="form-group">
-              <label for="exampleSelect2">Elige tu generación:</label>
-              <select class="form-control" id="select-generation" disabled>
-                <option value="Generacion" disabled selected>Generación</option>
-              </select>
-          </div>
-            <div id="button">
-              <button type="button" class="btn btn-default" id="login-button">ENTRAR</button>
-            </div>
-          </form>
-      </div>
-    </main>
+  <!--Agregando link para poder usar Bootstrap CSS-->
+  <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 
-    <!--Termina contenido de primera pantalla-->
+</head>
 
-    <!--Inicia contenido de segunda pantalla-->
-    <div id="main-page">
-        <nav class="navbar navbar-inverse visible-xs">
-          <div class="container-fluid">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" id="menu-button">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>                        
-              </button>
-              <img src="img/Laboratoria-Logo-RGB.png" alt="laboratoria-logo" class="img-responsive">
-              <!--<a class="navbar-brand" href="#">Logo</a>-->
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-            <div>
-              <h3 id="user">Usuario</h3>
-              <button type="button"class="btn btn-default" id="exit-button-1">Salir</button>
-            </div>
-            <hr>
-              <div class="form-group">
-                  <label>Selecciona una sede:</label>
-                  <select class="form-control" id="select-campus-dashboard-1">
-                    <option value="Sede" disabled selected>Sede</option>
-                  </select>
-              </div>
-              <div class="form-group">
-                  <label>Selecciona una generación:</label>
-                  <select class="form-control" id="select-generation-dashboard-1">
-                    <option value="Generación" disabled selected>Generación</option>
-                  </select>
-              </div>
-              <button type="button"class="btn btn-default" id="select1">Ver</button>
-            </div>
-          </div>
-        </nav>
-        
-        <!--Define el contenedor global-->
-        <main class="container-fluid"> 
-          <!--Abre la "fila" donde estarán todos nuestros contenedores-->
-          <div class="row content"> 
-            <!--Abre contenedor del menú de navegación-->
-            <div class="col-sm-3 sidenav hidden-xs"> 
-              <img src="img/Laboratoria-Logo-RGB.png" alt="laboratoria-logo" class="img-responsive" id="logo-nav">
-              
-              <div>
-                <h3 id="user">Usuario</h3>
-                <button type="button"class="btn btn-default" id="exit-button-2">Salir</button>
-              </div>
-              <hr>
-              <div class="form-group">
-                  <label for="exampleSelect1">Selecciona una sede:</label>
-                  <select class="form-control" id="select-campus-dashboard-2">
-                    <option value="Sede" disabled selected>Sede</option>
-                  </select>
-              </div>
-              <div class="form-group">
-                  <label>Selecciona una generación:</label>
-                  <select class="form-control" id="select-generation-dashboard-2">
-                    <option value="Generación" disabled selected>Generación</option>
-                  </select>
-              </div>
-              <button type="button"class="btn btn-default" id="select2">Ver</button>
-            </div>
-            <br>
-            
-            <!--Abre el contenedor donde se despliegan los datos procesados-->
-            <div class="col-sm-9">
-        
-              <!--Abre sección donde despliega la Sede y Generación inicial-->
-              <div class="well">
-                <h3 id="venue">Sede</h3>
-                <h4 id="generation">Generación</h4>
-              </div>
-        
-              <!--Abre sección donde despliegan las estudiantes y los turnos-->
-              <div class="row">
-                <!--Abre caja donde despliegan las estudiantes activas-->
-                <div class="col-sm-6 student-section">
-                  <div class="well">
-                    <h4>Estudiantes activas</h4>
-                    <div id="lista">
-      
-                    </div>
-                  </div>
-                </div>
-        
-                <!--Abre caja donde despliegan las estudiantes por turno-->
-                <div class="col-sm-6 student-section">
-                  <div class="well">
-                    <h4>Turno AM</h4>
-                    <p>40</p> 
-                    <h4>Turno PM</h4>
-                    <p>40</p>
-                  </div>
-                </div> 
-        
-              </div>
-        
-              <!--Abre sección donde se despliega el avance en el LMS-->
-              <div class="panel panel-default">
-        
-                <div class="panel-heading">
-                  <h4>Avance en el LMS</h4> 
-                </div>
-        
-                <div class="panel-body">
-                  &#x25B2; 60%
-                </div>
+<body>
+  <!--Inicia contenido de primera pantalla-->
 
-                <div class="panel-body">
-                    60% - 90%
-                  </div>
-        
-                <div class="panel-body">
-                  &#x25BC; 90%
-                </div>
-        
-              </div>
-              
-            </div>
-        
-          </div>
-          
-        </main>
-      </div>
-    <!--Termina contenido de segunda pantalla-->
+  <main class="container-fluid" id="login-container">
+    <div class="row">
+      <form id="login-section">
 
-    <footer class="page-footer font-small pt-4 mt-4">
-      <div class="footer-copyright text-center py-3">
-        Proyecto 2 Data Dashboard @ LABORATORIA Junio 2018 | Citlalli Del Moral - Palmidia Garay
+        <img src="img/Laboratoria-Logo-RGB.png" alt="laboratoria-logo" class="img-responsive" id="logo-login">
+        <br>
+        <h2 id="title-login">Bienvenid@ a LAB-Dash</h2>
+
+        <div class="form-group">
+          <label for="user-name">Ingresa tu usuario:</label>
+          <input type="text" class="form-control" id="user-name" placeholder="&#128100; Nombre de usuario" name="user-name">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Ingresa tu contraseña:</label>
+          <input type="password" class="form-control" id="pwd" placeholder="&#128272; Contraseña" name="pwd">
+        </div>
+        <div class="form-group">
+          <label for="select-campus">Elige tu sede:</label>
+          <select class="form-control" id="select-campus">
+            <option value="Sede" disabled selected>Sede</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="select-generation">Elige tu generación:</label>
+          <select class="form-control" id="select-generation" disabled>
+            <option value="Generacion" disabled selected>Generación</option>
+          </select>
+        </div>
+        <div id="button">
+          <button type="button" class="btn btn-default" id="login-button">ENTRAR</button>
+        </div>
+      </form>
     </div>
-    </footer>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="data.js"></script>
-    <script src="main.js"></script>
-  </body>
+  </main>
+
+  <!--Termina contenido de primera pantalla-->
+
+  <!--Inicia contenido de segunda pantalla-->
+  <div id="main-page">
+    <nav class="navbar navbar-inverse visible-xs">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" id="menu-button">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img src="img/Laboratoria-Logo-RGB.png" alt="laboratoria-logo" class="img-responsive">
+          <!--<a class="navbar-brand" href="#">Logo</a>-->
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <div>
+            <h3 id="user-1">Usuario</h3>
+            <button type="button" class="btn btn-default" id="exit-button-1">Salir</button>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label>Selecciona una sede:</label>
+            <select class="form-control" id="select-campus-dashboard-1">
+              <option value="Sede" disabled selected>Sede</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Selecciona una generación:</label>
+            <select class="form-control" id="select-generation-dashboard-1">
+              <option value="Generación" disabled selected>Generación</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-default" id="select1">Ver</button>
+        </div>
+      </div>
+    </nav>
+
+    <!--Define el contenedor global-->
+    <section class="container-fluid">
+      <!--Abre la "fila" donde estarán todos nuestros contenedores-->
+      <div class="row content">
+        <!--Abre contenedor del menú de navegación-->
+        <div class="col-sm-3 sidenav hidden-xs">
+          <img src="img/Laboratoria-Logo-RGB.png" alt="laboratoria-logo" class="img-responsive" id="logo-nav">
+
+          <div>
+            <h3 id="user-2">Usuario</h3>
+            <button type="button" class="btn btn-default" id="exit-button-2">Salir</button>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label for="select-campus-dashboard-2">Selecciona una sede:</label>
+            <select class="form-control" id="select-campus-dashboard-2">
+              <option value="Sede" disabled selected>Sede</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="select-generation-dashboard-2">Selecciona una generación:</label>
+            <select class="form-control" id="select-generation-dashboard-2">
+              <option value="Generación" disabled selected>Generación</option>
+            </select>
+          </div>
+          <button type="button" class="btn btn-default" id="select2">Ver</button>
+        </div>
+        <br>
+
+        <!--Abre el contenedor donde se despliegan los datos procesados-->
+        <div class="col-sm-9">
+
+          <!--Abre sección donde despliega la Sede y Generación inicial-->
+          <div class="well">
+            <h3 id="venue">Sede</h3>
+            <h4 id="generation">Generación</h4>
+          </div>
+
+          <!--Abre sección donde despliegan las estudiantes y los turnos-->
+          <div class="row">
+            <!--Abre caja donde despliegan las estudiantes activas-->
+            <div class="col-sm-6 student-section">
+              <div class="well">
+                <h4>Estudiantes activas</h4>
+                <div id="lista">
+
+                </div>
+              </div>
+            </div>
+
+            <!--Abre caja donde despliegan las estudiantes por turno-->
+            <div class="col-sm-6 student-section">
+              <div class="well">
+                <h4>Turno AM</h4>
+                <p>40</p>
+                <h4>Turno PM</h4>
+                <p>40</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!--Abre sección donde se despliega el avance en el LMS-->
+          <div class="panel panel-default">
+
+            <div class="panel-heading">
+              <h4>Avance en el LMS</h4>
+            </div>
+
+            <div class="panel-body">
+              <p>&#x25BC; 60%</p>
+              <!--Ejemplo de como meter una barra de progreso-->
+              <div class="progress" id="progress-bar-below">
+              </div>
+            </div>
+
+            <div class="panel-body">
+              <p>60% - 90%</p>
+              <div class="progress" id="progress-bar-average">
+              </div>
+            </div>
+
+            <div class="panel-body">
+              <p>&#x25B2; 90%</p>
+              <div class="progress" id="progress-bar-above">
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+  </div>
+  <!--Termina contenido de segunda pantalla-->
+
+  <footer class="page-footer font-small pt-4 mt-4">
+    <div class="footer-copyright text-center py-3">
+      Proyecto 2 Data Dashboard @ LABORATORIA Junio 2018 | Citlalli Del Moral - Palmidia Garay
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+  <script src="data.js"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>
