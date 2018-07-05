@@ -109,27 +109,17 @@ window.data = {
   },
 
   obtainGeneration: (laboratoria) => {
-    //console.log(laboratoria);
-    //const generations = Object.getOwnPropertyNames(laboratoriasedes);
-    //console.log(generations);
     for (key in laboratoria) {
       const generationOption = Object.keys(laboratoria[key].generacion);
-      //console.log(generationOption);
       return generationOption;
     }
   },
 
   checkLogin: (sedes, generaciones, generations, students) => {
-    //console.log(generations);
-    //console.log(students);
     let name = userName.value;
     let password = pwd.value;
     let venue = selectCampus.value;
     let generation = selectGeneration.value;
-    // console.log(name);
-    // console.log(password);
-    // console.log(venue);
-    // console.log(generation);
 
     if (name === "" || password === "" || venue === "Sede" || generation === "Generacion") {
 
@@ -141,9 +131,6 @@ Debes ingresar todos los datos`);
 
       loginContainer.style.display = "none";
       mainPage.style.display = "block";
-      //console.log(name);
-      //console.log(password);
-      //console.log(venue);
 
       //Llama a la función que despliega el número de estudiantes activas
       let studentsInVenue = data.welcomeDashboard(name, venue, generation, generations, students);
@@ -170,23 +157,14 @@ Debes ingresar todos los datos`);
     document.querySelector("#generation").innerHTML = `${generation} GENERACIÓN`;
     document.querySelector("#user-1").innerHTML = name.toUpperCase();
     document.querySelector("#user-2").innerHTML = name.toUpperCase();
-    // console.log(name);
-    // console.log(venue);
-    // console.log(generation);
-    // console.log(generations);
-    // console.log(students);
     let venue = sede.toLowerCase();
-    //console.log(venue);
     let gen = generation.toLowerCase();
-    //console.log(gen);
     let estudiantes;
-    //console.log(estudiantes);
     for (let i = 0; i < generations.length; i++) {
       let campus = generations[i].campus;
       let generacion = generations[i].generation;
       if (campus === venue && generacion === gen) {
         estudiantes = generations[i].count;
-        //console.log(estudiantes);
       }
     }
     const numberStudents = document.createElement('h3');
@@ -196,8 +174,6 @@ Debes ingresar todos los datos`);
   },
 
   getProgress: (name, venue, generation, generations, students, studentsInVenue) => {
-    //console.log(venue);
-    //console.log(generation);
     let progressAbove = 0;
     let progressBelow = 0;
     let progressAverage = 0;
@@ -212,23 +188,14 @@ Debes ingresar todos los datos`);
       if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "below") {
         progressBelow++;
         studentsBelow.push(students[i]);
-        //console.log(students[i]);
       } else if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "average") {
         progressAverage++;
         studentsAverage.push(students[i]);
-        //console.log(students[i]);
       } else if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "over") {
         progressAbove++;
         studentsAbove.push(students[i]);
-        //console.log(students[i]);
       }
     }
-    console.log("Por debajo: " + progressBelow);
-    console.log(studentsBelow);
-    console.log("En promedio: " + progressAverage);
-    console.log(studentsAverage);
-    console.log("Por arriba: " + progressAbove);
-    console.log(studentsAbove);
     resultBelow = `<div class="progress-bar" id="below-bar" role="progressbar" aria-valuenow="${progressBelow}" aria-valuemin="0" aria-valuemax="${studentsInVenue}" style="width:${(progressBelow * 100) / studentsInVenue}%">
                 <p class="bar-text">${progressBelow}/${studentsInVenue}</p>          
               </div>`
@@ -241,7 +208,6 @@ Debes ingresar todos los datos`);
                 <p class="bar-text">${progressAbove}/${studentsInVenue}</p>          
               </div>`
     progressBarAbove.innerHTML = resultAbove;
-    //barText.innerHTML = `${progressBelow}/${students.length}`;
   },
 
   drawCampusDashboard: (sedes, generations) => {
@@ -314,9 +280,14 @@ Debes ingresar todos los datos`);
         }
       };
     }
+    let turnoAmBox = document.getElementById("turnoCountAM");
+    let turnoPmBox = document.getElementById("turnoCountPM");
+    turnoAmBox.innerHTML = turnoAM;
+    turnoPmBox.innerHTML = turnoPM;
     console.log(arrAM);
     console.log(turnoAM);
     console.log(turnoPM);
+
   }
 
 }
