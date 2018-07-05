@@ -7,9 +7,8 @@ window.data = {
     let mailEstudiante;
     let porcentajeEstudiante;
     let statusEstudiante;
-    let generacionEnSende;
+    let generacionEnSede;
     let topicsEstudiante;
-    let porcentajeCompleto;
     let turnoEstudiante;
     for (venue in laboratoria) {
       let sede = venue;
@@ -45,7 +44,6 @@ window.data = {
               let topicProgress = (valuesTopicsEstudiante[i].duracionTemaCompletado * 100) / valuesTopicsEstudiante[i].duracionTema;
               valuesTopicsEstudiante[i].percentageDuration = Math.round(topicProgress);
             };
-
           };
 
           studentsArray.push({
@@ -227,12 +225,9 @@ Debes ingresar todos los datos`);
   },
 
   drawGenerationDashboard: (generations) => {
-    //console.log(generations);
-    //console.log("entramos");
     for (let i = 0; i < generations.length; i++) {
       const option = document.createElement('option');
       const textOption = generations[i];
-      //console.log(textOption);
       option.innerHTML = textOption.toUpperCase();
       // También se puede hacer de esta manera
       //document.getElementById("select-generation-dashboard-1").appendChild(option);
@@ -242,7 +237,6 @@ Debes ingresar todos los datos`);
     for (let i = 0; i < generations.length; i++) {
       const option = document.createElement('option');
       const textOption = generations[i];
-      //console.log(textOption);
       option.innerHTML = textOption.toUpperCase();
       selectGenerationDashboard2.appendChild(option);
     }
@@ -254,7 +248,13 @@ Debes ingresar todos los datos`);
   },
 
   filterStudents: (students, search) => {
-
+    const arrFilterStudent = [];
+    students.forEach(student => {
+      if(student.name.indexOf(search) != -1){
+        arrFilterStudent.push(student);
+      }
+    })
+    printFilterStudent(arrFilterStudent);
   },
 
   //Funcion para comparar turno de estudiante, retorna conteo y arreglo
@@ -284,10 +284,9 @@ Debes ingresar todos los datos`);
     let turnoPmBox = document.getElementById("turnoCountPM");
     turnoAmBox.innerHTML = turnoAM;
     turnoPmBox.innerHTML = turnoPM;
-    console.log(arrAM);
-    console.log(turnoAM);
-    console.log(turnoPM);
-
+    // console.log(arrAM);
+    // console.log(turnoAM);
+    // console.log(turnoPM);
   }
 
 }

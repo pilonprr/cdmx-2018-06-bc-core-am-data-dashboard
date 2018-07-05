@@ -149,6 +149,15 @@ border-top-color: #333333;
     padding-right: 0.5em;
 }
 
+#turnoCountAM,
+#turnoCountPM {
+    background-color: #333333;
+    color: #ffffff;
+    text-align: right;
+    font-size: 2em;
+    padding-right: 0.5em;
+}
+
 .progress {
     height: 2em;
 }
@@ -182,3 +191,15 @@ border-top-color: #333333;
 .panel-body > p{
     font-size: 2em;
 }
+
+#display-header,
+#search-form{
+    display: inline-block;
+    width: 48%;
+    vertical-align: middle;
+}
+#search{
+    margin-bottom: 0.5em;
+}
+
+
