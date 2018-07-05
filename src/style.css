@@ -41,6 +41,13 @@ body{
     transform: translate(-50%, -50%);
 }
 
+#login-button,
+#select1,
+#select2{
+    float: right;
+}
+
+
 #main-page {
     display: none;
 }
@@ -133,4 +140,45 @@ border-top-color: #333333;
 
 #select1{
     margin-bottom: 1em;
+}
+
+#lista h3 {
+    font-size: 5em;
+    text-align: right;
+    background-color: #56f89a;
+    padding-right: 0.5em;
+}
+
+.progress {
+    height: 2em;
+}
+
+.progress-bar{
+    color: #333333;
+    font-size: 1.3em;
+    vertical-align: middle;
+}
+
+.bar-text{
+    margin-bottom: 0;
+    margin-top: 0.3em;
+}
+
+#below-bar {
+    background-color: #ff0000;
+    
+}
+
+#average-bar {
+    background-color: #ffe521;
+    /*color: #333333;*/
+}
+
+#above-bar {
+    background-color: #008000;
+    /*color: #333333;*/
+}
+
+.panel-body > p{
+    font-size: 2em;
 }
