@@ -2,49 +2,50 @@ window.data = {
 
 
   computeStudentsStats: (laboratoria) => {
-  let studentsArray = [];
-  let nombreEstudiante;
-  let mailEstudiante;
-  let porcentajeEstudiante;
-  let statusEstudiante;
-  let generacionEnSede;
-  let topicsEstudiante;
-  let porcentajeCompleto;
-  for(venue in laboratoria){
-    let sede = venue; 
-    const generations = Object.keys(laboratoria[venue].generacion); 
-    generations.forEach((generationInVenue) => {
-      //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
-     generacionEnSede = generationInVenue;
-      //console.log(student);
-      const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
-      //console.log(students);
-      students.forEach((student) => {
-        nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
-        mailEstudiante = student.correo; //Agregamos correo de estudiante
-        porcentajeEstudiante = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
-        let progress = porcentajeEstudiante;
-        if (progress < 60) {
-          statusEstudiante = "below"; //Indicamos que esta debajo del 60%
-        } else if (progress > 90) {
-          statusEstudiante = "over"; //Indicamos que esta sobre el 90%
-        } else {
-          statusEstudiante = "average"; //Indicamos que esta en la media
-        };
-        const topics = Object.keys(student.progreso.temas);
-        
-        for (topic of topics) {
-          //La siguiente linea añade los temas como nuevas propiedades del objeto topics y les da como valor que sean un objeto
-          let newProperty = Object.defineProperty(student.progreso.temas, topic, { writable: true});
-          topicsEstudiante = newProperty;
-        };
+    let studentsArray = [];
+    let nombreEstudiante;
+    let mailEstudiante;
+    let porcentajeEstudiante;
+    let statusEstudiante;
+    let generacionEnSende;
+    let topicsEstudiante;
+    let porcentajeCompleto;
+    let turnoEstudiante;
+    for (venue in laboratoria) {
+      let sede = venue;
+      const generations = Object.keys(laboratoria[venue].generacion);
+      generations.forEach((generationInVenue) => {
+        //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
+        generacionEnSede = generationInVenue;
+        //console.log(student);
+        const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
+        //console.log(students);
+        students.forEach((student) => {
+          nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
+          mailEstudiante = student.correo; //Agregamos correo de estudiante
+          turnoEstudiante = student.turno;
+          porcentajeEstudiante = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
+          if (porcentajeEstudiante < 60) {
+            statusEstudiante = "below"; //Indicamos que esta debajo del 60%
+          } else if (porcentajeEstudiante > 90) {
+            statusEstudiante = "over"; //Indicamos que esta sobre el 90%
+          } else {
+            statusEstudiante = "average"; //Indicamos que esta en la media
+          };
+          const topics = Object.keys(student.progreso.temas);
 
           for (topic of topics) {
-            //console.log(topic);
             //La siguiente linea añade los temas como nuevas propiedades del objeto topics y les da como valor que sean un objeto
             let newProperty = Object.defineProperty(student.progreso.temas, topic, { writable: true });
-            //console.log(newProperty);
             topicsEstudiante = newProperty;
+            //console.log(topicsEstudiante);
+            valuesTopicsEstudiante = Object.values(topicsEstudiante);
+            for (i = 0; i < valuesTopicsEstudiante.length; i++) {
+              valuesTopicsEstudiante[i].completedPercentage = valuesTopicsEstudiante[i].porcentajeCompletado;
+              let topicProgress = (valuesTopicsEstudiante[i].duracionTemaCompletado * 100) / valuesTopicsEstudiante[i].duracionTema;
+              valuesTopicsEstudiante[i].percentageDuration = Math.round(topicProgress);
+            };
+
           };
 
           studentsArray.push({
@@ -147,7 +148,7 @@ Debes ingresar todos los datos`);
       //Llama a la función que despliega el número de estudiantes activas
       let studentsInVenue = data.welcomeDashboard(name, venue, generation, generations, students);
 
-      //data.getTurn(name,venue,generation,generations,students);
+      data.getTurno(name,venue,generation,generations,students);
       data.getProgress(name, venue, generation, generations, students, studentsInVenue);
       //agregamos esta línea para poder llamar los valores después
       return [name, venue];
@@ -289,12 +290,33 @@ Debes ingresar todos los datos`);
   filterStudents: (students, search) => {
 
   },
-  /*const exitFunction = () => {
-    confirm("¿Quieres salir de LAB-Dash?");
-    if(true){
-        window.location.reload();
-    }else{
-      alert("OK");
+
+  //Funcion para comparar turno de estudiante, retorna conteo y arreglo
+  getTurno: (name, venue, generation, generations, students) => {
+    let valores = Object.values(students);
+    let arrPM = [];
+    let arrAM = [];
+    let turnoAM = 0;
+    let turnoPM = 0;
+    for (turn of valores) {
+      let minusculasVenue = venue.toLowerCase();
+      let minusculasGeneration = generation.toLowerCase();
+      if (minusculasVenue === turn.campus) {
+        if (turn.generation === minusculasGeneration) {
+          if (turn.turn === "PM") {
+            arrPM.push({ 'name': turn.name, 'email': turn.email });
+            turnoPM++;
+          }
+          else {
+            arrAM.push({ 'name': turn.name, 'email': turn.email })
+            turnoAM++;
+          }
+        }
+      };
     }
-  };*/
+    console.log(arrAM);
+    console.log(turnoAM);
+    console.log(turnoPM);
+  }
+
 }

@@ -74,5 +74,3 @@ const drawCampus = (sedes, generaciones, generations, students) => {
 const quitDisabled = () => {
     selectGeneration.disabled = false;
 };
-
-
