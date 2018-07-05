@@ -17,7 +17,8 @@ let exitButton2 = document.getElementById("exit-button-2");
 const progressBarBelow = document.getElementById("progress-bar-below");
 const progressBarAverage = document.getElementById("progress-bar-average");
 const progressBarAbove = document.getElementById("progress-bar-above");
-//let barText = document.getElementById("bar-text");
+const searchButton = document.getElementById("search-button");
+const searchText = document.getElementById("search");
 
 //const json = '../data/laboratoria.json';s
 const json = 'https://raw.githubusercontent.com/citlallidmg/cdmx-2018-06-bc-core-am-data-dashboard/master/data/laboratoria.json#'
@@ -29,20 +30,12 @@ const getData = () => {
 
             const campus = data.obtainCampus(res);
             const generationsData = data.obtainGeneration(res);
-
             const generations = data.computeGenerationsStats(res);
-            //console.log(generations);
             const students = data.computeStudentsStats(res);
             drawCampus(campus, generationsData, generations, students);
-
-            //console.log(students);
-
             data.drawCampusDashboard(campus);
             data.drawGenerationDashboard(generationsData);
-            //drawDataDashboard(generations,students);
-            //console.log(generations);
-            //return generations;
-
+            getSearch(students);
         })
         .catch((error) => {
             console.log(error);
@@ -74,3 +67,16 @@ const drawCampus = (sedes, generaciones, generations, students) => {
 const quitDisabled = () => {
     selectGeneration.disabled = false;
 };
+
+const getSearch = (students) => {
+    let searchString = "";
+    searchButton.addEventListener('click',(event) => {
+        searchString = searchText.value;
+        data.filterStudents(students,searchString);
+        document.getElementById("data-section").innerHTML = "";
+    });
+};
+
+const printFilterStudent = (filterStudents) => {
+    console.log(filterStudents);
+}
