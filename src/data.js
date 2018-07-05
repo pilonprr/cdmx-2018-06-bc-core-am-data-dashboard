@@ -2,7 +2,6 @@ window.data = {
 
 
   computeStudentsStats: (laboratoria) => {
-<<<<<<< HEAD
   let studentsArray = [];
   let nombreEstudiante;
   let mailEstudiante;
@@ -39,39 +38,6 @@ window.data = {
           let newProperty = Object.defineProperty(student.progreso.temas, topic, { writable: true});
           topicsEstudiante = newProperty;
         };
-=======
-    let studentsArray = [];
-    let nombreEstudiante;
-    let mailEstudiante;
-    let porcentajeEstudiante;
-    let statusEstudiante;
-    let generacionEnSende;
-    let topicsEstudiante;
-    let porcentajeCompleto;
-    let turnoEstudiante;
-    for (venue in laboratoria) {
-      let sede = venue;
-      const generations = Object.keys(laboratoria[venue].generacion);
-      generations.forEach((generationInVenue) => {
-        //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
-        generacionEnSede = generationInVenue;
-        //console.log(student);
-        const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
-        //console.log(students);
-        students.forEach((student) => {
-          nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
-          mailEstudiante = student.correo; //Agregamos correo de estudiante
-          turnoEstudiante = student.turno;
-          porcentajeEstudiante = student.progreso.porcentajeCompletado; //Agregamos porcentaje de avance general
-          if (porcentajeEstudiante < 60) {
-            statusEstudiante = "below"; //Indicamos que esta debajo del 60%
-          } else if (porcentajeEstudiante > 90) {
-            statusEstudiante = "over"; //Indicamos que esta sobre el 90%
-          } else {
-            statusEstudiante = "average"; //Indicamos que esta en la media
-          };
-          const topics = Object.keys(student.progreso.temas);
->>>>>>> upstream/master
 
           for (topic of topics) {
             //console.log(topic);
