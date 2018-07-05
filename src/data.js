@@ -255,7 +255,6 @@ Debes ingresar todos los datos`);
       }
     })
     printFilterStudent(arrFilterStudent);
-    return arrFilterStudent;
   },
 
   //Funcion para comparar turno de estudiante, retorna conteo y arreglo

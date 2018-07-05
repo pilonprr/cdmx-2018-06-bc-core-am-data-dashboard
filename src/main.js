@@ -19,6 +19,7 @@ const progressBarAverage = document.getElementById("progress-bar-average");
 const progressBarAbove = document.getElementById("progress-bar-above");
 const searchButton = document.getElementById("search-button");
 const searchText = document.getElementById("search");
+let cajaDatosFiltrados = document.getElementById("data-section");
 
 //const json = '../data/laboratoria.json';s
 const json = 'https://raw.githubusercontent.com/citlallidmg/cdmx-2018-06-bc-core-am-data-dashboard/master/data/laboratoria.json#'
@@ -70,13 +71,32 @@ const quitDisabled = () => {
 
 const getSearch = (students) => {
     let searchString = "";
-    searchButton.addEventListener('click',(event) => {
+    searchButton.addEventListener('click', (event) => {
         searchString = searchText.value;
-        data.filterStudents(students,searchString);
-        document.getElementById("data-section").innerHTML = "";
+        data.filterStudents(students, searchString);
     });
 };
 
-const printFilterStudent = (filterStudents) => {
-    console.log(filterStudents);
-}
+const printFilterStudent = (arrFilterStudent) => {
+    cajaDatosFiltrados.innerHTML = "";
+    let studentMatch = " ";
+    for (i = 0; i < arrFilterStudent.length; i++) {
+        studentMatch += `<div class="well" id="card">
+       <div class="info">
+          <h3 id="name">Nombre: ${arrFilterStudent[i].name}</h3>
+          <p>Correo: ${arrFilterStudent[i].email}</p>
+          <p>Turno: ${arrFilterStudent[i].turn}</p>
+          <p>Status: ${arrFilterStudent[i].stats["status"]}</p>
+          <p>Porcentaje Completado: ${arrFilterStudent[i].stats.completedPercentage}</p>
+      
+        </div>
+      </div>`
+
+    };
+    if(studentMatch === " "){
+        cajaDatosFiltrados.innerHTML = `<h1>No hay coincidencias</h1>`
+    }
+    else {
+        cajaDatosFiltrados.innerHTML = studentMatch;
+    }
+};
