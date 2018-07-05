@@ -1,6 +1,6 @@
 window.data = {
 
-
+//Función que obtiene el arreglo de estudiantes y sus estadisticas correspondientes.
   computeStudentsStats: (laboratoria) => {
     let studentsArray = [];
     let nombreEstudiante;
@@ -14,11 +14,8 @@ window.data = {
       let sede = venue;
       const generations = Object.keys(laboratoria[venue].generacion);
       generations.forEach((generationInVenue) => {
-        //console.log(generationInVenue); //Me da los nombres de las generaciones para cada sede en string
         generacionEnSede = generationInVenue;
-        //console.log(student);
         const students = laboratoria[venue].generacion[generationInVenue].estudiantes;
-        //console.log(students);
         students.forEach((student) => {
           nombreEstudiante = student.nombre; //Agregamos nombre de estudiante
           mailEstudiante = student.correo; //Agregamos correo de estudiante
@@ -32,12 +29,10 @@ window.data = {
             statusEstudiante = "average"; //Indicamos que esta en la media
           };
           const topics = Object.keys(student.progreso.temas);
-
           for (topic of topics) {
             //La siguiente linea añade los temas como nuevas propiedades del objeto topics y les da como valor que sean un objeto
             let newProperty = Object.defineProperty(student.progreso.temas, topic, { writable: true });
             topicsEstudiante = newProperty;
-            //console.log(topicsEstudiante);
             valuesTopicsEstudiante = Object.values(topicsEstudiante);
             for (i = 0; i < valuesTopicsEstudiante.length; i++) {
               valuesTopicsEstudiante[i].completedPercentage = valuesTopicsEstudiante[i].porcentajeCompletado;
@@ -45,7 +40,6 @@ window.data = {
               valuesTopicsEstudiante[i].percentageDuration = Math.round(topicProgress);
             };
           };
-
           studentsArray.push({
             'name': nombreEstudiante, 'email': mailEstudiante, 'campus': sede, 'generation': generacionEnSede, 'turn': turnoEstudiante, 'stats': {
               'status': statusEstudiante, 'completedPercentage': porcentajeEstudiante, 'topics': topicsEstudiante
@@ -55,13 +49,12 @@ window.data = {
         });
       });
     }
-    //console.log(studentsArray);
     return studentsArray;
-
   },
 
+  
+  //Función que genera arreglo por generaciones.
   computeGenerationsStats: (laboratoria) => {
-
     const generationsArray = [];
     let valueCampus;
     let valueGeneration;
@@ -72,40 +65,31 @@ window.data = {
     for (key in laboratoria) {
 
       valueCampus = key;
-      //average = 0;
       const generations = Object.keys(laboratoria[key].generacion);
-      //console.log(generations);
       generations.forEach((generation) => {
-
         valueGeneration = generation;
         const students = laboratoria[key].generacion[generation].estudiantes;
-        //console.log(students);
         average = 0;
         for (student in students) {
-
           average += students[student].progreso.porcentajeCompletado;
-          //average = average / students.length;
           valueAverage = Math.round(average / students.length);
           valueCount = students.length;
-
         };
-        //console.log(valueAverage);
         generationsArray.push({ 'campus': valueCampus, 'generation': valueGeneration, 'average': valueAverage, 'count': valueCount });
       })
     }
-    //console.log(generationsArray);
     return generationsArray;
-
   },
 
+  //Función que obtiene los valores de las generaciones.
   obtainCampus: (laboratoria) => {
 
     const venues = Object.getOwnPropertyNames(laboratoria);
-    //console.log(venues); 
     return venues;
-
   },
 
+
+  //Función que obtiene las generaciones.
   obtainGeneration: (laboratoria) => {
     for (key in laboratoria) {
       const generationOption = Object.keys(laboratoria[key].generacion);
@@ -113,6 +97,7 @@ window.data = {
     }
   },
 
+  //Función para login.
   checkLogin: (sedes, generaciones, generations, students) => {
     let name = userName.value;
     let password = pwd.value;
@@ -135,16 +120,12 @@ Debes ingresar todos los datos`);
 
       data.getTurno(name,venue,generation,generations,students);
       data.getProgress(name, venue, generation, generations, students, studentsInVenue);
-      //agregamos esta línea para poder llamar los valores después
       return [name, venue];
 
     } else {
-
-      //Regresa una alerta si algún dato no es correcto
+     //Regresa una alerta si algún dato no es correcto
       return alert("Alguno de tus datos es incorrecto");
-
     }
-
   },
 
 
