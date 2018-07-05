@@ -287,7 +287,6 @@ Debes ingresar todos los datos`);
     // console.log(arrAM);
     // console.log(turnoAM);
     // console.log(turnoPM);
-
   }
 
 }
