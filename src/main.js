@@ -42,6 +42,8 @@ const getData = () => {
             data.drawCampusDashboard(campus);
             data.drawGenerationDashboard(generationsData);
             getSearch(students);
+            changeDashboard(generations,students);
+
         })
         .catch((error) => {
             console.log(error);
@@ -109,4 +111,29 @@ const printFilterStudent = (arrFilterStudent) => {
     else {
         cajaDatosFiltrados.innerHTML = studentMatch;
     }
+};
+
+
+const changeDashboard = (generations, students) => {
+
+    changeData.addEventListener('click', () => {
+        let newCampus = (selectCampusDashboard2.value).toLowerCase();
+        let newGeneration = (selectGenerationDashboard2.value).toLowerCase();
+        document.querySelector("#venue").innerHTML = newCampus.toUpperCase();
+        document.querySelector("#generation").innerHTML = `${newGeneration.toUpperCase()} GENERACIÓN`;
+        let estudiantes;
+        for (let i = 0; i < generations.length; i++) {
+      let campus = generations[i].campus;
+      let generacion = generations[i].generation;
+      if (campus === newCampus && generacion === newGeneration) {
+        estudiantes = generations[i].count;
+      }
+    }
+    let numberStudents = document.getElementById('student-first-count');
+    numberStudents.innerHTML = " ";
+    numberStudents.innerHTML = estudiantes;
+    data.getTurno(newCampus, newGeneration, students);
+    data.getProgress(newCampus, newGeneration, students, estudiantes);
+    return estudiantes;
+  });
 };

@@ -49,6 +49,7 @@ window.data = {
         });
       });
     }
+
     return studentsArray;
   },
 
@@ -118,8 +119,8 @@ Debes ingresar todos los datos`);
       //Llama a la función que despliega el número de estudiantes activas
       let studentsInVenue = data.welcomeDashboard(name, venue, generation, generations, students);
 
-      data.getTurno(name,venue,generation,generations,students);
-      data.getProgress(name, venue, generation, generations, students, studentsInVenue);
+      data.getTurno(venue,generation,students);
+      data.getProgress(venue, generation, students, studentsInVenue);
       return [name, venue];
 
     } else {
@@ -147,12 +148,14 @@ Debes ingresar todos los datos`);
       }
     }
     const numberStudents = document.createElement('h3');
+    numberStudents.setAttribute('id','student-first-count');
     numberStudents.innerHTML = estudiantes;
     document.getElementById("lista").appendChild(numberStudents);
     return estudiantes;
   },
 
-  getProgress: (name, venue, generation, generations, students, studentsInVenue) => {
+  //Función que determina el progreso de cada estudiante.
+  getProgress: (venue, generation, students, studentsInVenue) => {
     let progressAbove = 0;
     let progressBelow = 0;
     let progressAverage = 0;
@@ -190,8 +193,6 @@ Debes ingresar todos los datos`);
   },
 
   drawCampusDashboard: (sedes, generations) => {
-    //const containerCampus = document.getElementById('campus');
-    //Crea el dropdown de generaciones en el menú para la versión móvil
     sedes.forEach((sede) => {
       const option = document.createElement('option');
       option.innerHTML = sede.toUpperCase();
@@ -210,9 +211,6 @@ Debes ingresar todos los datos`);
       const option = document.createElement('option');
       const textOption = generations[i];
       option.innerHTML = textOption.toUpperCase();
-      // También se puede hacer de esta manera
-      //document.getElementById("select-generation-dashboard-1").appendChild(option);
-      //document.getElementById("select-generation-dashboard-2").appendChild(option);
       selectGenerationDashboard1.appendChild(option);
     }
     for (let i = 0; i < generations.length; i++) {
@@ -239,7 +237,7 @@ Debes ingresar todos los datos`);
   },
 
   //Funcion para comparar turno de estudiante, retorna conteo y arreglo
-  getTurno: (name, venue, generation, generations, students) => {
+  getTurno: (venue, generation, students) => {
     let valores = Object.values(students);
     let arrPM = [];
     let arrAM = [];
@@ -265,9 +263,6 @@ Debes ingresar todos los datos`);
     let turnoPmBox = document.getElementById("turnoCountPM");
     turnoAmBox.innerHTML = turnoAM;
     turnoPmBox.innerHTML = turnoPM;
-    // console.log(arrAM);
-    // console.log(turnoAM);
-    // console.log(turnoPM);
   }
 
 }
