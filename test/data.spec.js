@@ -107,8 +107,9 @@ describe('data', () => {
   });
 
   describe('filterStudents(users, search)', () => {
-
-    it('debería retornar nuevo arreglo solo con estudiantes con nombres que contengan string (case insensitive)');
-
+    const processed = filterStudents(computeStudentsStats(fixtures),"Cari Candyce");
+    it('debería retornar nuevo arreglo solo el nombre de Cari Candyce',() => {
+      assert.equal(processed.length, 2);
+    });
   });
 });
