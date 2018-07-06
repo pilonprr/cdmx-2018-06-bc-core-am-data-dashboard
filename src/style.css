@@ -1,32 +1,32 @@
 *{
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
-}
-
-/*Quitando margen y padding a toda la página*/
-
-body{
+  }
+  
+  /*Quitando margen y padding a toda la página*/
+  
+  body{
     margin: 0;
     padding: 0;
-}
-
-#login-container{
+  }
+  
+  #login-container{
     min-height: 100vh;
     display: block;
     background-color: #ffe521;
     font-size: 1em;
-}
-
-#logo-login{
+  }
+  
+  #logo-login{
     display: block;
     margin-left: auto;
     margin-right: auto;
     /*width: 50%;*/
     max-width: 300px;
     min-width: 130px;
-}
-
-#login-section{
+  }
+  
+  #login-section{
     width: 50%;
     max-width: 500px;
     min-width: 60%;
@@ -39,32 +39,32 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-#login-button,
-#select1,
-#select2{
+  }
+  
+  #login-button,
+  #select1,
+  #select2{
     float: right;
-}
-
-
-#main-page {
+  }
+  
+  
+  #main-page {
     display: none;
-}
-
-#title-login{
+  }
+  
+  #title-login{
     text-align: center;
     margin-bottom: 20px;
     font-size: 2em;
-}
-
-.btn{
+  }
+  
+  .btn{
     background-color: #ff009e;
     color: #fff;
-}
-
-
-footer{
+  }
+  
+  
+  footer{
     height: auto;
     min-height: 5vh;
     padding-top: 0.8em;
@@ -77,18 +77,18 @@ footer{
     width: 100%;
     background-color: #333333;
     color: #fff;
-}
-
-.row.content {
+  }
+  
+  .row.content {
     height: 93vh;
-}
+  }
     
-.sidenav {
+  .sidenav {
     background-color: #f1f1f1;
     height: 93vh;
-}
+  }
         
-@media screen and (max-width: 767px) {
+  @media screen and (max-width: 767px) {
     
     #myNavbar, .navbar-header{
      background-color: #e3e3e3;
@@ -96,110 +96,108 @@ footer{
     .row.content {
     height: auto;
     } 
-
+  
     .navbar-header{
         padding-top: 1em;
         padding-left: 1em;
     }
-
+  
     #logo-login{
         width: 100px;
     }
-
+  
     #title-login{
         font-size: 1.5em;
     }
-
+  
     footer{
         position: relative;
     }
-
-}
-
-
-#logo-nav{
+  
+  }
+  
+  
+  #logo-nav{
     padding: 1em;
-}
-
-#selectors-nav{
+  }
+  
+  #selectors-nav{
     padding-top: 1em;
-}
-
-#student-section{
+  }
+  
+  #student-section{
     height: 25px;
-}
-
-footer{
+  }
+  
+  footer{
     background-color: #333333;
     color: #fff;
-}
-
-hr{
-border-top-color: #333333;
-}
-
-#select1{
+  }
+  
+  hr{
+  border-top-color: #333333;
+  }
+  
+  #select1{
     margin-bottom: 1em;
-}
-
-#lista h3 {
+  }
+  
+  #lista h3 {
     font-size: 5em;
     text-align: right;
     background-color: #56f89a;
     padding-right: 0.5em;
-}
-
-#turnoCountAM,
-#turnoCountPM {
+  }
+  
+  #turno-count-am,
+  #turno-count-pm {
     background-color: #333333;
     color: #ffffff;
     text-align: right;
     font-size: 2em;
     padding-right: 0.5em;
-}
-
-.progress {
+  }
+  
+  .progress {
     height: 2em;
-}
-
-.progress-bar{
+  }
+  
+  .progress-bar{
     color: #333333;
     font-size: 1.3em;
     vertical-align: middle;
-}
-
-.bar-text{
+  }
+  
+  .bar-text{
     margin-bottom: 0;
     margin-top: 0.3em;
-}
-
-#below-bar {
+  }
+  
+  #below-bar {
     background-color: #ff0000;
     
-}
-
-#average-bar {
+  }
+  
+  #average-bar {
     background-color: #ffe521;
     /*color: #333333;*/
-}
-
-#above-bar {
+  }
+  
+  #above-bar {
     background-color: #008000;
     /*color: #333333;*/
-}
-
-.panel-body > p{
+  }
+  
+  .panel-body > p{
     font-size: 2em;
-}
-
-#display-header,
-#search-form{
+  }
+  
+  #display-header,
+  #search-form{
     display: inline-block;
     width: 48%;
     vertical-align: middle;
-}
-#search{
+  }
+  #search{
     margin-bottom: 0.5em;
-}
-
-
+  }
