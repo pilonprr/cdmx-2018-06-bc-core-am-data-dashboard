@@ -20,10 +20,15 @@ const progressBarAbove = document.getElementById("progress-bar-above");
 const searchButton = document.getElementById("search-button");
 const searchText = document.getElementById("search");
 let cajaDatosFiltrados = document.getElementById("data-section");
+const changeData = document.getElementById("select2");
 
-//const json = '../data/laboratoria.json';s
+
+
+//Constante que guarda archivo json.
 const json = 'https://raw.githubusercontent.com/citlallidmg/cdmx-2018-06-bc-core-am-data-dashboard/master/data/laboratoria.json#'
 
+
+//Función que obtiene data del archivo y pasa los datos a otras funciones.
 const getData = () => {
     fetch(json)
         .then(response => response.json())
@@ -37,17 +42,20 @@ const getData = () => {
             data.drawCampusDashboard(campus);
             data.drawGenerationDashboard(generationsData);
             getSearch(students);
+            changeDashboard(generations,students);
+
         })
         .catch((error) => {
             console.log(error);
         });
 }
 
+
+//Llamada a funcion para obtener data.
 getData();
 
+//Función que desplega opciones de campus y generaciones.
 const drawCampus = (sedes, generaciones, generations, students) => {
-    //const containerCampus = document.getElementById('campus');
-    //console.log(sedes);
     sedes.forEach((sede) => {
         const option = document.createElement('option');
         option.innerHTML = sede.toUpperCase();
@@ -69,6 +77,8 @@ const quitDisabled = () => {
     selectGeneration.disabled = false;
 };
 
+
+//Función que obtiene dato de búsqueda.
 const getSearch = (students) => {
     let searchString = "";
     searchButton.addEventListener('click', (event) => {
@@ -77,6 +87,8 @@ const getSearch = (students) => {
     });
 };
 
+
+//Función que imprime datos del arreglo resultante de la búsqueda.
 const printFilterStudent = (arrFilterStudent) => {
     cajaDatosFiltrados.innerHTML = "";
     let studentMatch = " ";
@@ -99,4 +111,29 @@ const printFilterStudent = (arrFilterStudent) => {
     else {
         cajaDatosFiltrados.innerHTML = studentMatch;
     }
+};
+
+
+const changeDashboard = (generations, students) => {
+
+    changeData.addEventListener('click', () => {
+        let newCampus = (selectCampusDashboard2.value).toLowerCase();
+        let newGeneration = (selectGenerationDashboard2.value).toLowerCase();
+        document.querySelector("#venue").innerHTML = newCampus.toUpperCase();
+        document.querySelector("#generation").innerHTML = `${newGeneration.toUpperCase()} GENERACIÓN`;
+        let estudiantes;
+        for (let i = 0; i < generations.length; i++) {
+      let campus = generations[i].campus;
+      let generacion = generations[i].generation;
+      if (campus === newCampus && generacion === newGeneration) {
+        estudiantes = generations[i].count;
+      }
+    }
+    let numberStudents = document.getElementById('student-first-count');
+    numberStudents.innerHTML = " ";
+    numberStudents.innerHTML = estudiantes;
+    data.getTurno(newCampus, newGeneration, students);
+    data.getProgress(newCampus, newGeneration, students, estudiantes);
+    return estudiantes;
+  });
 };
