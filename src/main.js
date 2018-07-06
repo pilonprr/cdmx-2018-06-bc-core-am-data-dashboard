@@ -36,13 +36,13 @@ const getData = () => {
 
             const campus = data.obtainCampus(res);
             const generationsData = data.obtainGeneration(res);
-            const generations = data.computeGenerationsStats(res);
-            const students = data.computeStudentsStats(res);
+            const generations = computeGenerationsStats(res);
+            const students = computeStudentsStats(res);
             drawCampus(campus, generationsData, generations, students);
             data.drawCampusDashboard(campus);
             data.drawGenerationDashboard(generationsData);
             getSearch(students);
-            changeDashboard(generations,students);
+            changeDashboard(generations, students);
 
         })
         .catch((error) => {
@@ -83,57 +83,74 @@ const getSearch = (students) => {
     let searchString = "";
     searchButton.addEventListener('click', (event) => {
         searchString = searchText.value;
-        data.filterStudents(students, searchString);
+        filterStudents(students, searchString);
     });
 };
 
 
 //Función que imprime datos del arreglo resultante de la búsqueda.
 const printFilterStudent = (arrFilterStudent) => {
+    if(arrFilterStudent.length === 0){
+        cajaDatosFiltrados.innerHTML = `<div class="well" id="card">
+        <div class="info">
+            <h1>No hay coincidencias</h1>
+        </div>
+    </div>`
+    }   
+    else{
+    let campus = selectCampus.value.toLowerCase();
+    let generation = selectGeneration.value.toLowerCase();
     cajaDatosFiltrados.innerHTML = "";
     let studentMatch = " ";
+
     for (i = 0; i < arrFilterStudent.length; i++) {
-        studentMatch += `<div class="well" id="card">
-       <div class="info">
-          <h3 id="name">Nombre: ${arrFilterStudent[i].name}</h3>
-          <p>Correo: ${arrFilterStudent[i].email}</p>
-          <p>Turno: ${arrFilterStudent[i].turn}</p>
-          <p>Status: ${arrFilterStudent[i].stats["status"]}</p>
-          <p>Porcentaje Completado: ${arrFilterStudent[i].stats.completedPercentage}</p>
-      
-        </div>
-      </div>`
-
-    };
-    if(studentMatch === " "){
-        cajaDatosFiltrados.innerHTML = `<h1>No hay coincidencias</h1>`
+        if (campus === arrFilterStudent[i].campus && generation === arrFilterStudent[i].generation){
+            console.log(arrFilterStudent[i]);
+            studentMatch += `<div class="well" id="card">
+                                <div class="info">
+                                    <h3 id="name">Nombre: ${arrFilterStudent[i].name}</h3>
+                                    <p>Correo: ${arrFilterStudent[i].email}</p>
+                                    <p>Turno: ${arrFilterStudent[i].turn}</p>
+                                    <p>Status: ${arrFilterStudent[i].stats["status"]}</p>
+                                    <p>Porcentaje Completado: ${arrFilterStudent[i].stats.completedPercentage}</p>
+                            </div>
+                        </div>`
+        }
+        if(studentMatch === " " || studentMatch === null){
+            cajaDatosFiltrados.innerHTML = `<div class="well" id="card">
+                                                <div class="info">
+                                                    <h1>No hay coincidencias</h1>
+                                                </div>
+                                            </div>`
+        }
+        else {
+            cajaDatosFiltrados.innerHTML = studentMatch;
+        }
     }
-    else {
-        cajaDatosFiltrados.innerHTML = studentMatch;
-    }
+}
 };
 
 
-const changeDashboard = (generations, students) => {
+    const changeDashboard = (generations, students) => {
 
-    changeData.addEventListener('click', () => {
-        let newCampus = (selectCampusDashboard2.value).toLowerCase();
-        let newGeneration = (selectGenerationDashboard2.value).toLowerCase();
-        document.querySelector("#venue").innerHTML = newCampus.toUpperCase();
-        document.querySelector("#generation").innerHTML = `${newGeneration.toUpperCase()} GENERACIÓN`;
-        let estudiantes;
-        for (let i = 0; i < generations.length; i++) {
-      let campus = generations[i].campus;
-      let generacion = generations[i].generation;
-      if (campus === newCampus && generacion === newGeneration) {
-        estudiantes = generations[i].count;
-      }
+        changeData.addEventListener('click', () => {
+            let newCampus = (selectCampusDashboard2.value).toLowerCase();
+            let newGeneration = (selectGenerationDashboard2.value).toLowerCase();
+            document.querySelector("#venue").innerHTML = newCampus.toUpperCase();
+            document.querySelector("#generation").innerHTML = `${newGeneration.toUpperCase()} GENERACIÓN`;
+            let estudiantes;
+            for (let i = 0; i < generations.length; i++) {
+                let campus = generations[i].campus;
+                let generacion = generations[i].generation;
+                if (campus === newCampus && generacion === newGeneration) {
+                    estudiantes = generations[i].count;
+                }
+            }
+            let numberStudents = document.getElementById('student-first-count');
+            numberStudents.innerHTML = " ";
+            numberStudents.innerHTML = estudiantes;
+            data.getTurno(newCampus, newGeneration, students);
+            data.getProgress(newCampus, newGeneration, students, estudiantes);
+            return estudiantes;
+        });
     }
-    let numberStudents = document.getElementById('student-first-count');
-    numberStudents.innerHTML = " ";
-    numberStudents.innerHTML = estudiantes;
-    data.getTurno(newCampus, newGeneration, students);
-    data.getProgress(newCampus, newGeneration, students, estudiantes);
-    return estudiantes;
-  });
-};
