@@ -261,8 +261,8 @@ Debes ingresar todos los datos`);
         }
       };
     }
-    let turnoAmBox = document.getElementById("turnoCountAM");
-    let turnoPmBox = document.getElementById("turnoCountPM");
+    let turnoAmBox = document.getElementById("turno-count-am");
+    let turnoPmBox = document.getElementById("turno-count-pm");
     turnoAmBox.innerHTML = turnoAM;
     turnoPmBox.innerHTML = turnoPM;
   }
