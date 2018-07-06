@@ -90,7 +90,7 @@ const getSearch = (students) => {
 //Función que imprime datos del arreglo resultante de la búsqueda.
 const printFilterStudent = (arrFilterStudent) => {
     if (arrFilterStudent.length === 0) {
-        cajaDatosFiltrados.innerHTML = `<div class="well" id="card">
+        cajaDatosFiltrados.innerHTML = `<div class="well">
         <div class="info">
             <h1>No hay coincidencias</h1>
         </div>
@@ -104,7 +104,7 @@ const printFilterStudent = (arrFilterStudent) => {
 
         for (i = 0; i < arrFilterStudent.length; i++) {
             if (campus === arrFilterStudent[i].campus && generation === arrFilterStudent[i].generation) {
-                studentMatch += `<div class="well" id="card">
+                studentMatch += `<div class="well">
                                 <div class="info">
                                     <h3 id="name">Nombre: ${arrFilterStudent[i].name}</h3>
                                     <p>Correo: ${arrFilterStudent[i].email}</p>
@@ -115,7 +115,7 @@ const printFilterStudent = (arrFilterStudent) => {
                         </div>`
             }
             if (studentMatch === " " || studentMatch === null) {
-                cajaDatosFiltrados.innerHTML = `<div class="well" id="card">
+                cajaDatosFiltrados.innerHTML = `<div class="well">
                                                 <div class="info">
                                                     <h1>No hay coincidencias</h1>
                                                 </div>
@@ -159,10 +159,25 @@ const listStudentsCount = (students, venue, gen) => {
     numberStudents.addEventListener('click', (event) => {
         let estudiantesArr = [];
         let printStudentsList = " ";
+        let botonOrdenar = `<div class="form-group">
+        <label for="order-by">Ordenar</label>
+        <select class="form-control" id="order-by">
+            <option value="Ordenar Por:" selected>Ordenar Por:</option>
+            <option>Nombre</option>
+            <option>Porcentaje de Completitud</option>
+        </select>
+        <label for="asc-dsc">Orden:</label>
+        <select class="form-control" id="asc-dsc">
+            <option value="Ordenar Por:" selected>Orden</option>
+            <option>ASC</option>
+            <option>DSC</option>
+        </select>
+        </div>`;
+
         for (i = 0; i < students.length; i++) {
             if (students[i].campus === venue && students[i].generation === gen) {
                 estudiantesArr.push(students[i]);
-                printStudentsList += `<div class="well" id="card">
+                printStudentsList += `<div class="well">
                 <div class="info">
                     <h3 id="name">Nombre: ${students[i].name}</h3>
                     <p>Correo: ${students[i].email}</p>
@@ -173,7 +188,7 @@ const listStudentsCount = (students, venue, gen) => {
         </div>`
             }
             cajaDatosFiltrados.innerHTML = " ";
-            cajaDatosFiltrados.innerHTML = printStudentsList;
+            cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
         }
     })
 };
@@ -181,8 +196,22 @@ const listStudentsCount = (students, venue, gen) => {
 const listStudentsTurnoAm = (turno, arr) => {
     turno.addEventListener('click', (event) => {
         let printStudentsList = " ";
+        let botonOrdenar = `<div class="form-group">
+        <label for="order-by">Ordenar</label>
+        <select class="form-control" id="order-by">
+            <option value="Ordenar Por:" selected>Ordenar Por:</option>
+            <option>Nombre</option>
+            <option>Porcentaje de Completitud</option>
+        </select>
+        <label for="asc-dsc">Orden:</label>
+        <select class="form-control" id="asc-dsc">
+            <option value="Ordenar Por:" selected>Orden</option>
+            <option>ASC</option>
+            <option>DSC</option>
+        </select>
+        </div>`;
         for (i = 0; i < arr.length; i++) {
-            printStudentsList += `<div class="well" id="card">
+            printStudentsList += `<div class="well">
                     <div class="info">
                         <h3 id="name">Nombre: ${arr[i].name}</h3>
                         <p>Correo: ${arr[i].email}</p>
@@ -190,15 +219,29 @@ const listStudentsTurnoAm = (turno, arr) => {
             </div>`
         }
         cajaDatosFiltrados.innerHTML = " ";
-        cajaDatosFiltrados.innerHTML = printStudentsList;
+        cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
     })
 };
 
 const listStudentsTurnoPm = (turno, arr) => {
     turno.addEventListener('click', (event) => {
         let printStudentsList = " ";
+        let botonOrdenar =`<div class="form-group">
+        <label for="order-by">Ordenar</label>
+        <select class="form-control" id="order-by">
+            <option value="Ordenar Por:" selected>Ordenar Por:</option>
+            <option>Nombre</option>
+            <option>Porcentaje de Completitud</option>
+        </select>
+        <label for="asc-dsc">Orden:</label>
+        <select class="form-control" id="asc-dsc">
+            <option value="Ordenar Por:" selected>Orden</option>
+            <option>ASC</option>
+            <option>DSC</option>
+        </select>
+        </div>`;
         for (i = 0; i < arr.length; i++) {
-            printStudentsList += `<div class="well" id="card">
+            printStudentsList += `<div class="well">
                             <div class="info">
                                 <h3 id="name">Nombre: ${arr[i].name}</h3>
                                 <p>Correo: ${arr[i].email}</p>
@@ -206,15 +249,29 @@ const listStudentsTurnoPm = (turno, arr) => {
                     </div>`
         }
         cajaDatosFiltrados.innerHTML = " ";
-        cajaDatosFiltrados.innerHTML = printStudentsList;
+        cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
     })
 };
 
 const listStudentsProgressBelow = (arr) => {
-  progressBarBelow.addEventListener('click', (event) => {
-    let printStudentsList = " ";
+    progressBarBelow.addEventListener('click', (event) => {
+        let printStudentsList = " ";
+        let botonOrdenar = `<div class="form-group">
+        <label for="order-by">Ordenar</label>
+        <select class="form-control" id="order-by">
+            <option value="Ordenar Por:" selected>Ordenar Por:</option>
+            <option>Nombre</option>
+            <option>Porcentaje de Completitud</option>
+        </select>
+        <label for="asc-dsc">Orden:</label>
+        <select class="form-control" id="asc-dsc">
+            <option value="Ordenar Por:" selected>Orden</option>
+            <option>ASC</option>
+            <option>DSC</option>
+        </select>
+        </div>`;
         for (i = 0; i < arr.length; i++) {
-            printStudentsList += `<div class="well" id="card">
+            printStudentsList += `<div class="well">
             <div class="info">
                 <h3 id="name">Nombre: ${arr[i].name}</h3>
                 <p>Correo: ${arr[i].email}</p>
@@ -224,15 +281,29 @@ const listStudentsProgressBelow = (arr) => {
     </div>`
         }
         cajaDatosFiltrados.innerHTML = " ";
-        cajaDatosFiltrados.innerHTML = printStudentsList;
+        cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
     })
 };
 
 const listStudentsProgressAverage = (arr) => {
     progressBarAverage.addEventListener('click', (event) => {
-      let printStudentsList = " ";
-          for (i = 0; i < arr.length; i++) {
-              printStudentsList += `<div class="well" id="card">
+        let printStudentsList = " ";
+        let botonOrdenar = `<div class="form-group">
+        <label for="order-by">Ordenar</label>
+        <select class="form-control" id="order-by">
+            <option value="Ordenar Por:" selected>Ordenar Por:</option>
+            <option>Nombre</option>
+            <option>Porcentaje de Completitud</option>
+        </select>
+        <label for="asc-dsc">Orden:</label>
+        <select class="form-control" id="asc-dsc">
+            <option value="Ordenar Por:" selected>Orden</option>
+            <option>ASC</option>
+            <option>DSC</option>
+        </select>
+        </div>`;
+        for (i = 0; i < arr.length; i++) {
+            printStudentsList += `<div class="well">
               <div class="info">
                   <h3 id="name">Nombre: ${arr[i].name}</h3>
                   <p>Correo: ${arr[i].email}</p>
@@ -240,17 +311,31 @@ const listStudentsProgressAverage = (arr) => {
                   <p>Porcentaje Completado: ${arr[i].stats.completedPercentage}</p>
           </div>
       </div>`
-          }
-          cajaDatosFiltrados.innerHTML = " ";
-          cajaDatosFiltrados.innerHTML = printStudentsList;
-      })
-  };
+        }
+        cajaDatosFiltrados.innerHTML = " ";
+        cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
+    })
+};
 
-  const listStudentsProgressAbove = (arr) => {
+const listStudentsProgressAbove = (arr) => {
     progressBarAbove.addEventListener('click', (event) => {
-      let printStudentsList = " ";
-          for (i = 0; i < arr.length; i++) {
-              printStudentsList += `<div class="well" id="card">
+        let printStudentsList = " ";
+        let botonOrdenar = `<div class="form-group">
+        <label for="order-by">Ordenar</label>
+        <select class="form-control" id="order-by">
+            <option value="Ordenar Por:" selected>Ordenar Por:</option>
+            <option>Nombre</option>
+            <option>Porcentaje de Completitud</option>
+        </select>
+        <label for="asc-dsc">Orden:</label>
+        <select class="form-control" id="asc-dsc">
+            <option value="Ordenar Por:" selected>Orden</option>
+            <option>ASC</option>
+            <option>DSC</option>
+        </select>
+        </div>`;
+        for (i = 0; i < arr.length; i++) {
+            printStudentsList += `<div class="well">
               <div class="info">
                   <h3 id="name">Nombre: ${arr[i].name}</h3>
                   <p>Correo: ${arr[i].email}</p>
@@ -258,11 +343,11 @@ const listStudentsProgressAverage = (arr) => {
                   <p>Porcentaje Completado: ${arr[i].stats.completedPercentage}</p>
           </div>
       </div>`
-          }
-          cajaDatosFiltrados.innerHTML = " ";
-          cajaDatosFiltrados.innerHTML = printStudentsList;
-      })
-  };
+        }
+        cajaDatosFiltrados.innerHTML = " ";
+        cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
+    })
+};
 
 //Función que despliega los datos a mostrar en la pantalla de inicio del Dashboard después del login
 const welcomeDashboard = (name, sede, generation, generations, students) => {
@@ -273,13 +358,13 @@ const welcomeDashboard = (name, sede, generation, generations, students) => {
     let venue = sede.toLowerCase();
     let gen = generation.toLowerCase();
     let estudiantes;
-    
+
     for (let i = 0; i < generations.length; i++) {
-      let campus = generations[i].campus;
-      let generacion = generations[i].generation;
-      if (campus === venue && generacion === gen) {
-        estudiantes = generations[i].count;
-      }
+        let campus = generations[i].campus;
+        let generacion = generations[i].generation;
+        if (campus === venue && generacion === gen) {
+            estudiantes = generations[i].count;
+        }
     }
     const numberStudents = document.createElement('h3');
     numberStudents.setAttribute('id', 'student-first-count');
@@ -288,10 +373,10 @@ const welcomeDashboard = (name, sede, generation, generations, students) => {
     document.getElementById("lista").appendChild(numberStudents);
     listStudentsCount(students, venue, gen);
     return estudiantes;
-  };
+};
 
-  //Función que determina el progreso de cada estudiante.
- const getProgress = (venue, generation, students, studentsInVenue) => {
+//Función que determina el progreso de cada estudiante.
+const getProgress = (venue, generation, students, studentsInVenue) => {
     let progressAbove = 0;
     let progressBelow = 0;
     let progressAverage = 0;
@@ -303,16 +388,16 @@ const welcomeDashboard = (name, sede, generation, generations, students) => {
     let resultAbove = '';
 
     for (let i = 0; i < students.length; i++) {
-      if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "below") {
-        progressBelow++;
-        studentsBelow.push(students[i]);
-      } else if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "average") {
-        progressAverage++;
-        studentsAverage.push(students[i]);
-      } else if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "over") {
-        progressAbove++;
-        studentsAbove.push(students[i]);
-      }
+        if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "below") {
+            progressBelow++;
+            studentsBelow.push(students[i]);
+        } else if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "average") {
+            progressAverage++;
+            studentsAverage.push(students[i]);
+        } else if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "over") {
+            progressAbove++;
+            studentsAbove.push(students[i]);
+        }
     }
     resultBelow = `<div class="progress-bar" id="below-bar" role="progressbar" aria-valuenow="${progressBelow}" aria-valuemin="0" aria-valuemax="${studentsInVenue}" style="width:${(progressBelow * 100) / studentsInVenue}%">
                 <p class="bar-text">${progressBelow}/${studentsInVenue}</p>          
@@ -329,38 +414,38 @@ const welcomeDashboard = (name, sede, generation, generations, students) => {
     listStudentsProgressBelow(studentsBelow);
     listStudentsProgressAverage(studentsAverage);
     listStudentsProgressAbove(studentsAbove);
-  };
+};
 
-const  drawCampusDashboard = (sedes, generations) => {
+const drawCampusDashboard = (sedes, generations) => {
     sedes.forEach((sede) => {
-      const option = document.createElement('option');
-      option.innerHTML = sede.toUpperCase();
-      selectCampusDashboard1.appendChild(option);
+        const option = document.createElement('option');
+        option.innerHTML = sede.toUpperCase();
+        selectCampusDashboard1.appendChild(option);
     });
     //Crea el dropdown de generaciones en el menú para la versión desktop
     sedes.forEach((sede) => {
-      const option = document.createElement('option');
-      option.innerHTML = sede.toUpperCase();
-      selectCampusDashboard2.appendChild(option);
+        const option = document.createElement('option');
+        option.innerHTML = sede.toUpperCase();
+        selectCampusDashboard2.appendChild(option);
     });
-  };
+};
 
 const drawGenerationDashboard = (generations) => {
     for (let i = 0; i < generations.length; i++) {
-      const option = document.createElement('option');
-      const textOption = generations[i];
-      option.innerHTML = textOption.toUpperCase();
-      selectGenerationDashboard1.appendChild(option);
+        const option = document.createElement('option');
+        const textOption = generations[i];
+        option.innerHTML = textOption.toUpperCase();
+        selectGenerationDashboard1.appendChild(option);
     }
     for (let i = 0; i < generations.length; i++) {
-      const option = document.createElement('option');
-      const textOption = generations[i];
-      option.innerHTML = textOption.toUpperCase();
-      selectGenerationDashboard2.appendChild(option);
+        const option = document.createElement('option');
+        const textOption = generations[i];
+        option.innerHTML = textOption.toUpperCase();
+        selectGenerationDashboard2.appendChild(option);
     }
-  };
+};
 
-  //Funcion para comparar turno de estudiante, retorna conteo y arreglo
+//Funcion para comparar turno de estudiante, retorna conteo y arreglo
 const getTurno = (venue, generation, students) => {
     let valores = Object.values(students);
     let arrPM = [];
@@ -368,20 +453,20 @@ const getTurno = (venue, generation, students) => {
     let turnoAM = 0;
     let turnoPM = 0;
     for (turn of valores) {
-      let minusculasVenue = venue.toLowerCase();
-      let minusculasGeneration = generation.toLowerCase();
-      if (minusculasVenue === turn.campus) {
-        if (turn.generation === minusculasGeneration) {
-          if (turn.turn === "PM") {
-            arrPM.push({ 'name': turn.name, 'email': turn.email });
-            turnoPM++;
-          }
-          else {
-            arrAM.push({ 'name': turn.name, 'email': turn.email })
-            turnoAM++;
-          }
-        }
-      };
+        let minusculasVenue = venue.toLowerCase();
+        let minusculasGeneration = generation.toLowerCase();
+        if (minusculasVenue === turn.campus) {
+            if (turn.generation === minusculasGeneration) {
+                if (turn.turn === "PM") {
+                    arrPM.push({ 'name': turn.name, 'email': turn.email });
+                    turnoPM++;
+                }
+                else {
+                    arrAM.push({ 'name': turn.name, 'email': turn.email })
+                    turnoAM++;
+                }
+            }
+        };
     }
     let turnoAmBox = document.getElementById("turno-count-am");
     let turnoPmBox = document.getElementById("turno-count-pm");
@@ -389,4 +474,4 @@ const getTurno = (venue, generation, students) => {
     turnoPmBox.innerHTML = turnoPM;
     listStudentsTurnoAm(turnoAmBox, arrAM);
     listStudentsTurnoPm(turnoPmBox, arrPM);
-  };
+};

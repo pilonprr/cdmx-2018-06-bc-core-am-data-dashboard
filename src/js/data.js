@@ -91,6 +91,7 @@ window.filterStudents = (students, search) => {
 };
 
 window.sortStudents = (students, orderBy, orderDirection) => {
+  
 
 };
 
