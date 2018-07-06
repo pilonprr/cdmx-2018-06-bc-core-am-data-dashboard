@@ -36,8 +36,8 @@ const getData = () => {
 
             const campus = data.obtainCampus(res);
             const generationsData = data.obtainGeneration(res);
-            const generations = data.computeGenerationsStats(res);
-            const students = data.computeStudentsStats(res);
+            const generations = computeGenerationsStats(res);
+            const students = computeStudentsStats(res);
             drawCampus(campus, generationsData, generations, students);
             data.drawCampusDashboard(campus);
             data.drawGenerationDashboard(generationsData);
@@ -83,22 +83,28 @@ const getSearch = (students) => {
     let searchString = "";
     searchButton.addEventListener('click', (event) => {
         searchString = searchText.value;
-        data.filterStudents(students, searchString);
+        filterStudents(students, searchString);
     });
 };
 
 
 //Función que imprime datos del arreglo resultante de la búsqueda.
 const printFilterStudent = (arrFilterStudent) => {
+    if(arrFilterStudent.length === 0){
+        cajaDatosFiltrados.innerHTML = `<div class="well" id="card">
+        <div class="info">
+            <h1>No hay coincidencias</h1>
+        </div>
+    </div>`
+    }   
+    else{
     let campus = selectCampus.value.toLowerCase();
     let generation = selectGeneration.value.toLowerCase();
-    console.log(arrFilterStudent);
-
     cajaDatosFiltrados.innerHTML = "";
     let studentMatch = " ";
 
     for (i = 0; i < arrFilterStudent.length; i++) {
-        if (campus === arrFilterStudent[i].campus && generation === arrFilterStudent[i].generation) {
+        if (campus === arrFilterStudent[i].campus && generation === arrFilterStudent[i].generation){
             console.log(arrFilterStudent[i]);
             studentMatch += `<div class="well" id="card">
                                 <div class="info">
@@ -110,8 +116,7 @@ const printFilterStudent = (arrFilterStudent) => {
                             </div>
                         </div>`
         }
-
-        if (studentMatch == " ") {
+        if(studentMatch === " " || studentMatch === null){
             cajaDatosFiltrados.innerHTML = `<div class="well" id="card">
                                                 <div class="info">
                                                     <h1>No hay coincidencias</h1>
@@ -120,8 +125,10 @@ const printFilterStudent = (arrFilterStudent) => {
         }
         else {
             cajaDatosFiltrados.innerHTML = studentMatch;
-        };
-    };
+        }
+    }
+}
+};
 
 
     const changeDashboard = (generations, students) => {
@@ -147,4 +154,3 @@ const printFilterStudent = (arrFilterStudent) => {
             return estudiantes;
         });
     }
-}
