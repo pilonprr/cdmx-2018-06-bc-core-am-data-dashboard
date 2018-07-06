@@ -207,6 +207,9 @@ Debes ingresar todos los datos`);
                 <p class="bar-text">${progressAbove}/${studentsInVenue}</p>          
               </div>`
     progressBarAbove.innerHTML = resultAbove;
+    listStudentsProgressBelow(studentsBelow);
+    listStudentsProgressAverage(studentsAverage);
+    listStudentsProgressAbove(studentsAbove);
   },
 
   drawCampusDashboard: (sedes, generations) => {

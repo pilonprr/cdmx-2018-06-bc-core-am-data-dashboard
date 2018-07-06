@@ -209,3 +209,57 @@ const listStudentsTurnoPm = (turno, arr) => {
         cajaDatosFiltrados.innerHTML = printStudentsList;
     })
 };
+
+const listStudentsProgressBelow = (arr) => {
+  progressBarBelow.addEventListener('click', (event) => {
+    let printStudentsList = " ";
+        for (i = 0; i < arr.length; i++) {
+            printStudentsList += `<div class="well" id="card">
+            <div class="info">
+                <h3 id="name">Nombre: ${arr[i].name}</h3>
+                <p>Correo: ${arr[i].email}</p>
+                <p>Turno: ${arr[i].turn}</p>
+                <p>Porcentaje Completado: ${arr[i].stats.completedPercentage}</p>
+        </div>
+    </div>`
+        }
+        cajaDatosFiltrados.innerHTML = " ";
+        cajaDatosFiltrados.innerHTML = printStudentsList;
+    })
+};
+
+const listStudentsProgressAverage = (arr) => {
+    progressBarAverage.addEventListener('click', (event) => {
+      let printStudentsList = " ";
+          for (i = 0; i < arr.length; i++) {
+              printStudentsList += `<div class="well" id="card">
+              <div class="info">
+                  <h3 id="name">Nombre: ${arr[i].name}</h3>
+                  <p>Correo: ${arr[i].email}</p>
+                  <p>Turno: ${arr[i].turn}</p>
+                  <p>Porcentaje Completado: ${arr[i].stats.completedPercentage}</p>
+          </div>
+      </div>`
+          }
+          cajaDatosFiltrados.innerHTML = " ";
+          cajaDatosFiltrados.innerHTML = printStudentsList;
+      })
+  };
+
+  const listStudentsProgressAbove = (arr) => {
+    progressBarAbove.addEventListener('click', (event) => {
+      let printStudentsList = " ";
+          for (i = 0; i < arr.length; i++) {
+              printStudentsList += `<div class="well" id="card">
+              <div class="info">
+                  <h3 id="name">Nombre: ${arr[i].name}</h3>
+                  <p>Correo: ${arr[i].email}</p>
+                  <p>Turno: ${arr[i].turn}</p>
+                  <p>Porcentaje Completado: ${arr[i].stats.completedPercentage}</p>
+          </div>
+      </div>`
+          }
+          cajaDatosFiltrados.innerHTML = " ";
+          cajaDatosFiltrados.innerHTML = printStudentsList;
+      })
+  };
