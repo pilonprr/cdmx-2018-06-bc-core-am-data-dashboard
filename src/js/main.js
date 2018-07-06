@@ -38,8 +38,8 @@ const getData = () => {
             const generations = computeGenerationsStats(res);
             const students = computeStudentsStats(res);
             drawCampus(campus, generationsData, generations, students);
-            data.drawCampusDashboard(campus);
-            data.drawGenerationDashboard(generationsData);
+            drawCampusDashboard(campus);
+            drawGenerationDashboard(generationsData);
             getSearch(students);
             changeDashboard(generations, students);
 
@@ -147,8 +147,8 @@ const changeDashboard = (generations, students) => {
         }
         numberStudents.innerHTML = " ";
         numberStudents.innerHTML = estudiantes;
-        data.getTurno(newCampus, newGeneration, students);
-        data.getProgress(newCampus, newGeneration, students, estudiantes);
+        getTurno(newCampus, newGeneration, students);
+        getProgress(newCampus, newGeneration, students, estudiantes);
         listStudentsCount(students, newCampus, newGeneration);
         return estudiantes;
     });
@@ -262,4 +262,131 @@ const listStudentsProgressAverage = (arr) => {
           cajaDatosFiltrados.innerHTML = " ";
           cajaDatosFiltrados.innerHTML = printStudentsList;
       })
+  };
+
+//Función que despliega los datos a mostrar en la pantalla de inicio del Dashboard después del login
+const welcomeDashboard = (name, sede, generation, generations, students) => {
+    document.querySelector("#venue").innerHTML = sede;
+    document.querySelector("#generation").innerHTML = `${generation} GENERACIÓN`;
+    document.querySelector("#user-1").innerHTML = name.toUpperCase();
+    document.querySelector("#user-2").innerHTML = name.toUpperCase();
+    let venue = sede.toLowerCase();
+    let gen = generation.toLowerCase();
+    let estudiantes;
+    
+    for (let i = 0; i < generations.length; i++) {
+      let campus = generations[i].campus;
+      let generacion = generations[i].generation;
+      if (campus === venue && generacion === gen) {
+        estudiantes = generations[i].count;
+      }
+    }
+    const numberStudents = document.createElement('h3');
+    numberStudents.setAttribute('id', 'student-first-count');
+    numberStudents.setAttribute('type', 'button');
+    numberStudents.innerHTML = estudiantes;
+    document.getElementById("lista").appendChild(numberStudents);
+    listStudentsCount(students, venue, gen);
+    return estudiantes;
+  };
+
+  //Función que determina el progreso de cada estudiante.
+ const getProgress = (venue, generation, students, studentsInVenue) => {
+    let progressAbove = 0;
+    let progressBelow = 0;
+    let progressAverage = 0;
+    let studentsBelow = [];
+    let studentsAverage = [];
+    let studentsAbove = [];
+    let resultBelow = '';
+    let resultAverage = '';
+    let resultAbove = '';
+
+    for (let i = 0; i < students.length; i++) {
+      if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "below") {
+        progressBelow++;
+        studentsBelow.push(students[i]);
+      } else if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "average") {
+        progressAverage++;
+        studentsAverage.push(students[i]);
+      } else if (students[i].campus === venue.toLowerCase() && students[i].generation === generation.toLowerCase() && students[i].stats.status === "over") {
+        progressAbove++;
+        studentsAbove.push(students[i]);
+      }
+    }
+    resultBelow = `<div class="progress-bar" id="below-bar" role="progressbar" aria-valuenow="${progressBelow}" aria-valuemin="0" aria-valuemax="${studentsInVenue}" style="width:${(progressBelow * 100) / studentsInVenue}%">
+                <p class="bar-text">${progressBelow}/${studentsInVenue}</p>          
+              </div>`
+    progressBarBelow.innerHTML = resultBelow;
+    resultAverage = `<div class="progress-bar" id="average-bar" role="progressbar" aria-valuenow="${progressAverage}" aria-valuemin="0" aria-valuemax="${studentsInVenue}" style="width:${(progressAverage * 100) / studentsInVenue}%">
+                <p class="bar-text">${progressAverage}/${studentsInVenue}</p>          
+              </div>`
+    progressBarAverage.innerHTML = resultAverage;
+    resultAbove = `<div class="progress-bar" id="above-bar" role="progressbar" aria-valuenow="${progressAbove}" aria-valuemin="0" aria-valuemax="${studentsInVenue}" style="width:${(progressAbove * 100) / studentsInVenue}%">
+                <p class="bar-text">${progressAbove}/${studentsInVenue}</p>          
+              </div>`
+    progressBarAbove.innerHTML = resultAbove;
+    listStudentsProgressBelow(studentsBelow);
+    listStudentsProgressAverage(studentsAverage);
+    listStudentsProgressAbove(studentsAbove);
+  };
+
+const  drawCampusDashboard = (sedes, generations) => {
+    sedes.forEach((sede) => {
+      const option = document.createElement('option');
+      option.innerHTML = sede.toUpperCase();
+      selectCampusDashboard1.appendChild(option);
+    });
+    //Crea el dropdown de generaciones en el menú para la versión desktop
+    sedes.forEach((sede) => {
+      const option = document.createElement('option');
+      option.innerHTML = sede.toUpperCase();
+      selectCampusDashboard2.appendChild(option);
+    });
+  };
+
+const drawGenerationDashboard = (generations) => {
+    for (let i = 0; i < generations.length; i++) {
+      const option = document.createElement('option');
+      const textOption = generations[i];
+      option.innerHTML = textOption.toUpperCase();
+      selectGenerationDashboard1.appendChild(option);
+    }
+    for (let i = 0; i < generations.length; i++) {
+      const option = document.createElement('option');
+      const textOption = generations[i];
+      option.innerHTML = textOption.toUpperCase();
+      selectGenerationDashboard2.appendChild(option);
+    }
+  };
+
+  //Funcion para comparar turno de estudiante, retorna conteo y arreglo
+const getTurno = (venue, generation, students) => {
+    let valores = Object.values(students);
+    let arrPM = [];
+    let arrAM = [];
+    let turnoAM = 0;
+    let turnoPM = 0;
+    for (turn of valores) {
+      let minusculasVenue = venue.toLowerCase();
+      let minusculasGeneration = generation.toLowerCase();
+      if (minusculasVenue === turn.campus) {
+        if (turn.generation === minusculasGeneration) {
+          if (turn.turn === "PM") {
+            arrPM.push({ 'name': turn.name, 'email': turn.email });
+            turnoPM++;
+          }
+          else {
+            arrAM.push({ 'name': turn.name, 'email': turn.email })
+            turnoAM++;
+          }
+        }
+      };
+    }
+    let turnoAmBox = document.getElementById("turno-count-am");
+    let turnoPmBox = document.getElementById("turno-count-pm");
+    turnoAmBox.innerHTML = turnoAM;
+    turnoPmBox.innerHTML = turnoPM;
+    listStudentsTurnoAm(turnoAmBox, arrAM);
+    listStudentsTurnoPm(turnoPmBox, arrPM);
   };
