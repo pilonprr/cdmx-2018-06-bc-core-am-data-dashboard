@@ -268,6 +268,8 @@ Debes ingresar todos los datos`);
     let turnoPmBox = document.getElementById("turno-count-pm");
     turnoAmBox.innerHTML = turnoAM;
     turnoPmBox.innerHTML = turnoPM;
+    listStudentsTurnoAm(turnoAmBox, arrAM);
+    listStudentsTurnoPm(turnoPmBox, arrPM);
   }
 
 }

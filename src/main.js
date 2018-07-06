@@ -23,7 +23,6 @@ let cajaDatosFiltrados = document.getElementById("data-section");
 const changeData = document.getElementById("select2");
 
 
-
 //Constante que guarda archivo json.
 const json = 'https://raw.githubusercontent.com/citlallidmg/cdmx-2018-06-bc-core-am-data-dashboard/master/data/laboratoria.json#'
 
@@ -160,8 +159,8 @@ const listStudentsCount = (students, venue, gen) => {
     numberStudents.addEventListener('click', (event) => {
         let estudiantesArr = [];
         let printStudentsList = " ";
-        for(i=0; i < students.length; i++){
-            if(students[i].campus === venue && students[i].generation === gen){
+        for (i = 0; i < students.length; i++) {
+            if (students[i].campus === venue && students[i].generation === gen) {
                 estudiantesArr.push(students[i]);
                 printStudentsList += `<div class="well" id="card">
                 <div class="info">
@@ -173,8 +172,40 @@ const listStudentsCount = (students, venue, gen) => {
             </div>
         </div>`
             }
-        cajaDatosFiltrados.innerHTML = " ";
-        cajaDatosFiltrados.innerHTML = printStudentsList;           
-        } 
+            cajaDatosFiltrados.innerHTML = " ";
+            cajaDatosFiltrados.innerHTML = printStudentsList;
+        }
     })
-}
+};
+
+const listStudentsTurnoAm = (turno, arr) => {
+    turno.addEventListener('click', (event) => {
+        let printStudentsList = " ";
+        for (i = 0; i < arr.length; i++) {
+            printStudentsList += `<div class="well" id="card">
+                    <div class="info">
+                        <h3 id="name">Nombre: ${arr[i].name}</h3>
+                        <p>Correo: ${arr[i].email}</p>
+                </div>
+            </div>`
+        }
+        cajaDatosFiltrados.innerHTML = " ";
+        cajaDatosFiltrados.innerHTML = printStudentsList;
+    })
+};
+
+const listStudentsTurnoPm = (turno, arr) => {
+    turno.addEventListener('click', (event) => {
+        let printStudentsList = " ";
+        for (i = 0; i < arr.length; i++) {
+            printStudentsList += `<div class="well" id="card">
+                            <div class="info">
+                                <h3 id="name">Nombre: ${arr[i].name}</h3>
+                                <p>Correo: ${arr[i].email}</p>
+                        </div>
+                    </div>`
+        }
+        cajaDatosFiltrados.innerHTML = " ";
+        cajaDatosFiltrados.innerHTML = printStudentsList;
+    })
+};
