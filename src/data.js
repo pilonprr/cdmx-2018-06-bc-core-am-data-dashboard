@@ -83,7 +83,7 @@ window.computeGenerationsStats = (laboratoria) => {
 window.filterStudents = (students, search) => {
   const arrFilterStudent = [];
   students.forEach(student => {
-    if(student.name.toLowerCase().indexOf(search.toLowerCase()) != -1){
+    if (student.name.toLowerCase().indexOf(search.toLowerCase()) != -1) {
       arrFilterStudent.push(student);
     }
   })
@@ -133,12 +133,12 @@ Debes ingresar todos los datos`);
       //Llama a la función que despliega el número de estudiantes activas
       let studentsInVenue = data.welcomeDashboard(name, venue, generation, generations, students);
 
-      data.getTurno(venue,generation,students);
+      data.getTurno(venue, generation, students);
       data.getProgress(venue, generation, students, studentsInVenue);
       return [name, venue];
 
     } else {
-     //Regresa una alerta si algún dato no es correcto
+      //Regresa una alerta si algún dato no es correcto
       return alert("Alguno de tus datos es incorrecto");
     }
   },
@@ -154,6 +154,7 @@ Debes ingresar todos los datos`);
     let venue = sede.toLowerCase();
     let gen = generation.toLowerCase();
     let estudiantes;
+    
     for (let i = 0; i < generations.length; i++) {
       let campus = generations[i].campus;
       let generacion = generations[i].generation;
@@ -162,9 +163,11 @@ Debes ingresar todos los datos`);
       }
     }
     const numberStudents = document.createElement('h3');
-    numberStudents.setAttribute('id','student-first-count');
+    numberStudents.setAttribute('id', 'student-first-count');
+    numberStudents.setAttribute('type', 'button');
     numberStudents.innerHTML = estudiantes;
     document.getElementById("lista").appendChild(numberStudents);
+    listStudentsCount(students, venue, gen);
     return estudiantes;
   },
 
@@ -236,7 +239,7 @@ Debes ingresar todos los datos`);
   },
 
 
-  
+
 
   //Funcion para comparar turno de estudiante, retorna conteo y arreglo
   getTurno: (venue, generation, students) => {

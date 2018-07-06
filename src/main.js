@@ -90,23 +90,22 @@ const getSearch = (students) => {
 
 //Función que imprime datos del arreglo resultante de la búsqueda.
 const printFilterStudent = (arrFilterStudent) => {
-    if(arrFilterStudent.length === 0){
+    if (arrFilterStudent.length === 0) {
         cajaDatosFiltrados.innerHTML = `<div class="well" id="card">
         <div class="info">
             <h1>No hay coincidencias</h1>
         </div>
     </div>`
-    }   
-    else{
-    let campus = selectCampus.value.toLowerCase();
-    let generation = selectGeneration.value.toLowerCase();
-    cajaDatosFiltrados.innerHTML = "";
-    let studentMatch = " ";
+    }
+    else {
+        let campus = selectCampus.value.toLowerCase();
+        let generation = selectGeneration.value.toLowerCase();
+        cajaDatosFiltrados.innerHTML = "";
+        let studentMatch = " ";
 
-    for (i = 0; i < arrFilterStudent.length; i++) {
-        if (campus === arrFilterStudent[i].campus && generation === arrFilterStudent[i].generation){
-            console.log(arrFilterStudent[i]);
-            studentMatch += `<div class="well" id="card">
+        for (i = 0; i < arrFilterStudent.length; i++) {
+            if (campus === arrFilterStudent[i].campus && generation === arrFilterStudent[i].generation) {
+                studentMatch += `<div class="well" id="card">
                                 <div class="info">
                                     <h3 id="name">Nombre: ${arrFilterStudent[i].name}</h3>
                                     <p>Correo: ${arrFilterStudent[i].email}</p>
@@ -115,42 +114,67 @@ const printFilterStudent = (arrFilterStudent) => {
                                     <p>Porcentaje Completado: ${arrFilterStudent[i].stats.completedPercentage}</p>
                             </div>
                         </div>`
-        }
-        if(studentMatch === " " || studentMatch === null){
-            cajaDatosFiltrados.innerHTML = `<div class="well" id="card">
+            }
+            if (studentMatch === " " || studentMatch === null) {
+                cajaDatosFiltrados.innerHTML = `<div class="well" id="card">
                                                 <div class="info">
                                                     <h1>No hay coincidencias</h1>
                                                 </div>
                                             </div>`
-        }
-        else {
-            cajaDatosFiltrados.innerHTML = studentMatch;
+            }
+            else {
+                cajaDatosFiltrados.innerHTML = studentMatch;
+            }
         }
     }
-}
 };
 
 
-    const changeDashboard = (generations, students) => {
+const changeDashboard = (generations, students) => {
 
-        changeData.addEventListener('click', () => {
-            let newCampus = (selectCampusDashboard2.value).toLowerCase();
-            let newGeneration = (selectGenerationDashboard2.value).toLowerCase();
-            document.querySelector("#venue").innerHTML = newCampus.toUpperCase();
-            document.querySelector("#generation").innerHTML = `${newGeneration.toUpperCase()} GENERACIÓN`;
-            let estudiantes;
-            for (let i = 0; i < generations.length; i++) {
-                let campus = generations[i].campus;
-                let generacion = generations[i].generation;
-                if (campus === newCampus && generacion === newGeneration) {
-                    estudiantes = generations[i].count;
-                }
+    changeData.addEventListener('click', () => {
+        let numberStudents = document.getElementById('student-first-count');
+        let newCampus = (selectCampusDashboard2.value).toLowerCase();
+        let newGeneration = (selectGenerationDashboard2.value).toLowerCase();
+        document.querySelector("#venue").innerHTML = newCampus.toUpperCase();
+        document.querySelector("#generation").innerHTML = `${newGeneration.toUpperCase()} GENERACIÓN`;
+        let estudiantes;
+        for (let i = 0; i < generations.length; i++) {
+            let campus = generations[i].campus;
+            let generacion = generations[i].generation;
+            if (campus === newCampus && generacion === newGeneration) {
+                estudiantes = generations[i].count;
             }
-            let numberStudents = document.getElementById('student-first-count');
-            numberStudents.innerHTML = " ";
-            numberStudents.innerHTML = estudiantes;
-            data.getTurno(newCampus, newGeneration, students);
-            data.getProgress(newCampus, newGeneration, students, estudiantes);
-            return estudiantes;
-        });
-    }
+        }
+        numberStudents.innerHTML = " ";
+        numberStudents.innerHTML = estudiantes;
+        data.getTurno(newCampus, newGeneration, students);
+        data.getProgress(newCampus, newGeneration, students, estudiantes);
+        listStudentsCount(students, newCampus, newGeneration);
+        return estudiantes;
+    });
+}
+
+const listStudentsCount = (students, venue, gen) => {
+    let numberStudents = document.getElementById('student-first-count');
+    numberStudents.addEventListener('click', (event) => {
+        let estudiantesArr = [];
+        let printStudentsList = " ";
+        for(i=0; i < students.length; i++){
+            if(students[i].campus === venue && students[i].generation === gen){
+                estudiantesArr.push(students[i]);
+                printStudentsList += `<div class="well" id="card">
+                <div class="info">
+                    <h3 id="name">Nombre: ${students[i].name}</h3>
+                    <p>Correo: ${students[i].email}</p>
+                    <p>Turno: ${students[i].turn}</p>
+                    <p>Status: ${students[i].stats["status"]}</p>
+                    <p>Porcentaje Completado: ${students[i].stats.completedPercentage}</p>
+            </div>
+        </div>`
+            }
+        cajaDatosFiltrados.innerHTML = " ";
+        cajaDatosFiltrados.innerHTML = printStudentsList;           
+        } 
+    })
+}
