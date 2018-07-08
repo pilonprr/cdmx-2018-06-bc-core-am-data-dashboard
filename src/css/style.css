@@ -1,203 +1,233 @@
 *{
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/*Quitando margen y padding a toda la página*/
+
+body{
+  margin: 0;
+  padding: 0;
+}
+
+#login-container{
+  min-height: 100vh;
+  display: block;
+  background-color: #FFC107;
+  font-size: 1em;
+}
+
+#logo-login{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /*width: 50%;*/
+  max-width: 300px;
+  min-width: 130px;
+}
+
+#login-section{
+  width: 50%;
+  max-width: 500px;
+  min-width: 60%;
+  margin: auto;
+  padding: 30px;
+  height: auto;
+  border: 1px solid grey;
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3em;
+  box-shadow: 4px -2px 25px -2px #999999;
+}
+
+#login-button,
+#select1,
+#select2{
+  float: right;
+}
+
+
+#main-page {
+  display: none;
+}
+
+#title-login{
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.btn{
+  background-color: #ff009e;
+  color: #fff;
+}
+
+
+footer{
+  height: auto;
+  min-height: 5vh;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  text-align: center;
+  margin-top: auto;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333333;
+  color: #fff;
+}
+
+.row.content {
+  height: 93vh;
+}
+  
+.sidenav {
+  background-color: #f1f1f1;
+  height: 93vh;
+}
+      
+@media screen and (max-width: 767px) {
+  
+  #myNavbar, .navbar-header{
+   background-color: #e3e3e3;
   }
-  
-  /*Quitando margen y padding a toda la página*/
-  
-  body{
-    margin: 0;
-    padding: 0;
-  }
-  
-  #login-container{
-    min-height: 100vh;
-    display: block;
-    background-color: #ffe521;
-    font-size: 1em;
-  }
-  
-  #logo-login{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    /*width: 50%;*/
-    max-width: 300px;
-    min-width: 130px;
-  }
-  
-  #login-section{
-    width: 50%;
-    max-width: 500px;
-    min-width: 60%;
-    margin: auto;
-    padding: 30px;
-    height: auto;
-    border: 1px solid grey;
-    background-color: #fff;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  #login-button,
-  #select1,
-  #select2{
-    float: right;
-  }
-  
-  
-  #main-page {
-    display: none;
-  }
-  
-  #title-login{
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  .btn{
-    background-color: #ff009e;
-    color: #fff;
-  }
-  
-  
-  footer{
-    height: auto;
-    min-height: 5vh;
-    padding-top: 0.8em;
-    padding-bottom: 0.8em;
-    text-align: center;
-    margin-top: auto;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #333333;
-    color: #fff;
-  }
-  
   .row.content {
-    height: 93vh;
+  height: auto;
+  } 
+
+  .navbar-header{
+      padding-top: 1em;
+      padding-left: 1em;
   }
-    
-  .sidenav {
-    background-color: #f1f1f1;
-    height: 93vh;
+
+  #logo-login{
+      width: 100px;
   }
-        
-  @media screen and (max-width: 767px) {
-    
-    #myNavbar, .navbar-header{
-     background-color: #e3e3e3;
-    }
-    .row.content {
-    height: auto;
-    } 
-  
-    .navbar-header{
-        padding-top: 1em;
-        padding-left: 1em;
-    }
-  
-    #logo-login{
-        width: 100px;
-    }
-  
-    #title-login{
-        font-size: 1.5em;
-    }
-  
-    footer{
-        position: relative;
-    }
-  
+
+  #title-login{
+      font-size: 1.5em;
   }
-  
-  
-  #logo-nav{
-    padding: 1em;
-  }
-  
-  #selectors-nav{
-    padding-top: 1em;
-  }
-  
-  #student-section{
-    height: 25px;
-  }
-  
+
   footer{
-    background-color: #333333;
-    color: #fff;
+      position: relative;
   }
+
+}
+
+
+#logo-nav{
+  padding: 1em;
+}
+
+#selectors-nav{
+  padding-top: 1em;
+}
+
+#student-section{
+  height: 25px;
+}
+
+footer{
+  background-color: #333333;
+  color: #fff;
+}
+
+hr{
+border-top-color: #333333;
+}
+
+#select1{
+  margin-bottom: 1em;
+}
+
+#lista h3 {
+  font-size: 5em;
+  text-align: right;
+  background-color: #56F89A;
+  padding-right: 0.5em;
+}
+
+#turno-count-am,
+#turno-count-pm {
+  background-color: #333333;
+  color: #ffffff;
+  text-align: right;
+  font-size: 2em;
+  padding-right: 0.5em;
+}
+
+.progress {
+  height: 2em;
+}
+
+.progress-bar{
+  color: #333333;
+  font-size: 1.3em;
+  vertical-align: middle;
+}
+
+.bar-text{
+  margin-bottom: 0;
+  margin-top: 0.3em;
+}
+
+#below-bar {
+  background-color: #ff009e;
   
-  hr{
-  border-top-color: #333333;
-  }
-  
-  #select1{
-    margin-bottom: 1em;
-  }
-  
-  #lista h3 {
-    font-size: 5em;
-    text-align: right;
-    background-color: #56f89a;
-    padding-right: 0.5em;
-  }
-  
-  #turno-count-am,
-  #turno-count-pm {
-    background-color: #333333;
-    color: #ffffff;
-    text-align: right;
-    font-size: 2em;
-    padding-right: 0.5em;
-  }
-  
-  .progress {
-    height: 2em;
-  }
-  
-  .progress-bar{
-    color: #333333;
-    font-size: 1.3em;
-    vertical-align: middle;
-  }
-  
-  .bar-text{
-    margin-bottom: 0;
-    margin-top: 0.3em;
-  }
-  
-  #below-bar {
-    background-color: #ff0000;
-    
-  }
-  
-  #average-bar {
-    background-color: #ffe521;
-    /*color: #333333;*/
-  }
-  
-  #above-bar {
-    background-color: #008000;
-    /*color: #333333;*/
-  }
-  
-  .panel-body > p{
-    font-size: 2em;
-  }
-  
-  #display-header,
-  #search-form{
-    display: inline-block;
-    width: 48%;
-    vertical-align: middle;
-  }
-  #search{
-    margin-bottom: 0.5em;
-  }
+}
+
+#average-bar {
+  background-color: #FFC107;
+  /*color: #333333;*/
+}
+
+#above-bar {
+  background-color: #56f89a;
+  /*color: #333333;*/
+}
+
+.panel-body > p{
+  font-size: 2em;
+}
+
+#display-header{
+  font-style: bold;
+  /*background-color: #ff009e;*/
+  margin-right: 2%;
+  /*color: #fff;*/
+  padding-left: 2%;
+}
+
+#display-header,
+#search-form{
+  display: inline-block;
+  width: 48%;
+  vertical-align: middle;
+}
+#search{
+  margin-bottom: 0.5em;
+}
+
+.card h3{
+  background-color: #333333;
+  color:#fff;
+  padding: 1em;
+}
+
+#student-first-count:hover,
+#turno-count-am:hover,
+#turno-count-pm:hover,
+#progress-bar-below:hover,
+#progress-bar-average:hover,
+#progress-bar-above:hover{
+  background-color: #fff;
+  color: #333333;
+  border: 1px solid #ccc;
+  box-shadow: 0 8px 12px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19); 
+  cursor: pointer;
+  cursor: hand;
+}

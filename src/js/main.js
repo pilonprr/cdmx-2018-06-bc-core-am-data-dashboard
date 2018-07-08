@@ -23,7 +23,8 @@ let cajaDatosFiltrados = document.getElementById("data-section");
 const changeData = document.getElementById("select2");
 
 
-//Constante que guarda archivo json.
+
+//Constante que guarda archivo json
 const json = 'https://raw.githubusercontent.com/citlallidmg/cdmx-2018-06-bc-core-am-data-dashboard/master/data/laboratoria.json#'
 
 
@@ -37,12 +38,12 @@ const getData = () => {
             const generationsData = data.obtainGeneration(res);
             const generations = computeGenerationsStats(res);
             const students = computeStudentsStats(res);
+            const options = getOptionToOrder(res);
             drawCampus(campus, generationsData, generations, students);
             drawCampusDashboard(campus);
             drawGenerationDashboard(generationsData);
             getSearch(students);
             changeDashboard(generations, students);
-
         })
         .catch((error) => {
             console.log(error);
@@ -82,7 +83,8 @@ const getSearch = (students) => {
     let searchString = "";
     searchButton.addEventListener('click', (event) => {
         searchString = searchText.value;
-        filterStudents(students, searchString);
+        arrFilterStudent = filterStudents(students, searchString);
+        printFilterStudent(arrFilterStudent);
     });
 };
 
@@ -172,6 +174,7 @@ const listStudentsCount = (students, venue, gen) => {
             <option>ASC</option>
             <option>DSC</option>
         </select>
+        <button id="button-to-order" class="btn btn-default">Ordenar</button>
         </div>`;
 
         for (i = 0; i < students.length; i++) {
@@ -209,6 +212,7 @@ const listStudentsTurnoAm = (turno, arr) => {
             <option>ASC</option>
             <option>DSC</option>
         </select>
+        <button id="button-to-order" class="btn btn-default">Ordenar</button>
         </div>`;
         for (i = 0; i < arr.length; i++) {
             printStudentsList += `<div class="well">
@@ -233,12 +237,14 @@ const listStudentsTurnoPm = (turno, arr) => {
             <option>Nombre</option>
             <option>Porcentaje de Completitud</option>
         </select>
+        
         <label for="asc-dsc">Orden:</label>
         <select class="form-control" id="asc-dsc">
             <option value="Ordenar Por:" selected>Orden</option>
             <option>ASC</option>
             <option>DSC</option>
         </select>
+        <button id="button-to-order" class="btn btn-default">Ordenar</button>
         </div>`;
         for (i = 0; i < arr.length; i++) {
             printStudentsList += `<div class="well">
@@ -269,6 +275,7 @@ const listStudentsProgressBelow = (arr) => {
             <option>ASC</option>
             <option>DSC</option>
         </select>
+        <button id="button-to-order" class="btn btn-default">Ordenar</button>
         </div>`;
         for (i = 0; i < arr.length; i++) {
             printStudentsList += `<div class="well">
@@ -301,6 +308,7 @@ const listStudentsProgressAverage = (arr) => {
             <option>ASC</option>
             <option>DSC</option>
         </select>
+        <button id="button-to-order" class="btn btn-default">Ordenar</button>
         </div>`;
         for (i = 0; i < arr.length; i++) {
             printStudentsList += `<div class="well">
@@ -333,6 +341,7 @@ const listStudentsProgressAbove = (arr) => {
             <option>ASC</option>
             <option>DSC</option>
         </select>
+        <button id="button-to-order" class="btn btn-default">Ordenar</button>
         </div>`;
         for (i = 0; i < arr.length; i++) {
             printStudentsList += `<div class="well">

@@ -47,7 +47,6 @@ window.computeStudentsStats = (laboratoria) => {
       });
     });
   }
-
   return studentsArray;
 };
 
@@ -81,17 +80,17 @@ window.computeGenerationsStats = (laboratoria) => {
 
 //Función que filtra estudiantes por nombre.
 window.filterStudents = (students, search) => {
-  const arrFilterStudent = [];
-  students.forEach(student => {
-    if (student.name.toLowerCase().indexOf(search.toLowerCase()) != -1) {
-      arrFilterStudent.push(student);
-    }
-  })
-  printFilterStudent(arrFilterStudent);
+  //const arrFilterStudent = [];
+  const filteredStudents = students.filter(
+    student => student.name.toLowerCase().indexOf(search.toLowerCase()) != -1
+  );
+  console.log(filteredStudents);
+  return filteredStudents;
+  //printFilterStudent(arrFilterStudent); Esto lo hace una función impura
 };
 
 window.sortStudents = (students, orderBy, orderDirection) => {
-  
+   
 
 };
 
