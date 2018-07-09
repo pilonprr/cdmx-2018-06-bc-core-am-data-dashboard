@@ -100,7 +100,7 @@ window.filterStudents = (students, search) => {
     });
     return filteredStudents;
   } else {
-    const filteredStudents = students.filter(
+    const filteredStudents = students.filter( 
       student => student.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
     );
     return filteredStudents;
@@ -117,7 +117,7 @@ window.sortStudents = (students, orderBy, orderDirection) => {
     listNames.sort();
     for (i = 0; i < listNames.length; i++) {
       let orderedFilter = filterStudents(students, listNames[i]);
-      if (orderedFilter === 1) {
+      if (orderedFilter.length === 1) {
         orderedStudents.push(orderedFilter[0]);
       } else {
         orderedFilter.forEach(name => {
@@ -199,8 +199,7 @@ window.sortStudents = (students, orderBy, orderDirection) => {
       }
     }
   }
-
-  console.log(orderedStudents.length);
+  console.log(orderedStudents);
   return orderedStudents;
 },
 

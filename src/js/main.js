@@ -22,6 +22,7 @@ const searchText = document.getElementById('search');
 let cajaDatosFiltrados = document.getElementById('data-section');
 const changeData = document.getElementById('select2');
 const buttonToOrder = document.getElementById('button-to-order');
+const buttonToOrder2 = document.getElementById('button-to-order-2');
 
 
 // Constante que guarda archivo json
@@ -90,7 +91,7 @@ const getSearch = (students) => {
 // Función que imprime datos del arreglo resultante de la búsqueda.
 const printFilterStudent = (arrFilterStudent) => {
   if (arrFilterStudent.length === 0) {
-    cajaDatosFiltrados.innerHTML = `<div class="well">
+    cajaDatosFiltrados.innerHTML = `<div class="well card">
         <div class="info">
             <h1>No hay coincidencias</h1>
         </div>
@@ -103,9 +104,9 @@ const printFilterStudent = (arrFilterStudent) => {
 
     for (i = 0; i < arrFilterStudent.length; i++) {
       if (campus === arrFilterStudent[i].campus && generation === arrFilterStudent[i].generation) {
-        studentMatch += `<div class="well">
+        studentMatch += `<div class="well card">
                                 <div class="info">
-                                    <h3 id="name">Nombre: ${arrFilterStudent[i].name}</h3>
+                                    <h3 id="name">${arrFilterStudent[i].name}</h3>
                                     <p>Correo: ${arrFilterStudent[i].email}</p>
                                     <p>Turno: ${arrFilterStudent[i].turn}</p>
                                     <p>Status: ${arrFilterStudent[i].stats['status']}</p>
@@ -114,7 +115,7 @@ const printFilterStudent = (arrFilterStudent) => {
                         </div>`;
       }
       if (studentMatch === ' ' || studentMatch === null) {
-        cajaDatosFiltrados.innerHTML = `<div class="well">
+        cajaDatosFiltrados.innerHTML = `<div class="well card">
                                                 <div class="info">
                                                     <h1>No hay coincidencias</h1>
                                                 </div>
@@ -159,9 +160,9 @@ const listStudentsCount = (students, venue, gen) => {
     for (i = 0; i < students.length; i++) {
       if (students[i].campus === venue && students[i].generation === gen) {
         estudiantesArr.push(students[i]);
-        printStudentsList += `<div class="well">
+        printStudentsList += `<div class="well card">
                 <div class="info">
-                    <h3 id="name">Nombre: ${students[i].name}</h3>
+                    <h3 id="name">${students[i].name}</h3>
                     <p>Correo: ${students[i].email}</p>
                     <p>Turno: ${students[i].turn}</p>
                     <p>Status: ${students[i].stats['status']}</p>
@@ -180,9 +181,9 @@ const listStudentsTurnoAm = (turno, arr) => {
   turno.addEventListener('click', (event) => {
     let printStudentsList = ' ';
     for (i = 0; i < arr.length; i++) {
-      printStudentsList += `<div class="well">
+      printStudentsList += `<div class="well card">
                     <div class="info">
-                        <h3 id="name">Nombre: ${arr[i].name}</h3>
+                        <h3 id="name">${arr[i].name}</h3>
                         <p>Correo: ${arr[i].email}</p>
                 </div>
             </div>`;
@@ -196,9 +197,9 @@ const listStudentsTurnoPm = (turno, arr) => {
   turno.addEventListener('click', (event) => {
     let printStudentsList = ' ';
     for (i = 0; i < arr.length; i++) {
-      printStudentsList += `<div class="well">
+      printStudentsList += `<div class="well card">
                             <div class="info">
-                                <h3 id="name">Nombre: ${arr[i].name}</h3>
+                                <h3 id="name">${arr[i].name}</h3>
                                 <p>Correo: ${arr[i].email}</p>
                         </div>
                     </div>`;
@@ -212,9 +213,9 @@ const listStudentsProgressBelow = (arr) => {
   progressBarBelow.addEventListener('click', (event) => {
     let printStudentsList = ' ';
     for (i = 0; i < arr.length; i++) {
-      printStudentsList += `<div class="well">
+      printStudentsList += `<div class="well card">
             <div class="info">
-                <h3 id="name">Nombre: ${arr[i].name}</h3>
+                <h3 id="name">${arr[i].name}</h3>
                 <p>Correo: ${arr[i].email}</p>
                 <p>Turno: ${arr[i].turn}</p>
                 <p>Porcentaje Completado: ${arr[i].stats.completedPercentage}</p>
@@ -230,9 +231,9 @@ const listStudentsProgressAverage = (arr) => {
   progressBarAverage.addEventListener('click', (event) => {
     let printStudentsList = ' ';
     for (i = 0; i < arr.length; i++) {
-      printStudentsList += `<div class="well">
+      printStudentsList += `<div class="well card">
               <div class="info">
-                  <h3 id="name">Nombre: ${arr[i].name}</h3>
+                  <h3 id="name">${arr[i].name}</h3>
                   <p>Correo: ${arr[i].email}</p>
                   <p>Turno: ${arr[i].turn}</p>
                   <p>Porcentaje Completado: ${arr[i].stats.completedPercentage}</p>
@@ -248,9 +249,9 @@ const listStudentsProgressAbove = (arr) => {
   progressBarAbove.addEventListener('click', (event) => {
     let printStudentsList = ' ';
     for (i = 0; i < arr.length; i++) {
-      printStudentsList += `<div class="well">
+      printStudentsList += `<div class="well card">
               <div class="info">
-                  <h3 id="name">Nombre: ${arr[i].name}</h3>
+                  <h3 id="name">${arr[i].name}</h3>
                   <p>Correo: ${arr[i].email}</p>
                   <p>Turno: ${arr[i].turn}</p>
                   <p>Porcentaje Completado: ${arr[i].stats.completedPercentage}</p>
@@ -401,9 +402,31 @@ const getOptionToOrder = (students) => {
     let ordenados = sortStudents(students, selectOrderBy, selectOrder);
     let studentsOrder = ' ';
     for (i = 0; i < ordenados.length; i++) {
-      studentsOrder += `<div class="well">
+      studentsOrder += `<div class="well card">
                                 <div class="info">
-                                    <h3 id="name">Nombre: ${ordenados[i].name}</h3>
+                                    <h3 id="name">${ordenados[i].name}</h3>
+                                    <p>Correo: ${ordenados[i].email}</p>
+                                    <p>Sede: ${ordenados[i].campus}</p>
+                                    <p>Generación: ${ordenados[i].generation}</p>
+                                    <p>Turno: ${ordenados[i].turn}</p>
+                                    <p>Status: ${ordenados[i].stats['status']}</p>
+                                    <p>Porcentaje Completado: ${ordenados[i].stats.completedPercentage}</p>
+                            </div>
+                        </div>`;
+    }
+    cajaDatosFiltrados.innerHTML = ' ';
+    cajaDatosFiltrados.innerHTML = studentsOrder;
+  });
+  
+  buttonToOrder2.addEventListener('click', (event) => {
+    const selectOrderBy = document.getElementById('order-by-1').value;
+    const selectOrder = document.getElementById('asc-dsc-1').value;
+    let ordenados = sortStudents(students, selectOrderBy, selectOrder);
+    let studentsOrder = ' ';
+    for (i = 0; i < ordenados.length; i++) {
+      studentsOrder += `<div class="well card">
+                                <div class="info">
+                                    <h3 id="name">${ordenados[i].name}</h3>
                                     <p>Correo: ${ordenados[i].email}</p>
                                     <p>Sede: ${ordenados[i].campus}</p>
                                     <p>Generación: ${ordenados[i].generation}</p>

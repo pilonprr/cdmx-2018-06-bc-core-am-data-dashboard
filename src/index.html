@@ -87,6 +87,24 @@
             </select>
           </div>
           <button type="button" class="btn btn-default" id="select1">Ver</button>
+          <br>
+          <div class="form-group">
+            <hr>
+            <label for="order-by">Ordenar Por</label>
+            <select class="form-control" id="order-by-1">
+              <option value="Ordenar Por:" selected>Ordenar Por:</option>
+              <option>Nombre</option>
+              <option>Porcentaje de Completitud</option>
+            </select>
+            <label for="asc-dsc">Orden:</label>
+            <select class="form-control" id="asc-dsc-1">
+              <option value="Ordenar Por:" selected>Orden</option>
+              <option>ASC</option>
+              <option>DSC</option>
+            </select>
+            <button id="button-to-order-2" class="btn btn-default">Ordenar</button>
+            <br>
+          </div>
         </div>
       </div>
     </nav>
@@ -120,20 +138,20 @@
           <br>
           <div class="form-group">
             <hr>
-              <label for="order-by">Ordenar Por</label>
-              <select class="form-control" id="order-by">
-                <option value="Ordenar Por:" selected>Ordenar Por:</option>
-                <option>Nombre</option>
-                <option>Porcentaje de Completitud</option>
-              </select>
-              <label for="asc-dsc">Orden:</label>
-              <select class="form-control" id="asc-dsc">
-                <option value="Ordenar Por:" selected>Orden</option>
-                <option>ASC</option>
-                <option>DSC</option>
-              </select>
-              <button id="button-to-order" class="btn btn-default">Ordenar</button>
-            </div>
+            <label for="order-by">Ordenar Por</label>
+            <select class="form-control" id="order-by">
+              <option value="Ordenar Por:" selected>Ordenar Por:</option>
+              <option>Nombre</option>
+              <option>Porcentaje de Completitud</option>
+            </select>
+            <label for="asc-dsc">Orden:</label>
+            <select class="form-control" id="asc-dsc">
+              <option value="Ordenar Por:" selected>Orden</option>
+              <option>ASC</option>
+              <option>DSC</option>
+            </select>
+            <button id="button-to-order" class="btn btn-default">Ordenar</button>
+          </div>
         </div>
         <br>
 
@@ -167,9 +185,9 @@
               <div class="col-sm-6 student-section">
                 <div class="well">
                   <h4>Turno AM</h4>
-                  <p id="turno-count-am" type="button"></p>
+                  <button id="turno-count-am" type="button"></button>
                   <h4>Turno PM</h4>
-                  <p id="turno-count-pm" type="button"></p>
+                  <button id="turno-count-pm" type="button"></button>
                 </div>
               </div>
 

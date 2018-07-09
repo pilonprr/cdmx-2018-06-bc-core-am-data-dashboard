@@ -45,10 +45,18 @@ body{
 
 #login-button,
 #select1,
-#select2{
+#select2,
+#button-to-order,
+#button-to-order-2{
   float: right;
 }
 
+#order-by,
+#order-by-1,
+#asc-dsc,
+#asc-dsc-1{
+  margin-bottom: 1em;
+}
 
 #main-page {
   display: none;
@@ -208,6 +216,7 @@ border-top-color: #333333;
   width: 48%;
   vertical-align: middle;
 }
+
 #search{
   margin-bottom: 0.5em;
 }
