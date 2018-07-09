@@ -405,13 +405,14 @@ const getOptionToOrder = (students) => {
                                 <div class="info">
                                     <h3 id="name">Nombre: ${ordenados[i].name}</h3>
                                     <p>Correo: ${ordenados[i].email}</p>
+                                    <p>Sede: ${ordenados[i].campus}</p>
+                                    <p>Generación: ${ordenados[i].generation}</p>
                                     <p>Turno: ${ordenados[i].turn}</p>
                                     <p>Status: ${ordenados[i].stats["status"]}</p>
                                     <p>Porcentaje Completado: ${ordenados[i].stats.completedPercentage}</p>
                             </div>
                         </div>`
             }
-        console.log(ordenados);
         cajaDatosFiltrados.innerHTML = " ";
         cajaDatosFiltrados.innerHTML = studentsOrder;
     })

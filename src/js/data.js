@@ -81,10 +81,22 @@ window.computeGenerationsStats = (laboratoria) => {
 //Función que filtra estudiantes por nombre.
 
 window.filterStudents = (students, search) => {
+  if(typeof search === 'number'){
+    const filteredStudents = [];
+    students.forEach(student => {
+      if(student.stats.completedPercentage === search){
+        filteredStudents.push(student);
+      }
+    })
+    console.log(filteredStudents);
+    return filteredStudents;
+  }
+  else{
   const filteredStudents = students.filter(
     student => student.name.toLowerCase().indexOf(search.toLowerCase()) != -1
   );
   return filteredStudents;
+}
 };
 
 window.sortStudents = (students, orderBy, orderDirection) => {
@@ -128,6 +140,49 @@ window.sortStudents = (students, orderBy, orderDirection) => {
       }
     }
   }
+  let percentage = [];
+  if(orderBy === 'Porcentaje de Completitud' && orderDirection === 'ASC'){
+    students.forEach(student => {
+      listNames.push({'completedPercentage': student.stats.completedPercentage, 'name': student.name, 'email': student.email, 'campus': student.campus, 'generation': student.generation, 'turn': student.turn});
+      percentage.push(student.stats.completedPercentage);
+    })
+    percentage.sort();
+    for(i=0; i < percentage.length; i++){
+      let orderedFilter = filterStudents(students, percentage[i]);
+      if(orderedFilter.length === 1){
+        orderedStudents.push(orderedFilter[0]);
+      }
+      else{
+        orderedFilter.forEach(percentage => {
+          orderedStudents.push(percentage);
+        })
+        i++;
+      }
+    }
+  } 
+
+  if(orderBy === 'Porcentaje de Completitud' && orderDirection === 'DSC'){
+    students.forEach(student => {
+      listNames.push({'completedPercentage': student.stats.completedPercentage, 'name': student.name, 'email': student.email, 'campus': student.campus, 'generation': student.generation, 'turn': student.turn});
+      percentage.push(student.stats.completedPercentage);
+    })
+    percentage.sort();
+    percentage.reverse();
+    for(i=0; i < percentage.length; i++){
+      let orderedFilter = filterStudents(students, percentage[i]);
+      if(orderedFilter.length === 1){
+        orderedStudents.push(orderedFilter[0]);
+      }
+      else{
+        orderedFilter.forEach(percentage => {
+          orderedStudents.push(percentage);
+        })
+        i++;
+      }
+    }
+  } 
+
+
   return orderedStudents;
 },
 
