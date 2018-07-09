@@ -1,4 +1,5 @@
-#Data Dashboard (<LAB-Dash>)
+#Data Dashboard
+
 ## Introducción
 Como **segundo proyecto** del bootcamp de Laboratoria, se planteó el reto de crear por parejas una interfaz donde las TMs  (Training Managers) de las diferentes sedes puedan _ver_ y _usar_ la data de progreso del LMS, siendo este el motivo por el cuál se desarrollo el presente **data dashboard** (_tablero de visualización de datos_).
 ## Preámbulo
