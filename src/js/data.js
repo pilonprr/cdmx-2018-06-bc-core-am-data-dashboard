@@ -128,7 +128,6 @@ window.sortStudents = (students, orderBy, orderDirection) => {
       }
     }
   }
-  console.log(orderedStudents);
   return orderedStudents;
 },
 

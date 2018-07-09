@@ -21,7 +21,7 @@ const searchButton = document.getElementById("search-button");
 const searchText = document.getElementById("search");
 let cajaDatosFiltrados = document.getElementById("data-section");
 const changeData = document.getElementById("select2");
-
+const buttonToOrder = document.getElementById("button-to-order");
 
 
 //Constante que guarda archivo json
@@ -43,6 +43,7 @@ const getData = () => {
             drawGenerationDashboard(generationsData);
             getSearch(students);
             changeDashboard(generations, students);
+            getOptionToOrder(students);
         })
         .catch((error) => {
             console.log(error);
@@ -160,22 +161,6 @@ const listStudentsCount = (students, venue, gen) => {
     numberStudents.addEventListener('click', (event) => {
         let estudiantesArr = [];
         let printStudentsList = " ";
-        let botonOrdenar = `<div class="form-group">
-        <label for="order-by">Ordenar</label>
-        <select class="form-control" id="order-by">
-            <option value="Ordenar Por:" selected>Ordenar Por:</option>
-            <option>Nombre</option>
-            <option>Porcentaje de Completitud</option>
-        </select>
-        <label for="asc-dsc">Orden:</label>
-        <select class="form-control" id="asc-dsc">
-            <option value="Ordenar Por:" selected>Orden</option>
-            <option>ASC</option>
-            <option>DSC</option>
-        </select>
-        <button id="button-to-order" class="btn btn-default">Ordenar</button>
-        </div>`;
-
         for (i = 0; i < students.length; i++) {
             if (students[i].campus === venue && students[i].generation === gen) {
                 estudiantesArr.push(students[i]);
@@ -190,30 +175,15 @@ const listStudentsCount = (students, venue, gen) => {
         </div>`
             }
             cajaDatosFiltrados.innerHTML = " ";
-            cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
+            cajaDatosFiltrados.innerHTML = printStudentsList;
         }
-        getOptionToOrder(students);
+        //getOptionToOrder(students);
     })
 };
 
 const listStudentsTurnoAm = (turno, arr) => {
     turno.addEventListener('click', (event) => {
         let printStudentsList = " ";
-        let botonOrdenar = `<div class="form-group">
-        <label for="order-by">Ordenar</label>
-        <select class="form-control" id="order-by">
-            <option value="Ordenar Por:" selected>Ordenar Por:</option>
-            <option>Nombre</option>
-            <option>Porcentaje de Completitud</option>
-        </select>
-        <label for="asc-dsc">Orden:</label>
-        <select class="form-control" id="asc-dsc">
-            <option value="Ordenar Por:" selected>Orden</option>
-            <option>ASC</option>
-            <option>DSC</option>
-        </select>
-        <button id="button-to-order" class="btn btn-default">Ordenar</button>
-        </div>`;
         for (i = 0; i < arr.length; i++) {
             printStudentsList += `<div class="well">
                     <div class="info">
@@ -223,29 +193,13 @@ const listStudentsTurnoAm = (turno, arr) => {
             </div>`
         }
         cajaDatosFiltrados.innerHTML = " ";
-        cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
+        cajaDatosFiltrados.innerHTML = printStudentsList;
     });
 };
 
 const listStudentsTurnoPm = (turno, arr) => {
     turno.addEventListener('click', (event) => {
         let printStudentsList = " ";
-        let botonOrdenar = `<div class="form-group">
-        <label for="order-by">Ordenar</label>
-        <select class="form-control" id="order-by">
-            <option value="Ordenar Por:" selected>Ordenar Por:</option>
-            <option>Nombre</option>
-            <option>Porcentaje de Completitud</option>
-        </select>
-        
-        <label for="asc-dsc">Orden:</label>
-        <select class="form-control" id="asc-dsc">
-            <option value="Ordenar Por:" selected>Orden</option>
-            <option>ASC</option>
-            <option>DSC</option>
-        </select>
-        <button id="button-to-order" class="btn btn-default">Ordenar</button>
-        </div>`;
         for (i = 0; i < arr.length; i++) {
             printStudentsList += `<div class="well">
                             <div class="info">
@@ -255,28 +209,13 @@ const listStudentsTurnoPm = (turno, arr) => {
                     </div>`
         }
         cajaDatosFiltrados.innerHTML = " ";
-        cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
+        cajaDatosFiltrados.innerHTML = printStudentsList;
     });
 };
 
 const listStudentsProgressBelow = (arr) => {
     progressBarBelow.addEventListener('click', (event) => {
         let printStudentsList = " ";
-        let botonOrdenar = `<div class="form-group">
-        <label for="order-by">Ordenar</label>
-        <select class="form-control" id="order-by">
-            <option value="Ordenar Por:" selected>Ordenar Por:</option>
-            <option>Nombre</option>
-            <option>Porcentaje de Completitud</option>
-        </select>
-        <label for="asc-dsc">Orden:</label>
-        <select class="form-control" id="asc-dsc">
-            <option value="Ordenar Por:" selected>Orden</option>
-            <option>ASC</option>
-            <option>DSC</option>
-        </select>
-        <button id="button-to-order" class="btn btn-default">Ordenar</button>
-        </div>`;
         for (i = 0; i < arr.length; i++) {
             printStudentsList += `<div class="well">
             <div class="info">
@@ -288,29 +227,13 @@ const listStudentsProgressBelow = (arr) => {
     </div>`
         }
         cajaDatosFiltrados.innerHTML = " ";
-        cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
+        cajaDatosFiltrados.innerHTML = printStudentsList;
     });
-    //getOptionToOrder(students);
 };
 
 const listStudentsProgressAverage = (arr) => {
     progressBarAverage.addEventListener('click', (event) => {
         let printStudentsList = " ";
-        let botonOrdenar = `<div class="form-group">
-        <label for="order-by">Ordenar</label>
-        <select class="form-control" id="order-by">
-            <option value="Ordenar Por:" selected>Ordenar Por:</option>
-            <option>Nombre</option>
-            <option>Porcentaje de Completitud</option>
-        </select>
-        <label for="asc-dsc">Orden:</label>
-        <select class="form-control" id="asc-dsc">
-            <option value="Ordenar Por:" selected>Orden</option>
-            <option>ASC</option>
-            <option>DSC</option>
-        </select>
-        <button id="button-to-order" class="btn btn-default">Ordenar</button>
-        </div>`;
         for (i = 0; i < arr.length; i++) {
             printStudentsList += `<div class="well">
               <div class="info">
@@ -322,29 +245,13 @@ const listStudentsProgressAverage = (arr) => {
       </div>`
         }
         cajaDatosFiltrados.innerHTML = " ";
-        cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
+        cajaDatosFiltrados.innerHTML = printStudentsList;
     });
-    //getOptionToOrder(students);
 };
 
 const listStudentsProgressAbove = (arr) => {
     progressBarAbove.addEventListener('click', (event) => {
         let printStudentsList = " ";
-        let botonOrdenar = `<div class="form-group">
-        <label for="order-by">Ordenar</label>
-        <select class="form-control" id="order-by">
-            <option value="Ordenar Por:" selected>Ordenar Por:</option>
-            <option>Nombre</option>
-            <option>Porcentaje de Completitud</option>
-        </select>
-        <label for="asc-dsc">Orden:</label>
-        <select class="form-control" id="asc-dsc">
-            <option value="Ordenar Por:" selected>Orden</option>
-            <option>ASC</option>
-            <option>DSC</option>
-        </select>
-        <button id="button-to-order" class="btn btn-default">Ordenar</button>
-        </div>`;
         for (i = 0; i < arr.length; i++) {
             printStudentsList += `<div class="well">
               <div class="info">
@@ -356,9 +263,8 @@ const listStudentsProgressAbove = (arr) => {
       </div>`
         }
         cajaDatosFiltrados.innerHTML = " ";
-        cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
+        cajaDatosFiltrados.innerHTML = printStudentsList;
     });
-    //getOptionToOrder(students);
 };
 
 //Función que despliega los datos a mostrar en la pantalla de inicio del Dashboard después del login
@@ -489,10 +395,24 @@ const getTurno = (venue, generation, students) => {
 };
 
 const getOptionToOrder = (students) => {
-    const buttonToOrder = document.getElementById("button-to-order");
-    buttonToOrder.addEventListener('click', () => {
+    buttonToOrder.addEventListener('click', (event) => {
         const selectOrderBy = document.getElementById("order-by").value;
         const selectOrder = document.getElementById("asc-dsc").value;
-        sortStudents(students, selectOrderBy, selectOrder);
+        let ordenados = sortStudents(students, selectOrderBy, selectOrder);
+        let studentsOrder = " ";
+        for (i = 0; i < ordenados.length; i++) {
+                studentsOrder += `<div class="well">
+                                <div class="info">
+                                    <h3 id="name">Nombre: ${ordenados[i].name}</h3>
+                                    <p>Correo: ${ordenados[i].email}</p>
+                                    <p>Turno: ${ordenados[i].turn}</p>
+                                    <p>Status: ${ordenados[i].stats["status"]}</p>
+                                    <p>Porcentaje Completado: ${ordenados[i].stats.completedPercentage}</p>
+                            </div>
+                        </div>`
+            }
+        console.log(ordenados);
+        cajaDatosFiltrados.innerHTML = " ";
+        cajaDatosFiltrados.innerHTML = studentsOrder;
     })
 };

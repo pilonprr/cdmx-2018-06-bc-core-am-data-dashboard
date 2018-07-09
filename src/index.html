@@ -117,6 +117,23 @@
             </select>
           </div>
           <button type="button" class="btn btn-default" id="select2">Ver</button>
+          <br>
+          <div class="form-group">
+            <hr>
+              <label for="order-by">Ordenar Por</label>
+              <select class="form-control" id="order-by">
+                <option value="Ordenar Por:" selected>Ordenar Por:</option>
+                <option>Nombre</option>
+                <option>Porcentaje de Completitud</option>
+              </select>
+              <label for="asc-dsc">Orden:</label>
+              <select class="form-control" id="asc-dsc">
+                <option value="Ordenar Por:" selected>Orden</option>
+                <option>ASC</option>
+                <option>DSC</option>
+              </select>
+              <button id="button-to-order" class="btn btn-default">Ordenar</button>
+            </div>
         </div>
         <br>
 
@@ -152,7 +169,7 @@
                   <h4>Turno AM</h4>
                   <p id="turno-count-am" type="button"></p>
                   <h4>Turno PM</h4>
-                  <p id="turno-count-pm" type= "button"></p>
+                  <p id="turno-count-pm" type="button"></p>
                 </div>
               </div>
 
@@ -168,19 +185,19 @@
               <div class="panel-body">
                 <p>&#x25BC; 60%</p>
                 <!--Ejemplo de como meter una barra de progreso-->
-                <div class="progress" id="progress-bar-below" type= "button">
+                <div class="progress" id="progress-bar-below" type="button">
                 </div>
               </div>
 
               <div class="panel-body">
                 <p>60% - 90%</p>
-                <div class="progress" id="progress-bar-average" type= "button">
+                <div class="progress" id="progress-bar-average" type="button">
                 </div>
               </div>
 
               <div class="panel-body">
                 <p>&#x25B2; 90%</p>
-                <div class="progress" id="progress-bar-above" type= "button">
+                <div class="progress" id="progress-bar-above" type="button">
                 </div>
               </div>
 
