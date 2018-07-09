@@ -100,7 +100,7 @@ window.filterStudents = (students, search) => {
     });
     return filteredStudents;
   } else {
-    const filteredStudents = students.filter(
+    const filteredStudents = students.filter( 
       student => student.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
     );
     return filteredStudents;
@@ -199,8 +199,7 @@ window.sortStudents = (students, orderBy, orderDirection) => {
       }
     }
   }
-
-  console.log(orderedStudents.length);
+  console.log(orderedStudents);
   return orderedStudents;
 },
 
