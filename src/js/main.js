@@ -22,6 +22,7 @@ const searchText = document.getElementById('search');
 let cajaDatosFiltrados = document.getElementById('data-section');
 const changeData = document.getElementById('select2');
 const buttonToOrder = document.getElementById('button-to-order');
+const buttonToOrder2 = document.getElementById('button-to-order-2');
 
 
 // Constante que guarda archivo json
@@ -398,6 +399,28 @@ const getOptionToOrder = (students) => {
   buttonToOrder.addEventListener('click', (event) => {
     const selectOrderBy = document.getElementById('order-by').value;
     const selectOrder = document.getElementById('asc-dsc').value;
+    let ordenados = sortStudents(students, selectOrderBy, selectOrder);
+    let studentsOrder = ' ';
+    for (i = 0; i < ordenados.length; i++) {
+      studentsOrder += `<div class="well card">
+                                <div class="info">
+                                    <h3 id="name">${ordenados[i].name}</h3>
+                                    <p>Correo: ${ordenados[i].email}</p>
+                                    <p>Sede: ${ordenados[i].campus}</p>
+                                    <p>Generación: ${ordenados[i].generation}</p>
+                                    <p>Turno: ${ordenados[i].turn}</p>
+                                    <p>Status: ${ordenados[i].stats['status']}</p>
+                                    <p>Porcentaje Completado: ${ordenados[i].stats.completedPercentage}</p>
+                            </div>
+                        </div>`;
+    }
+    cajaDatosFiltrados.innerHTML = ' ';
+    cajaDatosFiltrados.innerHTML = studentsOrder;
+  });
+  
+  buttonToOrder2.addEventListener('click', (event) => {
+    const selectOrderBy = document.getElementById('order-by-1').value;
+    const selectOrder = document.getElementById('asc-dsc-1').value;
     let ordenados = sortStudents(students, selectOrderBy, selectOrder);
     let studentsOrder = ' ';
     for (i = 0; i < ordenados.length; i++) {

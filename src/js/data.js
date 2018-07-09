@@ -100,9 +100,11 @@ window.filterStudents = (students, search) => {
     });
     return filteredStudents;
   } else {
-    const filteredStudents = students.filter( 
+    const filteredStudents = students.filter(
       student => student.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
     );
+    console.log(students.length);
+    console.log(filteredStudents.length);
     return filteredStudents;
   }
 };
@@ -115,9 +117,11 @@ window.sortStudents = (students, orderBy, orderDirection) => {
       listNames.push(student.name);
     });
     listNames.sort();
+    console.log(listNames.sort());
     for (i = 0; i < listNames.length; i++) {
-      let orderedFilter = filterStudents(students, listNames[i]);
-      if (orderedFilter === 1) {
+      let listNameLower = listNames[i].toLowerCase();
+      let orderedFilter = filterStudents(students, listNameLower);
+      if (orderedFilter.length === 1) {
         orderedStudents.push(orderedFilter[0]);
       } else {
         orderedFilter.forEach(name => {
@@ -146,6 +150,7 @@ window.sortStudents = (students, orderBy, orderDirection) => {
       }
     }
   }
+
   let percentage = [];
   if (orderBy === 'Porcentaje de Completitud' && orderDirection === 'ASC') {
     students.forEach(student => {
@@ -161,18 +166,18 @@ window.sortStudents = (students, orderBy, orderDirection) => {
     });
     percentage.sort();
     for (i = 0; i < percentage.length; i++) {
-      let orderedFilter = filterStudents(students, percentage[i]);
-      if (orderedFilter.length === 1) {
-        orderedStudents.push(orderedFilter[0]);
-      } else {
-        orderedFilter.forEach(percentage => {
-          orderedStudents.push(percentage);
-        });
-        i++;
+      if (percentage[i] !== percentage[i - 1]) {
+        let orderedFilter = filterStudents(students, percentage[i]);
+        if (orderedFilter.length === 1) {
+          orderedStudents.push(orderedFilter[0]);
+        } else {
+          orderedFilter.forEach(percentage => {
+            orderedStudents.push(percentage);
+          });
+        }
       }
     }
   }
-
   if (orderBy === 'Porcentaje de Completitud' && orderDirection === 'DSC') {
     students.forEach(student => {
       listNames.push({
@@ -188,18 +193,19 @@ window.sortStudents = (students, orderBy, orderDirection) => {
     percentage.sort();
     percentage.reverse();
     for (i = 0; i < percentage.length; i++) {
-      let orderedFilter = filterStudents(students, percentage[i]);
-      if (orderedFilter.length === 1) {
-        orderedStudents.push(orderedFilter[0]);
-      } else {
-        orderedFilter.forEach(percentage => {
-          orderedStudents.push(percentage);
-        });
-        i++;
+      if (percentage[i] !== percentage[i - 1]) {
+        let orderedFilter = filterStudents(students, percentage[i]);
+        if (orderedFilter.length === 1) {
+          orderedStudents.push(orderedFilter[0]);
+        } else {
+          orderedFilter.forEach(percentage => {
+            orderedStudents.push(percentage);
+          });
+        }
       }
     }
   }
-  console.log(orderedStudents);
+ 
   return orderedStudents;
 },
 
