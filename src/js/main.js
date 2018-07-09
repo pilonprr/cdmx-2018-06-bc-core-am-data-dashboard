@@ -38,7 +38,6 @@ const getData = () => {
             const generationsData = data.obtainGeneration(res);
             const generations = computeGenerationsStats(res);
             const students = computeStudentsStats(res);
-            const options = getOptionToOrder(res);
             drawCampus(campus, generationsData, generations, students);
             drawCampusDashboard(campus);
             drawGenerationDashboard(generationsData);
@@ -193,6 +192,7 @@ const listStudentsCount = (students, venue, gen) => {
             cajaDatosFiltrados.innerHTML = " ";
             cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
         }
+        getOptionToOrder(students);
     })
 };
 
@@ -224,13 +224,13 @@ const listStudentsTurnoAm = (turno, arr) => {
         }
         cajaDatosFiltrados.innerHTML = " ";
         cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
-    })
+    });
 };
 
 const listStudentsTurnoPm = (turno, arr) => {
     turno.addEventListener('click', (event) => {
         let printStudentsList = " ";
-        let botonOrdenar =`<div class="form-group">
+        let botonOrdenar = `<div class="form-group">
         <label for="order-by">Ordenar</label>
         <select class="form-control" id="order-by">
             <option value="Ordenar Por:" selected>Ordenar Por:</option>
@@ -256,7 +256,7 @@ const listStudentsTurnoPm = (turno, arr) => {
         }
         cajaDatosFiltrados.innerHTML = " ";
         cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
-    })
+    });
 };
 
 const listStudentsProgressBelow = (arr) => {
@@ -289,7 +289,8 @@ const listStudentsProgressBelow = (arr) => {
         }
         cajaDatosFiltrados.innerHTML = " ";
         cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
-    })
+    });
+    //getOptionToOrder(students);
 };
 
 const listStudentsProgressAverage = (arr) => {
@@ -322,7 +323,8 @@ const listStudentsProgressAverage = (arr) => {
         }
         cajaDatosFiltrados.innerHTML = " ";
         cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
-    })
+    });
+    //getOptionToOrder(students);
 };
 
 const listStudentsProgressAbove = (arr) => {
@@ -355,7 +357,8 @@ const listStudentsProgressAbove = (arr) => {
         }
         cajaDatosFiltrados.innerHTML = " ";
         cajaDatosFiltrados.innerHTML = botonOrdenar + printStudentsList;
-    })
+    });
+    //getOptionToOrder(students);
 };
 
 //Función que despliega los datos a mostrar en la pantalla de inicio del Dashboard después del login
@@ -483,4 +486,13 @@ const getTurno = (venue, generation, students) => {
     turnoPmBox.innerHTML = turnoPM;
     listStudentsTurnoAm(turnoAmBox, arrAM);
     listStudentsTurnoPm(turnoPmBox, arrPM);
+};
+
+const getOptionToOrder = (students) => {
+    const buttonToOrder = document.getElementById("button-to-order");
+    buttonToOrder.addEventListener('click', () => {
+        const selectOrderBy = document.getElementById("order-by").value;
+        const selectOrder = document.getElementById("asc-dsc").value;
+        sortStudents(students, selectOrderBy, selectOrder);
+    })
 };

@@ -79,20 +79,58 @@ window.computeGenerationsStats = (laboratoria) => {
 };
 
 //Función que filtra estudiantes por nombre.
+
 window.filterStudents = (students, search) => {
-  //const arrFilterStudent = [];
   const filteredStudents = students.filter(
     student => student.name.toLowerCase().indexOf(search.toLowerCase()) != -1
   );
-  console.log(filteredStudents);
   return filteredStudents;
-  //printFilterStudent(arrFilterStudent); Esto lo hace una función impura
 };
 
 window.sortStudents = (students, orderBy, orderDirection) => {
-   
+  let listNames = [];
+  let orderedStudents = [];
+  if(orderBy === 'Nombre' && orderDirection === 'ASC'){
+    students.forEach(student => {
+      listNames.push(student.name);
+    })
+    listNames.sort();
+    for(i=0; i < listNames.length; i++){
+      let orderedFilter = filterStudents(students, listNames[i]);
+      if(orderedFilter === 1){
+        orderedStudents.push(orderedFilter[0]);
+      }
+      else{
+        orderedFilter.forEach(name => {
+          orderedStudents.push(name);
+        })
+        i++
+      }
+    }
+  }
 
-};
+  if(orderBy === 'Nombre' && orderDirection === 'DSC'){
+    students.forEach(student =>{
+      listNames.push(student.name);
+    })
+    listNames.sort();
+    listNames.reverse();
+    for(let i = 0; i < listNames.length; i++){
+      let orderedFilter = filterStudents(students, listNames[i]);
+      if(orderedFilter.length === 1){
+        orderedStudents.push(orderedFilter[0]);
+      }
+      else{
+        orderedFilter.forEach(name =>{
+          orderedStudents.push(name);
+        })
+        i++;
+      }
+    }
+  }
+  console.log(orderedStudents);
+  return orderedStudents;
+},
 
 
 window.data = {
