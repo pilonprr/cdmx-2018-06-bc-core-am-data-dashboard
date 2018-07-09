@@ -103,8 +103,6 @@ window.filterStudents = (students, search) => {
     const filteredStudents = students.filter(
       student => student.name.toLowerCase().indexOf(search.toLowerCase()) != -1
     );
-    console.log(students.length);
-    console.log(filteredStudents.length);
     return filteredStudents;
   }
 };
