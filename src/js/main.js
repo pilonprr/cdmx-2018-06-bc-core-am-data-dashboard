@@ -417,3 +417,15 @@ const getOptionToOrder = (students) => {
     cajaDatosFiltrados.innerHTML = studentsOrder;
   });
 };
+
+exitButton1.addEventListener('click', (event) => {
+  if (confirm('¿Salir de <LAB-Dash>?')) {
+    window.location.reload();
+  };
+});
+
+exitButton2.addEventListener('click', (event) => {
+  if (confirm('¿Salir de <LAB-Dash>?')) {
+    window.location.reload();
+  };
+});
