@@ -14,9 +14,6 @@ let selectGenerationDashboard1 = document.querySelector('#select-generation-dash
 let selectGenerationDashboard2 = document.querySelector('#select-generation-dashboard-2');
 let exitButton1 = document.getElementById('exit-button-1');
 let exitButton2 = document.getElementById('exit-button-2');
-const progressBarBelow = document.getElementById('progress-bar-below');
-const progressBarAverage = document.getElementById('progress-bar-average');
-const progressBarAbove = document.getElementById('progress-bar-above');
 const searchButton = document.getElementById('search-button');
 const searchText = document.getElementById('search');
 let cajaDatosFiltrados = document.getElementById('data-section');
@@ -132,24 +129,11 @@ const printFilterStudent = (arrFilterStudent) => {
 
 const changeDashboard = (generations, students) => {
   changeData.addEventListener('click', () => {
-    let numberStudents = document.getElementById('student-first-count');
-    let newCampus = (selectCampusDashboard2.value).toLowerCase();
-    let newGeneration = (selectGenerationDashboard2.value).toLowerCase();
-    document.querySelector('#venue').innerHTML = newCampus.toUpperCase();
-    document.querySelector('#generation').innerHTML = `${newGeneration.toUpperCase()} GENERACIÓN`;
-    let estudiantes;
-    for (let i = 0; i < generations.length; i++) {
-      let campus = generations[i].campus;
-      let generacion = generations[i].generation;
-      if (campus === newCampus && generacion === newGeneration) {
-        estudiantes = generations[i].count;
-      }
-    }
-    numberStudents.innerHTML = ' ';
-    numberStudents.innerHTML = estudiantes;
+    let newCampus = (selectCampusDashboard2.value);
+    let newGeneration = (selectGenerationDashboard2.value);
+    let name = document.getElementById('user-2').innerText;
+    welcomeDashboard(name, newCampus, newGeneration, generations, students);
     getTurno(newCampus, newGeneration, students);
-    getProgress(newCampus, newGeneration, students, estudiantes);
-    listStudentsCount(students, newCampus, newGeneration);
     return estudiantes;
   });
 };
@@ -212,7 +196,7 @@ const listStudentsTurnoPm = (turno, arr) => {
 };
 
 const listStudentsProgressBelow = (arr) => {
-  progressBarBelow.addEventListener('click', (event) => {
+  document.getElementById('progress-bar-below').addEventListener('click', (event) => {
     let printStudentsList = ' ';
     for (i = 0; i < arr.length; i++) {
       printStudentsList += `<div class="well card">
@@ -230,7 +214,7 @@ const listStudentsProgressBelow = (arr) => {
 };
 
 const listStudentsProgressAverage = (arr) => {
-  progressBarAverage.addEventListener('click', (event) => {
+  document.getElementById('progress-bar-average').addEventListener('click', (event) => {
     let printStudentsList = ' ';
     for (i = 0; i < arr.length; i++) {
       printStudentsList += `<div class="well card">
@@ -248,7 +232,7 @@ const listStudentsProgressAverage = (arr) => {
 };
 
 const listStudentsProgressAbove = (arr) => {
-  progressBarAbove.addEventListener('click', (event) => {
+  document.getElementById('progress-bar-above').addEventListener('click', (event) => {
     let printStudentsList = ' ';
     for (i = 0; i < arr.length; i++) {
       printStudentsList += `<div class="well card">
@@ -274,7 +258,6 @@ const welcomeDashboard = (name, sede, generation, generations, students) => {
   let venue = sede.toLowerCase();
   let gen = generation.toLowerCase();
   let estudiantes;
-
   for (let i = 0; i < generations.length; i++) {
     let campus = generations[i].campus;
     let generacion = generations[i].generation;
@@ -282,12 +265,63 @@ const welcomeDashboard = (name, sede, generation, generations, students) => {
       estudiantes = generations[i].count;
     }
   }
+  let firstDashboard = `<div class="row">
+                          <!--Abre caja donde despliegan las estudiantes activas-->
+                          <div class="col-sm-6 student-section">
+                            <div class="well">
+                              <h4>Estudiantes activas</h4>
+                              <div id="lista"></div>
+                            </div>
+                          </div>
+
+                          <!--Abre caja donde despliegan las estudiantes por turno-->
+                          <div class="col-sm-6 student-section">
+                            <div class="well">
+                              <h4>Turno AM</h4>
+                              <button id="turno-count-am" type="button"></button>
+                              <h4>Turno PM</h4>
+                              <button id="turno-count-pm" type="button"></button>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <!--Abre sección donde se despliega el avance en el LMS-->
+                        <div class="panel panel-default">
+
+                          <div class="panel-heading">
+                            <h4>Avance en el LMS</h4>
+                          </div>
+
+                          <div class="panel-body">
+                            <p>&#x25BC; 60%</p>
+                            <!--Ejemplo de como meter una barra de progreso-->
+                            <div class="progress" id="progress-bar-below" type="button">
+                            </div>
+                          </div>
+
+                          <div class="panel-body">
+                            <p>60% - 90%</p>
+                            <div class="progress" id="progress-bar-average" type="button">
+                            </div>
+                          </div>
+
+                          <div class="panel-body">
+                            <p>&#x25B2; 90%</p>
+                            <div class="progress" id="progress-bar-above" type="button">
+                            </div>
+                          </div>
+
+                        </div>`;
+
+  cajaDatosFiltrados.innerHTML = firstDashboard;
   const numberStudents = document.createElement('h3');
   numberStudents.setAttribute('id', 'student-first-count');
   numberStudents.setAttribute('type', 'button');
   numberStudents.innerHTML = estudiantes;
   document.getElementById('lista').appendChild(numberStudents);
   listStudentsCount(students, venue, gen);
+  getProgress(sede, generation, students, estudiantes);
   return estudiantes;
 };
 
@@ -318,15 +352,15 @@ const getProgress = (venue, generation, students, studentsInVenue) => {
   resultBelow = `<div class="progress-bar" id="below-bar" role="progressbar" aria-valuenow="${progressBelow}" aria-valuemin="0" aria-valuemax="${studentsInVenue}" style="width:${(progressBelow * 100) / studentsInVenue}%">
                 <p class="bar-text">${progressBelow}/${studentsInVenue}</p>          
               </div>`;
-  progressBarBelow.innerHTML = resultBelow;
+  document.getElementById('progress-bar-below').innerHTML = resultBelow;
   resultAverage = `<div class="progress-bar" id="average-bar" role="progressbar" aria-valuenow="${progressAverage}" aria-valuemin="0" aria-valuemax="${studentsInVenue}" style="width:${(progressAverage * 100) / studentsInVenue}%">
                 <p class="bar-text">${progressAverage}/${studentsInVenue}</p>          
               </div>`;
-  progressBarAverage.innerHTML = resultAverage;
+  document.getElementById('progress-bar-average').innerHTML = resultAverage;
   resultAbove = `<div class="progress-bar" id="above-bar" role="progressbar" aria-valuenow="${progressAbove}" aria-valuemin="0" aria-valuemax="${studentsInVenue}" style="width:${(progressAbove * 100) / studentsInVenue}%">
                 <p class="bar-text">${progressAbove}/${studentsInVenue}</p>          
               </div>`;
-  progressBarAbove.innerHTML = resultAbove;
+  document.getElementById('progress-bar-above').innerHTML = resultAbove;
   listStudentsProgressBelow(studentsBelow);
   listStudentsProgressAverage(studentsAverage);
   listStudentsProgressAbove(studentsAbove);
@@ -419,7 +453,7 @@ const getOptionToOrder = (students) => {
     cajaDatosFiltrados.innerHTML = ' ';
     cajaDatosFiltrados.innerHTML = studentsOrder;
   });
-  
+
   buttonToOrder2.addEventListener('click', (event) => {
     const selectOrderBy = document.getElementById('order-by-1').value;
     const selectOrder = document.getElementById('asc-dsc-1').value;
