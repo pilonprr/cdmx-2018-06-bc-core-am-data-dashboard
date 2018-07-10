@@ -99,6 +99,10 @@ footer{
 }
       
 @media screen and (max-width: 767px) {
+
+  #login-section{
+    width: 80%;
+  }
   
   #myNavbar, .navbar-header{
    background-color: #e3e3e3;
