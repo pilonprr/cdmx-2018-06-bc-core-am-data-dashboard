@@ -58,13 +58,13 @@ describe('data', () => {
       });
 
       it(`debería tener propiedad subtopics que es un objeto con primera key "0-bienvenida-orientacion" con valor 
-      {completado: 1, duracionSubtema: 55, tipo: "lectura"}`, () => {
+      {completado: 1, duracionSubtema: 30, tipo: "lectura"}`, () => {
         const topics = Object.keys(processed[0].stats.topics);
         const subTopics = Object.keys(processed[0].stats.topics[topics[0]].subtopics);
 
         assert.deepEqual(processed[0].stats.topics[topics[0]].subtopics[subTopics[0]], {
           completado: 1,
-          duracionSubtema: 55,
+          duracionSubtema: 30,
           tipo: 'lectura'
         });
       });

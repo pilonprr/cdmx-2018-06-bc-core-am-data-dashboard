@@ -105,9 +105,6 @@ window.filterStudents = (students, search) => {
     const filteredStudents = students.filter(
       student => student.name.toLowerCase().indexOf(search.toLowerCase()) != -1
     );
-    // console.log(students.length);
-    // console.log(filteredStudents.length);
-    // console.log(filteredStudents);
     return filteredStudents;
   }
 };
@@ -120,7 +117,6 @@ window.sortStudents = (students, orderBy, orderDirection) => {
       listNames.push(student.name);
     });
     listNames.sort();
-    // console.log(listNames.sort());
     for (i = 0; i < listNames.length; i++) {
       let listNameLower = listNames[i].toLowerCase();
       let orderedFilter = filterStudents(students, listNameLower);
