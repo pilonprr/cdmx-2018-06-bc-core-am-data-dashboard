@@ -128,10 +128,10 @@ Despues de maquetar la interfaz, se decidió hacer una prueba directamente con u
 
  _Pantalla de LogIn (versión móvil) demasiado estrecha, no se distinguía bien el texto._
 
-<img src=/ux/media/jpg/TestConUser5.jpg alt="userInteraction1" width="50%" height="50%">
+<img src=/ux/media/jpg/TestConUser5.jpeg alt="userInteraction1" width="50%" height="50%">
 
 _Borde Negro de menú de navegación (versión móvil), genera distracción._
 
-<img src=/ux/media/jpg/TestConUser2.jpg alt="userInteraction2" width="50%" height="50%">
+<img src=/ux/media/jpg/TestConUser2.jpeg alt="userInteraction2" width="50%" height="50%">
 
 Se hicieron los cambios correspondientes obteniendo la versión definitiva.
