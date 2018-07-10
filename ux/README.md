@@ -114,6 +114,7 @@ Auxiliandonos de los siguientes colores para la creación de contrastes:
 <img src=/ux/media/png/colores-contraste-laboratoria.png alt="colores-primarios" width="50%" height="50%">
 
 * Selección de tipografía
+
 Sobre la tipografía se selecciono la familia tipográfica **Open Sans**, ya que es una de las familias oficiales usadas por Laboratoria y al ser una tipografía tipo sans serif, tiene un carácter moderno y una buena legibilidad, además de ser compatible tanto con dispositivos de escritorio como móviles.
 ## Elaboración de prototipo
 Con base en la información recabada durante el proceso de UX, y con las delimitaciones para el diseño de la interfaz establecidas, se elaboro un prototipo en Adobe XD que mostrará cual era nuestro ideal a alcanzar en terminos de estructura, diseño visual y funcionalidades.
