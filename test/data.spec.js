@@ -96,16 +96,17 @@ describe('data', () => {
   });
 
   describe('sortStudents(students, orderBy, orderDirection)', () => {
-    const processedASC = sortStudents(computeStudentsStats(fixtures), 'name', 'ASC');
-    const processedDESC = sortStudents(computeStudentsStats(fixtures), 'name', 'DESC');
-    const processedpercentageASC = sortStudents(computeStudentsStats(fixtures), 'completedPercentage', 'ASC');
-    const processedpercentageDESC = sortStudents(computeStudentsStats(fixtures), 'completedPercentage', 'DESC');
+    const { laboratoria } = fixtures;
+    const processedASC = sortStudents(computeStudentsStats(fixtures), 'Nombre', 'ASC');
+    const processedDESC = sortStudents(computeStudentsStats(fixtures), 'Nombre', 'DSC');
+    const processedpercentageASC = sortStudents(computeStudentsStats(fixtures), 'Porcentaje de Completitud', 'ASC');
+    const processedpercentageDESC = sortStudents(computeStudentsStats(fixtures), 'Porcentaje de Completitud', 'DSC');
 
     it('debería retornar arreglo de estudiantes ordenado por nombre ASC', () => {
       assert.equal(processedASC[0].name, 'Aaliyah Lessie');
       assert.equal(processedASC[133].name, 'Yolanda Zula');
     });
-    it('debería retornar arreglo de estudiantes ordenado por nombre DESC', () => {
+    it('debería retornar arreglo de estudiantes ordenado por nombre DSC', () => {
       assert.equal(processedDESC[0].name, 'Yolanda Zula');
       assert.equal(processedDESC[133].name, 'Aaliyah Lessie');
     });
@@ -113,8 +114,8 @@ describe('data', () => {
       assert.equal(processedpercentageASC[0].name, 'Vicki Annice');
       assert.equal(processedpercentageASC[133].name, 'Rachael Cate');
     });
-    it('debería retornar arreglo de estudiantes ordenado por porcentaje general DESC', () => {
-      assert.equal(processedpercentageDESC[0].name, 'Rachael Cate');
+    it('debería retornar arreglo de estudiantes ordenado por porcentaje general DSC', () => {
+      assert.equal(processedpercentageDESC[0].name, 'Iseult Ysolt');
       assert.equal(processedpercentageDESC[133].name, 'Vicki Annice');
     });
   });
