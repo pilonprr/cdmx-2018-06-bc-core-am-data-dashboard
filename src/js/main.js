@@ -97,8 +97,10 @@ const printFilterStudent = (arrFilterStudent) => {
         </div>
     </div>`;
   } else {
-    let campus = selectCampus.value.toLowerCase();
-    let generation = selectGeneration.value.toLowerCase();
+    let campus = document.getElementById('venue').innerText.toLowerCase();
+    let generationValue = document.getElementById('generation').innerText.toLowerCase();
+    let generationArray = generationValue.split(' ');
+    let generation = generationArray[0];
     cajaDatosFiltrados.innerHTML = '';
     let studentMatch = ' ';
 
