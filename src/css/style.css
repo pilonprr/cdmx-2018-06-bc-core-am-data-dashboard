@@ -51,6 +51,16 @@ body{
   float: right;
 }
 
+#button-to-order,
+#button-to-order-2{
+  margin-bottom: 1em;
+}
+
+#order-box,
+#order-box-mobile{
+  margin-top: 2em;
+}
+
 #order-by,
 #order-by-1,
 #asc-dsc,
@@ -104,8 +114,9 @@ footer{
     width: 80%;
   }
   
-  #myNavbar, .navbar-header{
+  #myNavbar, .navbar-header, .navbar-inverse, .navbar-toggle{
    background-color: #e3e3e3;
+   border: 0px;
   }
   .row.content {
   height: auto;
