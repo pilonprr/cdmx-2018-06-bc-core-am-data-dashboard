@@ -18,6 +18,7 @@ const searchButton = document.getElementById('search-button');
 const searchText = document.getElementById('search');
 let cajaDatosFiltrados = document.getElementById('data-section');
 const changeData = document.getElementById('select2');
+const changeDataMobile = document.getElementById('select1');
 const buttonToOrder = document.getElementById('button-to-order');
 const buttonToOrder2 = document.getElementById('button-to-order-2');
 
@@ -134,7 +135,13 @@ const changeDashboard = (generations, students) => {
     let name = document.getElementById('user-2').innerText;
     welcomeDashboard(name, newCampus, newGeneration, generations, students);
     getTurno(newCampus, newGeneration, students);
-    return estudiantes;
+  });
+  changeDataMobile.addEventListener('click', () => {
+    let newCampus = (selectCampusDashboard1.value);
+    let newGeneration = (selectGenerationDashboard1.value);
+    let name = document.getElementById('user-1').innerText;
+    welcomeDashboard(name, newCampus, newGeneration, generations, students);
+    getTurno(newCampus, newGeneration, students);
   });
 };
 
