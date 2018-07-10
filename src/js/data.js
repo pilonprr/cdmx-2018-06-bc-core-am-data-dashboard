@@ -27,6 +27,7 @@ window.computeStudentsStats = (laboratoria) => {
           statusEstudiante = 'average'; // Indicamos que esta en la media
         };
         const topics = Object.keys(student.progreso.temas);
+        let studentSubtopic;
         for (topic of topics) {
           // La siguiente linea añade los temas como nuevas propiedades del objeto topics y les da como valor que sean un objeto
           let newProperty = Object.defineProperty(student.progreso.temas, topic, { writable: true });
@@ -36,7 +37,8 @@ window.computeStudentsStats = (laboratoria) => {
             valuesTopicsEstudiante[i].completedPercentage = valuesTopicsEstudiante[i].porcentajeCompletado;
             let topicProgress = (valuesTopicsEstudiante[i].duracionTemaCompletado * 100) / valuesTopicsEstudiante[i].duracionTema;
             valuesTopicsEstudiante[i].percentageDuration = Math.round(topicProgress);
-          };
+            valuesTopicsEstudiante[i].subtopics = valuesTopicsEstudiante[i].subtemas;
+          }
         };
         studentsArray.push({
           'name': nombreEstudiante,
@@ -103,9 +105,6 @@ window.filterStudents = (students, search) => {
     const filteredStudents = students.filter(
       student => student.name.toLowerCase().indexOf(search.toLowerCase()) != -1
     );
-    // console.log(students.length);
-    // console.log(filteredStudents.length);
-    // console.log(filteredStudents);
     return filteredStudents;
   }
 };
@@ -118,7 +117,6 @@ window.sortStudents = (students, orderBy, orderDirection) => {
       listNames.push(student.name);
     });
     listNames.sort();
-    // console.log(listNames.sort());
     for (i = 0; i < listNames.length; i++) {
       let listNameLower = listNames[i].toLowerCase();
       let orderedFilter = filterStudents(students, listNameLower);

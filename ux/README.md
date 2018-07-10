@@ -38,10 +38,15 @@ También detectamos que lxs Coaches consultan los datos de las alumnas frecuente
 ## Definición de proto-personas
 Después de recabar y analizar la información determinamos que nuestro dashboard tendrá dos usuarios, uno primario que serían lxs TM de las diferentes sedes y uno secundario que serían los demás miembros del equipo de formación.
 Para tener más claro estos dos perfiles, optamos por la generación de dos proto-personas que nos permitieran ver de manera rápida las características, metas y puntos de dolor de cada tipo de usuario, estas dos proto-personas se muestran a continuación:
-<img src=/ux/media/jpg/proto_persona_1.jpg alt="proto_persona_1" width="50%" height="50%"> 
+
+<img src=/ux/media/jpg/proto_persona_1.jpg alt="proto_persona_1" width="50%" height="50%">
+
 _Proto-persona del usuario principal_
+
 <img src=/ux/media/jpg/proto_persona_2.jpg alt="proto_persona_2" width="50%" height="50%"> 
+
 _Proto-persona del usuario secundario_
+
 ## Definición de requerimientos
 Con toda la información disponible hasta el momento, generamos una lista de requerimientos básicos para que la experiencia del usuario con nuestra interfaz sea favorable, estos requerimientos se plantean como parte integral del MVP a entregar en el primer sprint y son:
 - Que la primera tarea a realizar por el usuario en la interfaz será ingresar su nombre y sede a la que pertenece.
@@ -57,19 +62,32 @@ Con toda la información disponible hasta el momento, generamos una lista de req
 ## Proceso de sketching
 **Sketch inicial**
 Partiendo del preámbulo y del conocimiento previo sobre la forma de trabajar de Laboratoria, se escribio un pseudocódigo que nos dijera las acciones básicas que deberán ocurrir en nuestra plataforma, una vez realizada esta actividad se tradujeron los pasos del pseudocódigo a un diagrama de flujo.
+
 <img src=/ux/media/png/Data_Dashboard-Diagrama_de_flujo_1.png alt="segunda_propuesta_de_sketch" width="50%" height="50%">
+
 _Diagrama de flujo de las acciones básicas_
-Siguiendo este diagrama de flujo, se elaboró un sketch de lo que para nosotras sería lo más importante para una TM. 
+
+Siguiendo este diagrama de flujo, se elaboró un sketch de lo que para nosotras sería lo más importante para una TM.
+
 <img src=/ux/media/gif/propuesta_sketch_01.gif alt="segunda_propuesta_de_sketch" width="50%" height="50%">
+
 _Primera propuesta de sketch antes de acercarnos al usuario_
+
 <img src=/ux/media/gif/propuesta_sketch_02.gif alt="segunda_propuesta_de_sketch" width="50%" height="50%">
+
 _Segunda propuesta de sketch antes de acercarnos al usuario_
+
 **Adaptación del sketch**
 Teniendo como base el sketch inicial, se realizó una adaptación tomando en cuenta la información obtenida mediante la entrevista y las encuestas.
+
 <img src=/ux/media/gif/sketch_desktop_v2.gif alt="segunda_propuesta_de_sketch_desktop" width="50%" height="50%">
+
 _Propuesta de sketch para escritorio despúes de acercarnos al usuario_
+
 <img src=/ux/media/gif/sketch_mobile_v2.gif alt="segunda_propuesta_de_sketch_mobile" width="25%" height="25%">
+
 _Propuesta de sketch para movil despúes de acercarnos al usuario_
+
 **Testeo del sketch**
 Esta adaptación del sketch se lleva a prueba con dos usuarios potenciales para obtener su feedback y detectar puntos a mejorar.
 Entre las observaciones más importantes que nos hicieron esta el buscar una alternativa para la palabra _filtrar_, ya que esta genera confusiones y no dice exactamente al usuario para que sirve el botón donde se usa.
@@ -88,10 +106,15 @@ Durante estas pruebas se tomaron notas de los puntos conflictivos al momento de 
 Debido a que nuestro cliente tiene una imagen corporativa establecida, hicimos uso de los colores y tipografías usados dentro de su sistema de branding (https://www.behance.net/gallery/62847359/Laboratoria-Re-Branding) para que nuestra plataforma sea coherente con los demás elementos que conforman Laboratoria.
 * Selección de paleta de colores
 Los colores primarios a utilizar dentro de la interfaz son:
+
 <img src=/ux/media/png/colores-laboratoria.png alt="colores-primarios" width="50%" height="50%">
+
 Auxiliandonos de los siguientes colores para la creación de contrastes:
+
 <img src=/ux/media/png/colores-contraste-laboratoria.png alt="colores-primarios" width="50%" height="50%">
+
 * Selección de tipografía
+
 Sobre la tipografía se selecciono la familia tipográfica **Open Sans**, ya que es una de las familias oficiales usadas por Laboratoria y al ser una tipografía tipo sans serif, tiene un carácter moderno y una buena legibilidad, además de ser compatible tanto con dispositivos de escritorio como móviles.
 ## Elaboración de prototipo
 Con base en la información recabada durante el proceso de UX, y con las delimitaciones para el diseño de la interfaz establecidas, se elaboro un prototipo en Adobe XD que mostrará cual era nuestro ideal a alcanzar en terminos de estructura, diseño visual y funcionalidades.
