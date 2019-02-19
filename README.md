@@ -19,16 +19,22 @@ Terminado
 ## Screenshots
 
 .. image:: https://ibb.co/gb2N6Sy
+  :alt:
+  :align: center
 
 *Pantalla de Inicio en mobile*
 
 
 .. image:: https://ibb.co/gPKhfSZ
+  :alt:
+  :align: center
 
 *Pantalla de inicio en web*
 
 
-.. image:: https://ibb.co/QftTh60)
+.. image:: https://ibb.co/QftTh60
+  :alt:
+  :align: center
 
 
 ## Tech/framework usados
