@@ -1,57 +1,34 @@
-# Data Dashboard
+# LOL Lovers (Data Lovers)
 
 ## Introducción
 
-Como **segundo proyecto** del bootcamp de Laboratoria, se planteó el reto de crear por parejas una interfaz donde las TMs  (Training Managers) de las diferentes sedes puedan _ver_ y _usar_ la data de progreso del LMS, siendo este el motivo por el cuál se desarrollo el presente **data dashboard** (_tablero de visualización de datos_).
+Como **tercer proyecto** del bootcamp de Laboratoria, se planteó el reto de crear por parejas una interfaz donde se pudieran visualizar, consultar e interactuar con la data entregada (Pokemon, LOL, STEAM, Injuries, Banco Mundial). En nuestro caso elegimos la data de League of legends (LOL) dando como reultado el proyecto LOL Lovers.
 
 ## Preámbulo
 
-En Laboratoria, las Training Managers (TMs) hacen un gran trabajo al analizar la mayor cantidad de datos posibles respecto al progreso de las estudiantes para apoyarlas en su aprendizaje.
-
-La principal medida de progreso de una estudiante en Laboratoria es su avance completando los proyectos de la [Ruta de Aprendizaje (https://docs.google.com/spreadsheets/d/1AoXQjZnZ5MTPwJPNEGDyvn5vksiOUoPr932TjAldTE4/edit#gid=536983970)
-y su desempeño en función a la [Rúbrica de Niveles Esperados](https://docs.google.com/spreadsheets/d/e/2PACX-1vSkQy1waRpQ-16sn7VogiDTy-Fz5e7OSZSYUCiHC_bkLAKYewr4L8pWJ_BG210PeULe-TjLScNQQT_x/pubhtml).
-
-Sin embargo, para completar estos proyectos las estudiantes acceden a contenidos de aprendizaje (lecturas, videos, ejercicios y quizzes) en un sistema llamado LMS (Learning Management System). El LMS acumula data sobre quién
-leyó qué, qué ejercicios se han completado, los resultados de los quizzes, etc.
-
-A pesar de que la data de progreso del LMS (ej. lecturas leídas, ejercicios completados, nota en quizzes, etc.) no impacta directamente en la evaluación de una estudiante, sí es una pieza de información relevante que las TMs quisieran visualizar para tener un mejor entendimiento de cómo va cada estudiante en su proceso de aprendizaje.
+League of Legends es un videojuego online en el que los usuarios (particularmente los principiantes) necesitan conocer las caracteristicas de sus campeones. Nosotras basadas en las entrevistas a jugadores contruimos la interfaz con los datos del rol a desempeñar (tank, fighter, mage, assassin, adc, support), la dificultad de manejo del campeon, los niveles de ataque, defensa, magia, .
 
 ## Build status
 
-En progreso
-
-- Fase de pruebas del 3er. Sprint
+Terminado
 
 ## Code Style
 
-- Standard
 - Vanilla Javascript
  
 ## Screenshots
 
-![Pantalla de Login](ux/media/jpg/01-pantalla-login.jpg)
+![Pantalla de inicio](https://ibb.co/gb2N6Sy)
 
-*Pantalla de Login*
-
-
-![Pantalla de Login](ux/media/jpg/02-pantalla-bienvenida.jpg)
-
-*Pantalla de bienvenida al dashboard con los datos de la sede y generación seleccionados*
+*Pantalla de Inicio en mobile*
 
 
-![Pantalla de Login](ux/media/jpg/03-dropdowns-generacion-sede.jpg)
+![Pantalla de inicio en web](https://ibb.co/gPKhfSZ)
 
-*Uso de dropdowns para cambiar de sede y/o generación*
-
-
-![Pantalla de Login](ux/media/jpg/04-listado-estudiantes-activas.jpg)
-
-*Ejemplo de listado de estudiantes activas*
+*Pantalla de inicio en web*
 
 
-![Pantalla de Login](ux/media/jpg/05-logout.jpg)
-
-*Pantalla de logout*
+![Tarjeta con información detallada del personaje](https://ibb.co/QftTh60)
 
 
 ## Tech/framework usados
@@ -60,25 +37,20 @@ Desarrollado con:
 -  HTML5
 -  CSS3
 - Javascript (ES6)
-- Bootstrap
 
 ## Features
 
-Nuestra propuesta de Dashboard tiene como objetivos principales proporcionar una acceso *fácil* de entender, *rápido* y *cómodo* a la data del desempeño de las alumnas en el LMS de Laboratoria.
+El objetivo de nuestra página es que el jugador tenga rápido acceso la información mas relevante de los campeones.
 
-La interfaz actual permite al usuario:
+La pagina permite al usuario:
 
-* Listar y poder seleccionar sedes
-* Dentro de cada sede:
-  * Listar y poder seleccionar generaciones
-  * Para cada generación, listar y poder seleccionar estudiantes mostrando porcentaje general de completitud de c/estudiante
-  * En la vista de cada generación mostrar reporte de:
-    * Promedio de la generación
-    * Generar status para identificar estudiantes debajo del 60 en su porcentaje de completitud
-    * Generar status para identificar estudiantes con 90 o más en su porcentaje de completitud
-    * Poder filtrar estudiantes por estos dos status
+* Ver las diferentes listas de roles
+* Dar clic sobre la tarjeta de un personaje para obtener información mas detallada
+* Hacer busqueda por nombre del campeón
+* Conocer el promedio de ataque de todos los campeones
+ 
 
-* Utiliza la interfaz sin problemas desde distintos tamaños de pantallas: móviles, tablets, desktops
+* Utiliza la interfaz en móviles y web
 
 * Realizar pruebas unitarias
 
@@ -87,44 +59,50 @@ La interfaz actual permite al usuario:
 Para poder utilizar el código, realizar modificaciones o contribuir al proyecto es necesario:
 
 - Tener un editor de textos instalado (Visual Studio Code, Atom, Sublime, etc.)
-- Tener instalada una UNIX Shell (En nuestro caso usamos Git Bash)
 - Realizar un fork del repositorio
 - Clonarlo el fork a la computadora donde se vaya a trabajar
 - Tener instalado Node.js
 - Instalar las dependencias del proyecto con el comando *npm install*
 
 ## Archivos
+
 El *boilerplate* de este proyecto contiene la siguiente estructura de archivos, así como toda la configuración de dependencias y tests:
 
 ```text
-./
-├── .editorconfig
-├── .eslintrc
-├── .gitignore
-├── README.md
-├── data 
-│   └── laboratoria.json
+.
 ├── package.json
+├── README.md
 ├── src
-│   ├── js
-|   |   ├── data.js
-│   │   └── main.js
-│   ├── cs
-│   │   └── style.css
-│   ├── img
-│   │   └── Laboratoria-Logo-RGB.png
-│   └── index.html
+│   ├── data
+│   │   ├── injuries
+│   │   │   ├── injuries.js
+│   │   │   └── injuries.json
+│   │   ├── lol
+│   │   │   ├── lol.js
+│   │   │   └── lol.json
+│   │   ├── pokemon
+│   │   │   ├── pokemon.js
+│   │   │   └── pokemon.json
+│   │   ├── steam
+│   │   │   ├── steam.js
+│   │   │   └── steam.json
+│   │   └── worldbank
+│   │       ├── worldbank.js
+│   │       └── worldbank.json
+│   ├── data.js
+│   ├── index.html
+│   ├── main.js
+│   └── style.css
+│   │
+│   │──assets
+│       ├── Logo LOL png.png
+│       ├── blol.jpg
+│       ├── icono-menu.png
+│       └── logoLOL.png
 └── test
-|   ├── data.spec.js
-|   ├── fixtures.js
-|   ├── headless.js
-|   └── index.html
-└── ux
-    ├── img
-    │   └── gif
-    │   └── jpg
-    │   └── png
-    └── README.md
+    └── data.spec.js
+
+8 directories, 17 files
 ```
 La carpeta `data/` dentro del _boilerplate_ incluye un extracto de la data que podemos usar tanto en los tests como en la interfaz en sí. Todos los datos usados son ficticios, y su uso no afecta ni perjudica a ninguna persona o individuo moral.
 
@@ -148,7 +126,7 @@ En esta carpeta se encuentra documentado el proceso de diseño realizado para la
 
 ## Tests
 
-Para correr los test incluidos en el *boilerplate* del proyecto es necesario:
+Para correr los test del proyecto es necesario:
 
 - Tener instalado Node.js
 - Instalar las dependencias del proyecto con el comando 
@@ -160,29 +138,16 @@ npm install
 - Ejecutar desde la terminal las pruebas unitarias con el comando
 
 ```javascript
-npm test
+npm run test
 ```
 
-- Para ver el resultado de las pruebas unitarias en el navegador, se debe ejecutar el comando 
+## ¿Cómo usar LOL Lovers?
 
-```javascript
-npm run test-browser
-```
-
-## ¿Cómo usar el Data Dashboard?
-
-Para probar la plataforma actual, se debe contar con acceso a interner e ingresar a la liga: https://citlallidmg.github.io/cdmx-2018-06-bc-core-am-data-dashboard/src/index.html , usando los siguientes datos para loguearse:
-
-- Usuario: *usuario*
-- Contraseña: *1234*
-
-También se debe seleccionar en la pantalla de inicio las opciones de acuerdo a la sede y generación que se quiera visualizar al entrar al dashboard.
-
-Una vez dentro se pueden ocupar los diferentes botones para ver los listados de las estudiantes de acuerdo a su turno o avance, la barra de búsquedas para encontrar una estudiante por su nombre o el menú latera para cambiar de sede o generación.
-
-Finalmente, para salir de la plataforma es necesario usar el botón *SALIR* y seleccionar la opción *Aceptar*.
+Para ingresar a la plataforma de LOL Lovers, se debe contar con acceso a interner e ingresar a la liga: https://cristalgarcia.github.io/cdmx-2019-01-bc-core-data-lovers/src/
+En la parte superior del menú se encuentran las opciones que pueden ser visitadas, también se encuentra un buscador para encontrar al campeon de su preferencia y por ultimo se puede dar clic en las tarjetas de los diferentes campeones para conocer una informacion mas detallada de cada uno.
 
 ## Colaboradoras
 
-- [Palmidia Garay](https://github.com/jetzable)
-- [Citlalli Del Moral](https://github.com/CitlalliDMG)
+- [Cristal Grisel García Gutiérrez](https://github.com/Cristalgarcia)
+- [Evaluz Vazquez Espinosa](https://github.com/eve2921/)
+
