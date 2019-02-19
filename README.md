@@ -51,6 +51,10 @@ La pagina permite al usuario:
 
 * Realizar pruebas unitarias
 
+## Algunos detalles técnicos
+
+* Por el momento la página no cuenta menús desplegables, se planean para la siguiente estapa.
+
 ## Instalación
 
 Para poder utilizar el código, realizar modificaciones o contribuir al proyecto es necesario:
