@@ -17,24 +17,19 @@ Terminado
 - Vanilla Javascript
  
 ## Screenshots
-
+![probando](https://i.ibb.co/GMnGsRM/Captura-de-pantalla-2019-02-04-a-la-s-22-43-55.png)
 .. image:: https://ibb.co/gb2N6Sy
-  :alt:
-  :align: center
-
 *Pantalla de Inicio en mobile*
 
 
 .. image:: https://ibb.co/gPKhfSZ
-  :alt:
-  :align: center
+![probando](https://i.ibb.co/GMnGsRM/Captura-de-pantalla-2019-02-04-a-la-s-22-43-55.png)
 
 *Pantalla de inicio en web*
 
 
 .. image:: https://ibb.co/QftTh60
-  :alt:
-  :align: center
+![probando](https://i.ibb.co/GMnGsRM/Captura-de-pantalla-2019-02-04-a-la-s-22-43-55.png)
 
 
 ## Tech/framework usados
