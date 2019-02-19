@@ -18,17 +18,17 @@ Terminado
  
 ## Screenshots
 
-![Pantalla de inicio](https://ibb.co/gb2N6Sy)
+.. image:: https://ibb.co/gb2N6Sy
 
 *Pantalla de Inicio en mobile*
 
 
-![Pantalla de inicio en web](https://ibb.co/gPKhfSZ)
+.. image:: https://ibb.co/gPKhfSZ
 
 *Pantalla de inicio en web*
 
 
-![Tarjeta con información detallada del personaje](https://ibb.co/QftTh60)
+.. image:: https://ibb.co/QftTh60)
 
 
 ## Tech/framework usados
