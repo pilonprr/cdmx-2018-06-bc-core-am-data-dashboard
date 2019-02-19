@@ -17,19 +17,15 @@ Terminado
 - Vanilla Javascript
  
 ## Screenshots
-![probando](https://i.ibb.co/GMnGsRM/Captura-de-pantalla-2019-02-04-a-la-s-22-43-55.png)
-.. image:: https://ibb.co/gb2N6Sy
+
+![probando](https://i.ibb.co/WNhZskn/Captura-de-pantalla-2019-02-19-a-la-s-00-00-15.png)
 *Pantalla de Inicio en mobile*
 
 
-.. image:: https://ibb.co/gPKhfSZ
-![probando](https://i.ibb.co/GMnGsRM/Captura-de-pantalla-2019-02-04-a-la-s-22-43-55.png)
-
+![probando](https://i.ibb.co/qWQVcNY/Captura-de-pantalla-2019-02-19-a-la-s-01-46-13.png)
 *Pantalla de inicio en web*
 
-
-.. image:: https://ibb.co/QftTh60
-![probando](https://i.ibb.co/GMnGsRM/Captura-de-pantalla-2019-02-04-a-la-s-22-43-55.png)
+![probando](https://i.ibb.co/JKgG8zZ/Captura-de-pantalla-2019-02-19-a-la-s-01-54-48.png)
 
 
 ## Tech/framework usados
